@@ -1,0 +1,124 @@
+#EmyTab li.nav-item>a.nav-link.active{
+    border-radius: 12px !important;
+    padding: 6px 20px;
+    margin-left: 5px;
+    color: #fff !important;
+    border: 1px solid #fff !important;
+    background-color: transparent !important;
+}
+#EmyTab li.nav-item:last-child>a.nav-link.active{
+   
+    border: 1px solid #fff !important;
+    
+}
+ul#EmyTab {
+    display: block !important;
+}
+ul#EmyTab li.nav-item>a.nav-link {
+    border-radius: 0 !important;
+    padding: 6px 20px !important;
+  border: 0;
+    border-bottom: 1px solid #aeaeae !important;
+}
+ul#EmyTab li.nav-item:last-child>a.nav-link{
+    border-bottom: 0 !important;
+}
+div#EmyTabContent {
+    background: transparent !important;
+    border-radius: 20px;
+    padding: 20px  !important;
+    margin-top: 0px !important;
+    overflow: hidden;
+    min-height: 150px;
+    border: 1px solid #fff !important;
+    margin: 15px;
+
+}
+.user_form .form-control {
+    background: transparent;
+    border: 2px solid #fff;
+    padding: 5px 20px;
+    width: 100%;
+    border-radius: 8px;
+    color: #fff;
+}
+textarea.form-control {
+    min-height: 135px;
+}
+textarea.form-control::placeholder {
+   
+    color: #fff;
+}
+.user_form .form-control::placeholder {
+   
+    color: #fff;
+}
+.form-group>label {
+    color: #fff;
+    font-size: 12px;
+    margin-right: -11px;
+}
+.user_form  select  {
+    background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") right .75rem center/8px 10px no-repeat;
+
+    border: 2px solid #fff;
+    padding: 5px 20px;
+    width: 100%;
+    border-radius: 8px;
+    color: #fff;
+}
+.user_form option {
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+
+}
+
+.profile-pic img{
+   
+    border-radius: 50%;
+    box-shadow: 0px 0px 5px 0px #c1c1c1;
+    cursor: pointer;
+    width: 36px;
+    
+}   
+.hidden {
+    display: none !important;
+    visibility: hidden !important;
+}
+.profile_review>span {
+    color: #fff;
+    border-bottom: 1px solid #e2e2e2;
+    padding: 10px;
+    font-size: 13px;
+}
+.profile_review {
+    color: #fff;
+   
+    padding: 10px;
+    font-size: 13px;
+}
+@media (max-width: 520px) {
+    div#EmyTabContent{
+      margin-top: 20px !important;
+     
+  }
+    }
+    @media only screen and (min-device-width: 520px) and (max-device-width: 768px) {
+      
+    ul#EmyTab li.nav-item>a.nav-link {
+   
+        padding: 6px 7px !important;
+        border: 0;
+        font-size: 13px !important;
+    }
+    .user_form .form-control,.user_form select {
+       
+        padding: 4px 15px;
+       
+        font-size: 11px;
+    }
+    .form-group>label {
+        
+        margin-right: -67px;
+    }
+}

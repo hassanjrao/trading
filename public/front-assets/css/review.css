@@ -1,0 +1,123 @@
+.revie_title{
+    font-size: 26px;
+    font-weight: 800;
+    margin-top: 14px;
+    margin-bottom: 0;
+}
+.step_form_btn.d-flex {
+    justify-content: center;
+ 
+}
+.step_form_btn.d-flex>button {
+  min-width: 100px;
+    margin: 0 12px !important;
+}
+.review_tabs{
+   border-radius: 20px;
+   padding: 20px;
+    background: #FBF5F3 !important;
+}
+.review_form_input{
+    border-radius: 24px;
+    color: #626262;
+    border: 1px solid #626262;
+    background: #FBF5F3;
+}
+.review_form_input:focus{
+    border-radius: 24px;
+    color: #626262;
+    border: 1px solid #626262;
+    background: #FBF5F3;
+}
+.r_button {
+    min-width: 105px;
+}
+textarea.form-control.review_form_input::placeholder {
+    color: #626262;
+}
+textarea.form-control.review_form_input {
+    background-color: #E7E7E7 !important;
+    border: 0 !important;
+}
+.rating {
+    width: 50%;
+    text-align: center;
+}
+.rating-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.ratings{
+    text-align: center;
+}
+.stars {
+    display: flex;
+    justify-content: center;
+}
+.star {
+    font-size: 42px;
+    cursor: pointer;
+    color: #ccc;
+    margin: 0px 7px;
+}
+.star.selected {
+    color: #4a4adf;
+}
+.rating p, .ratings p {
+    color: #828282;
+}
+
+.Confirmation_container{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    background: #E7E7E7; padding-top: 7px; padding-bottom: 7px;
+}
+input.confirmation-input, input.confirmation-input:focus, input.confirmation-input:focus {
+    width: 88%;
+    border: 0;
+    background: transparent !important;
+}
+.review>label.checkbox-label {
+    color: #828282;
+    font-size: 15px;
+}
+.review>.checkbox-label:before{
+    border: 1px solid #4a4adf;
+}
+.success_message{
+    display: none;
+}
+
+@media screen and (max-width: 520px) {
+    .search-containers>input.search-input {
+        font-size: 15px;
+    }
+    .step_form_btn.d-flex {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .step_form_btn.d-flex>button {
+        margin-top: 10px !important;
+      
+    }
+    div#step2 input, div#step2 select {
+        margin-top: 24px;
+    }
+    .none{
+        display: none;
+    }
+    .step .data p {
+        justify-content: flex-start !important;
+    }
+    .star {
+        font-size: 16px !important;
+      
+    }
+    textarea.form-control.review_form_input {
+        margin-bottom: 10px;
+    }
+}
+
