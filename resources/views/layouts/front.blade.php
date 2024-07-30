@@ -55,16 +55,16 @@
                         </div>
                         <div class="menu" id="menu">
                             <div class="menu-item">
-                                <a class="menu-button">Compare</a>
+                                <a class="menu-button" href="{{ route('front.compare') }}">Compare</a>
                             </div>
                             <div class="dropdown">
                                 <button class="menu-button">Tools <i class="fa fa-chevron-down"
                                         aria-hidden="true"></i></button>
                                 <div class="dropdown-content">
 
-                                    <a href="#">The Map</a>
+                                    <a href="{{ route('front.map') }}">The Map</a>
 
-                                    <a href="#">Review</a>
+                                    <a href="{{ route('front.review_report') }}">Review</a>
                                 </div>
                             </div>
 
@@ -72,8 +72,8 @@
                                 <button class="menu-button">Top Lists <i class="fa fa-chevron-down"
                                         aria-hidden="true"></i></button>
                                 <div class="dropdown-content">
-                                    <a href="#">The Map</a>
-                                    <a href="#">Review</a>
+                                    <a href="{{ route('front.map') }}">The Map</a>
+                                    <a href="{{ route('front.review_report') }}">Review</a>
                                 </div>
                             </div>
                             <div class="menu-item">

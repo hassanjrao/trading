@@ -14,14 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Example Routes
-Route::view('/', 'front.home');
-Route::view('/checkout', 'front.checkout');
-Route::view('/compare', 'front.compare');
-Route::view('/profile', 'front.profile');
-Route::view('/review-report', 'front.review_report');
-Route::view('/top', 'front.top');
-Route::view('/user', 'front.user');
-Route::view('/vote', 'front.vote');
+Route::view('/', 'front.home')->name('front.home');
+Route::view('/checkout', 'front.checkout')->name('front.checkout');
+Route::view('/compare', 'front.compare')->name('front.compare');
+Route::view('/profile', 'front.profile')->name('front.profile');
+Route::view('/review-report', 'front.review_report')->name('front.review_report');
+Route::view('/top', 'front.top')->name('front.top');
+Route::view('/user', 'front.user')->name('front.user');
+Route::view('/vote', 'front.vote')->name('front.vote');
+Route::view('/map', 'front.map')->name('front.map');
 
 Route::match(['get', 'post'], '/dashboard', function(){
     return view('dashboard');
