@@ -77,7 +77,7 @@
                                 </div>
                             </div>
                             <div class="menu-item">
-                                <a class="menu-button"><img src="https://img.icons8.com/ios-glyphs/30/ffffff/user.png"
+                                <a class="menu-button" href="{{ route('front.register') }}"><img src="https://img.icons8.com/ios-glyphs/30/ffffff/user.png"
                                         alt="Sign In"> Sign In</a>
                             </div>
                         </div>
