@@ -32,11 +32,11 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-3 col-9">
-                    <div class="logo">
-                        <a href="{{ route('front.home') }}">
-                        <img src="{{ asset('front-assets/images/logofull 1.png') }}">
-                    </a>
-                    </div>
+                    {{-- <div > --}}
+                        <a href="{{ route('front.home') }}" class="logo">
+                            <img src="{{ asset('front-assets/images/logofull 1.png') }}">
+                        </a>
+                    {{-- </div> --}}
                 </div>
                 <div class="col-md-3  ">
                     <form>
@@ -79,8 +79,9 @@
                                 </div>
                             </div>
                             <div class="menu-item">
-                                <a class="menu-button" href="{{ route('front.register') }}"><img src="https://img.icons8.com/ios-glyphs/30/ffffff/user.png"
-                                        alt="Sign In"> Sign In</a>
+                                <a class="menu-button" href="{{ route('front.register') }}"><img
+                                        src="https://img.icons8.com/ios-glyphs/30/ffffff/user.png" alt="Sign In"> Sign
+                                    In</a>
                             </div>
                         </div>
                     </div>
