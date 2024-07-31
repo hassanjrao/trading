@@ -33,7 +33,9 @@
             <div class="row">
                 <div class="col-md-3 col-9">
                     <div class="logo">
+                        <a href="{{ route('front.home') }}">
                         <img src="{{ asset('front-assets/images/logofull 1.png') }}">
+                    </a>
                     </div>
                 </div>
                 <div class="col-md-3  ">
