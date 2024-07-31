@@ -23,6 +23,7 @@ Route::view('/top', 'front.top')->name('front.top');
 Route::view('/user', 'front.user')->name('front.user');
 Route::view('/vote', 'front.vote')->name('front.vote');
 Route::view('/map', 'front.map')->name('front.map');
+Route::view('/register', 'front.register')->name('front.register');
 
 Route::match(['get', 'post'], '/dashboard', function(){
     return view('dashboard');
