@@ -34,12 +34,26 @@ p.top_firm_title {
 
 @media screen and (max-width: 520px) {
     .mb-0_1 {
-       
         top: 29px !important;
-        left: 212px !important;
+        right: 30px !important;
+        left: auto;
     }
     p.top_firm_title {
         display: flex;
     }
      
+}
+@media only screen and (min-device-width: 520px) and (max-device-width: 768px) {
+    .mb-0_1 {
+        top: 64px;
+        left: auto;
+        right: 30px !important;
+    }
+}
+@media only screen and (min-device-width: 769px) and (max-device-width: 1024px) {
+    .mb-0_1 {
+        top: 40px;
+        left: auto;
+        right: 30px !important;
+    }
 }

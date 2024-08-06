@@ -14,17 +14,14 @@
     <link rel="stylesheet" href="{{ asset('front-assets/css/top.css') }}">
     <link rel="stylesheet" href="{{ asset('front-assets/css/profile.css') }}">
     <link rel="stylesheet" href="{{ asset('front-assets/css/compare_style.css') }}">
-    <link rel="stylesheet" href="{{ asset('front-assets/css/homepage.css') }}">
 
-    <link rel="stylesheet" href="{{ asset('front-assets/css/user.css') }}">
-    <link rel="stylesheet" href="{{ asset('front-assets/css/checkout.css') }}">
-
-    <link rel="stylesheet" href="{{ asset('front-assets/css/review.css') }}">
     <link href="https://fonts.cdnfonts.com/css/metropolis-2" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>
         {{ config('app.name') }}
     </title>
+
+    @yield('styles')
 </head>
 
 <body>

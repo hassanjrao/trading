@@ -72,6 +72,13 @@ textarea.form-control::placeholder {
     -webkit-filter: blur(8px);
 
 }
+select.custom-select>option {
+    background: #7A95F8;
+}
+input:focus, select:focus {
+    outline:none !important;
+}
+
 
 .profile-pic img{
    

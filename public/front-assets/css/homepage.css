@@ -21,7 +21,7 @@
     color: #828282;
 }
 .search-button {
-    background-color: #6154cc;
+    background: linear-gradient(to bottom, #7A95F8 8%, #6453CA 92%);
     border: none;
     padding: 10px;
     margin-left: -50px;
@@ -70,7 +70,7 @@
 
   .compare-button {
     margin-top: 20px;
-    padding: 6px 63px;
+    padding: 6px 99px;
     font-size: 18px;
     border: 2px solid white;
     border-radius: 8px;
@@ -145,7 +145,7 @@ font: 500 20px Metropolis, sans-serif;
   margin-left:20px;
 }
 .search-button{
-background-color: #6154cc !important;
+background:linear-gradient(to bottom, #7A95F8 8%, #6453CA 92%) !important;
 border: none;
 padding: 10px;
 margin-left: -60px;
