@@ -1,97 +1,18 @@
-<html lang="en">
+@extends('layouts.front')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.0/css/boxicons.min.css">
-    <link rel="stylesheet" href="..//assets/css/compare style.css">
-    <link rel="stylesheet" href="..//assets/css/style.css">
-    <!-- <link href="https://fonts.cdnfonts.com/css/metropolis-2" rel="stylesheet"> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="..//assets/css/profile.css">
+@section('page-title', 'Firm Name')
 
-    <title>
-        Profile of the Firms
-    </title>
-</head>
+@section('styles')
 
-<body>
-    <header class="pt-5">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-3 col-9">
-                    <div class="logo">
-                        <img src="..//assets/images/logofull 1.png">
-                    </div>
-                </div>
-                <div class="col-md-3  ">
-                    <form>
-                        <div class="search">
-                            <span class="fa fa-search"></span>
-                            <input type="text" placeholder="Search 'Apex Trader Funding'">
+    <link rel="stylesheet" href="{{ asset('front-assets/css/profile.css') }}">
+@endsection
 
-                        </div>
-                    </form>
-                </div>
-                <div class="col-md-6 col-12">
-                    <div class="navbar">
-
-                        <div class="hamburger" onclick="toggleMenu()">
-                            <div class="bar"></div>
-                            <div class="bar"></div>
-                            <div class="bar"></div>
-                        </div>
-                        <div class="menu" id="menu">
-                            <div class="menu-item">
-                                <a class="menu-button" href="..//compare/comapre.html">Compare</a>
-                            </div>
-                            <div class="dropdown">
-                                <button class="menu-button">Tools <i class="fa fa-chevron-down"
-                                        aria-hidden="true"></i></button>
-                                <div class="dropdown-content">
-
-                                    <a href="..//Map Page/map.html">The Map</a>
-
-                                    <a href="..//review report firm /review_report.html">Review</a>
-                                </div>
-                            </div>
-
-                            <div class="dropdown">
-                                <button class="menu-button">Top Lists <i class="fa fa-chevron-down"
-                                        aria-hidden="true"></i></button>
-                                <div class="dropdown-content">
-                                    <a href="..//Map Page/map.html">The Map</a>
-                                    <a href="..//review report firm /review_report.html">Review</a>
-                                </div>
-                            </div>
-                            <div class="menu-item">
-                                <a class="menu-button" href="..//Signup/Signup.html"><img
-                                        src="https://img.icons8.com/ios-glyphs/30/ffffff/user.png" alt="Sign In"> Sign
-                                    In</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </header>
-
-    <!-- Page Title -->
-
-    <!-- <h2 class="page_title pt-4 text-center text-white">Profile of the Firms</h2> -->
-
-    <!-- End Page Title -->
-
-
-    <!-- Sign Up Form -->
+@section('content')
 
 
     <br><br>
     <div class="container-fluid mt-4">
+
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-10 col-12">
@@ -104,10 +25,12 @@
                                     <p style="display: flex;     align-items: center;">
                                         <img class="img_data" src="..//assets/images/logo.png">
                                         <span class="p_name">
-                                            <b>Phoenix Trader Funding</b> <img class="img_data"
-                                                src="..//assets/images/france.png"> <br>
-                                            <a href="https://phoenixtraderfunding.com"
-                                                class="p_des">https://phoenixtraderfunding.com</a>
+                                            <b>
+                                                {{ $firm->name }}
+                                            </b> <img class="img_data" src="..//assets/images/france.png"> <br>
+                                            <a href="{{ $firm->url }}" target="__blank"
+                                                class="p_des">{{ $firm->url }}
+                                            </a>
                                         </span>
                                     </p>
                                 </div>
@@ -115,11 +38,19 @@
                         </div>
                         <div class="col-md-2">
                             <p class="p_text">Established</p>
-                            <p class="d_est"><b>August 2024</b></p>
+                            <p class="d_est">
+                                <b>
+                                    {{ Carbon\Carbon::parse($firm->established)->format('M Y') }}
+                                </b>
+                            </p>
                         </div>
                         <div class="col-md-2">
                             <p class="p_text">Asset</p>
-                            <p class="d_est"><b>CFD</b></p>
+                            <p class="d_est">
+                                <b>
+                                    {{ $firm->assetType->name }}
+                                </b>
+                            </p>
                         </div>
 
                     </div>
@@ -155,25 +86,49 @@
                                 <div class="col-md-3 ">
                                     <div class="chalng_tabs review_tab">
                                         <p class="p_text">Profit Split</p>
-                                        <p class="d_est1"><b>80% to 90%</b></p>
+                                        <p class="d_est1"><b>
+                                                {{ $firm->profit_split }}
+                                            </b></p>
                                     </div>
                                 </div>
                                 <div class="col-md-3 ">
                                     <div class="chalng_tabs review_tab">
                                         <p class="p_text">Technology</p>
-                                        <p class="d_est1"><b>Proprietary</b></p>
+                                        <p class="d_est1"><b>
+                                                {{ $firm->technology->name }}
+                                            </b></p>
                                     </div>
                                 </div>
-                                <div class="col-md-3 ">
-                                    <div class="chalng_tabs review_tab">
-                                        <p class="p_text">Direct Path to Live Funded</p>
-                                        <p class="d_est1"><b>Yes</b></p>
+                                @if ($firm->direct_path_to_live_funded)
+                                    <div class="col-md-3 ">
+                                        <div class="chalng_tabs review_tab">
+                                            <p class="p_text">Direct Path to Live Funded</p>
+                                            <p class="d_est1"><b>
+                                                    {{ $firm->direct_path_to_live_funded ? 'Yes' : 'No' }}
+                                                </b>
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
+                                @elseif ($firm->daily_drawdown)
+                                    <div class="col-md-3 ">
+                                        <div class="chalng_tabs review_tab">
+                                            <p class="p_text">Daily Drawdown</p>
+                                            <p class="d_est1"><b>
+                                                    {{ $firm->daily_drawdown }}
+                                                </b></p>
+                                        </div>
+                                    </div>
+                                @endif
                                 <div class="col-md-3 ">
                                     <div class="chalng_tabs review_tab">
                                         <p class="p_text">Payout Frequency</p>
-                                        <p class="d_est1"><b>Every 10 Trading Days</b></p>
+                                        <p class="d_est1 d-flex flex-column"><b>
+                                                {{ $firm->payout_frequency }}
+                                            </b>
+                                            {{-- <br> --}}
+                                            <span style="font-size: 14px; ">{{ $firm->payout_frequency_note }}</span>
+                                        </p>
+
                                     </div>
                                 </div>
                             </div>
@@ -201,66 +156,51 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            <p class="wsx">$41.50</p>
-                                            <p class="orginal">$42.50</p><span>Monthly</span>
-                                        </td>
-                                        <td>50K</td>
-                                        <td>$3000</td>
-                                        <td>$1200</td>
-                                        <td>$2500</td>
-                                        <td>80% to 90%</td>
-                                        <td>$149</td>
-                                        <td>5 Points</td>
-                                        <td><img class="img_data" src="../assets/images/922.png" style="width: 50px;">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p class="wsx">$41.50</p>
-                                            <p class="orginal">$42.50</p><span>Monthly</span>
-                                        </td>
-                                        <td>50K</td>
-                                        <td>$3000</td>
-                                        <td>$1200</td>
-                                        <td>$2500</td>
-                                        <td>80% to 90%</td>
-                                        <td>$149</td>
-                                        <td>5 Points</td>
-                                        <td><img class="img_data" src="../assets/images/922.png" style="width: 50px;">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p class="wsx">$41.50</p>
-                                            <p class="orginal">$42.50</p><span>Monthly</span>
-                                        </td>
-                                        <td>50K</td>
-                                        <td>$3000</td>
-                                        <td>$1200</td>
-                                        <td>$2500</td>
-                                        <td>80% to 90%</td>
-                                        <td>$149</td>
-                                        <td>5 Points</td>
-                                        <td><img class="img_data" src="../assets/images/922.png" style="width: 50px;">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p class="wsx">$41.50</p>
-                                            <p class="orginal">$42.50</p><span>Monthly</span>
-                                        </td>
-                                        <td>50K</td>
-                                        <td>$3000</td>
-                                        <td>$1200</td>
-                                        <td>$2500</td>
-                                        <td>80% to 90%</td>
-                                        <td>$149</td>
-                                        <td>5 Points</td>
-                                        <td><img class="img_data" src="../assets/images/922.png" style="width: 50px;">
-                                        </td>
-                                    </tr>
+                                    @foreach ($firm->firmChallenges as $challenge)
+                                        <tr>
+                                            <td>
+                                                <p class="wsx">{{ config('app.currency_symbol'). $challenge->before_price }}
+                                                </p>
+                                                <p class="orginal">
+                                                    {{ config('app.currency_symbol').$challenge->actual_price }}
+                                                </p>
+                                                @if ($challenge->actual_price_note)
+                                                    <span>
+                                                        {{ $challenge->actual_price_note }}
+                                                    </span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                {{ $challenge->accountSize->size }}
+                                            </td>
+                                            <td>
+                                                {{ config('app.currency_symbol').$challenge->profit_target }}
+                                            </td>
+                                            <td>
+                                                {{ config('app.currency_symbol').$challenge->max_daily_loss }}
+                                                @if($challenge->max_daily_loss_note)
+                                                <br>
+                                                    <span class="wsx" style="text-decoration: none">
+                                                        ({{ $challenge->max_daily_loss_note }})
+                                                    </span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                {{ config('app.currency_symbol').$challenge->max_total_drawdown }}
+                                            </td>
+                                            <td>
+                                                {{ $challenge->profit_split }}
+                                            </td>
+                                            <td>
+                                                {{ config('app.currency_symbol').$challenge->activation_fee }}
+                                            </td>
+                                            <td>
+                                                {{ $challenge->rewards }}
+                                            </td>
+                                            <td><img class="img_data" src="{{  asset('front-assets/images/922.png')}}" style="width: 50px;">
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -456,15 +396,15 @@
                                             <div class="col-md-2">
                                                 <div class="sect sec_height">
                                                     <p class="sect_p">Main Benifit</p>
-                                                    <p class="rat_text"> This is really a great firm, I loved every part
-                                                        of it.</p>
+                                                    <p class="rat_text"> This is really a great firm, I loved every part of
+                                                        it.</p>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="sect sec_height">
                                                     <p class="sect_p">Main Drawbacks</p>
-                                                    <p class="rat_text"> This is really a great firm, I loved every part
-                                                        of it.</p>
+                                                    <p class="rat_text"> This is really a great firm, I loved every part of
+                                                        it.</p>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
@@ -478,8 +418,8 @@
 
                                                 <div class="sect half_sec">
 
-                                                    <p class="sect_p"> <button id="toggleButton">Certificates / Payouts
-                                                            <b class="acct_val">2</b> <i class="fa fa-chevron-right"
+                                                    <p class="sect_p"> <button id="toggleButton">Certificates / Payouts <b
+                                                                class="acct_val">2</b> <i class="fa fa-chevron-right"
                                                                 aria-hidden="true"></i></button></p>
                                                 </div>
                                             </div>
@@ -517,7 +457,7 @@
                                 <div class="col-md-3 ">
                                     <div class="chalng_tabs review_tab">
                                         <p class="p_text">Chief Executive Officer</p>
-                                        <p class="d_est1"><img src="..//assets/images/unnamed 1.png"
+                                        <p class="d_est1"><img src="{{  asset('front-assets/images/unnamed 1.png')}}"
                                                 class="about_img"><b>Leon Grimm</b></p>
                                     </div>
                                 </div>
@@ -525,20 +465,20 @@
                                     <div class="chalng_tabs review_tab">
                                         <p class="p_text">TrustPilot</p>
                                         <p class="d_est1"><b style="font-size:22px;">3.9 </b> <img
-                                                src="..//assets/images/image 1.png" class="about_img"></p>
+                                                src="{{  asset('front-assets/images/image 1.png')}}" class="about_img"></p>
                                     </div>
                                 </div>
                                 <div class="col-md-3 ">
                                     <div class="chalng_tabs review_tab">
                                         <p class="p_text">Payment Method</p>
-                                        <p class="d_est1"> <img src="..//assets/images/payment 1.png"
+                                        <p class="d_est1"> <img src="{{  asset('front-assets/images/payment 1.png')}}"
                                                 class="about_img"><b>Credit Card </b></p>
                                     </div>
                                 </div>
                                 <div class="col-md-3 ">
                                     <div class="chalng_tabs review_tab">
                                         <p class="p_text">Payout Method</p>
-                                        <p class="d_est1"> <img src="..//assets/images/unnamed 4.png"
+                                        <p class="d_est1"> <img src="{{  asset('front-assets/images/unnamed 4.png')}}"
                                                 class="about_img"><b>Payoneer </b></p>
                                     </div>
                                 </div>
@@ -627,114 +567,45 @@
             </div>
         </div>
 
-
-
-
-
-
     </div>
 
-    <!-- Footer -->
-    <div class="footer_height"></div>
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <p class="footer_t">Disclaimer <br>The information provided is intended for general use and
-                        informational purposes only. Users are advised to proceed at their own risk and exercise due
-                        diligence before making any decisions based on the information provided. It is crucial to
-                        understand that our business offers information and does not endorse or recommend any specific
-                        proprietary trading firms. Users should independently evaluate and verify the suitability of any
-                        such entities before engaging with them. We do not assume responsibility for any consequences or
-                        losses arising from the use of the information provided. Thank you for your understanding and
-                        discretion.</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2">
+@endsection
 
-                </div>
-                <div class="col-md-8 col-12">
-                    <div class="footer_div">
-                        <div class="div-56">
-                            <a href="">Privacy Policy</a>
-                            <a href=""> Terms Of Use</a>
-                            <a href=""> Copyright @PropFirmMap 2024</a>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $("#p_table").DataTable({
+                aaSorting: [],
+                // responsive: true,
 
-                    </div>
-                </div>
-            </div>
-    </footer>
-</body>
-<!-- End Footer -->
-
-<!--  End Sign Up Form -->
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-</script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-
-
-
-<script>
-    function toggleMenu() {
-        var menu = document.getElementById("menu");
-        if (menu.style.display === "flex") {
-            menu.style.display = "none";
-        } else {
-            menu.style.display = "flex";
-        }
-    }
-
-</script>
-<script>
-    $(document).ready(function () {
-        $("#p_table").DataTable({
-            aaSorting: [],
-            // responsive: true,
-
-            columnDefs: [{
-                    responsivePriority: 1,
-                    targets: 0
-                },
-                {
-                    responsivePriority: 2,
-                    targets: -1
-                }
-            ]
-        });
-
-        $(".dataTables_filter input")
-            .attr("placeholder", "Search here...")
-            .css({
-                width: "300px",
-                display: "inline-block"
+                columnDefs: [{
+                        responsivePriority: 1,
+                        targets: 0
+                    },
+                    {
+                        responsivePriority: 2,
+                        targets: -1
+                    }
+                ]
             });
 
-        $('[data-toggle="tooltip"]').tooltip();
-    });
+            $(".dataTables_filter input")
+                .attr("placeholder", "Search here...")
+                .css({
+                    width: "300px",
+                    display: "inline-block"
+                });
 
-</script>
-<script>
-    document.getElementById('toggleButton').addEventListener('click', function () {
-        var div = document.getElementById('toggleDiv');
-        if (div.style.display === 'none') {
-            div.style.display = 'block';
-        } else {
-            div.style.display = 'none';
-        }
-    });
+            $('[data-toggle="tooltip"]').tooltip();
+        });
 
-</script>
-
-
-
-</html>
+        document.getElementById('toggleButton').addEventListener('click', function() {
+            var div = document.getElementById('toggleDiv');
+            if (div.style.display === 'none') {
+                div.style.display = 'block';
+            } else {
+                div.style.display = 'none';
+            }
+        });
+    </script>
+@endpush

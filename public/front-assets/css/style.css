@@ -126,7 +126,7 @@ button.menu-button>i {
         text-align: left;
     }
     .hamburger {
-        display: flex !important;  
+        display: flex !important;
     }
     .navbar {
         align-items: end !important;
@@ -135,9 +135,9 @@ button.menu-button>i {
         right: 0px;
         top: -86px;
     }
-  
-   
-   
+
+
+
 }
 
 @media only screen and (min-device-width: 520px) and (max-device-width: 768px) {
@@ -168,11 +168,11 @@ button.menu-button>i {
   }
   @media only screen and (min-device-width: 769px) and (max-device-width: 1208px) {
     .search {
-     
-   
+
+
         padding: 5px 14px !important;
         width: 136% !important;
-       
+
         margin-left: -37px;
     }
     .search>input[type="text"]::placeholder{
@@ -183,7 +183,7 @@ button.menu-button>i {
        padding: 0;
     }
     .menu {
-       
+
         gap: 4px !important;
     }
     .menu-button {
@@ -199,7 +199,7 @@ button.menu-button>i {
   }
   /* End header Menu */
   form {
- 
+
     margin-bottom: 0 !important;
 }
 input:focus{
@@ -218,12 +218,12 @@ input:focus{
     font-weight: bold;
 }
 .search>input[type="text"]:focus-visible {
-   
+
     border: 0 !important;
 }
 .search>input[type="text"]::placeholder {
     font-size: 14px;
-   
+
 }
 .page_title{
     color: #fff;
@@ -243,7 +243,7 @@ button.back {
 button.back>i {
     color: #fff;
     font-size: 26px;
-   
+
 }
 .btn-primary:not(:disabled):not(.disabled).active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .show>.btn-primary.dropdown-toggle:focus,.btn-primary:focus {
     box-shadow: none !important;
@@ -266,7 +266,7 @@ button.back>i {
 
 }
 .form-check {
-    
+
     padding-left: 0;
 }
 #step1 input::placeholder{
@@ -295,7 +295,7 @@ button.back>i {
     font-size: 20px;
     font-family: 'Metropolis', sans-serif;
 }
-  
+
  /* Style the label */
  input[type="radio"] {
     display: none;
@@ -364,7 +364,7 @@ button.back>i {
 
   /* Add a checkmark */
   input[type="checkbox"]:checked + .checkbox-label:after {
-    content: "✓"; /* Checkmark symbol */
+    content: "âœ“"; /* Checkmark symbol */
     color: #fff; /* Checkmark color */
     font-size: 16px;
     position: absolute;
@@ -372,7 +372,7 @@ button.back>i {
     top: 50%;
     transform: translateY(-50%);
 }
-  
+
      /* Media Query  */
 
      @media screen and (max-width: 520px) {
@@ -386,7 +386,7 @@ button.back>i {
             display: none !important;
         }
         header>.logo>img {
-           
+
             width: 100%;
         }
         .dropdown-content{
@@ -415,7 +415,7 @@ button.back>i {
             left: 0;
         }
         .hamburger {
-            display: flex !important;  
+            display: flex !important;
         }
         .menu{
             background: linear-gradient(to bottom, #7A95F8 8%, #6453CA 92%);
@@ -430,13 +430,13 @@ button.back>i {
             text-align: left !important;
         }
         input[type="checkbox"]:checked + .checkbox-label:after {
-           
+
             top: 46% !important;
-            
+
         }
       }
 
-    
+
 
       /* Vote Page */
     li.nav-item>a.nav-link.active {
@@ -445,7 +445,7 @@ button.back>i {
     }
     li.nav-item>a.nav-link {
         border-radius: 12px !important;
-       
+
         padding: 6px 49px;
         margin-left: 5px;
         color: #fff;
@@ -461,20 +461,20 @@ button.back>i {
         margin-top: 40px;
         overflow: hidden;
         min-height: 400px;
-        
+
     }
     .tab-content>.active {
         display: block;
         overflow: hidden;
     }
-    
+
     .number>p {
         padding: 12px !important;
         background: linear-gradient(to bottom, #7A95F8 8%, #6453CA 92%);
         width: 47px;
         text-align: center;
         border-radius: 50%;
-     
+
     }
     .button_v{
     text-align: center;
@@ -494,15 +494,15 @@ button.back>i {
     }
     @media (max-width: 520px) {
         .tab-content {
-           
+
             padding: 40px 5PX;
-          
+
         }
         .number>p {
             padding: 5px !important;
             width: 34px !important;
         }
-        
+
         .data>p{
             font-size: 14px;
         }
@@ -524,10 +524,10 @@ button.back>i {
             margin-bottom: 10px;
         }
         li.nav-item>a.nav-link {
-           
+
             padding: 6px 19px !important;
         }
-    
+
     }
 
     button#toggleButton:focus{
@@ -572,4 +572,3 @@ outline: none;
         font-family: 'Metropolis', sans-serif;
       }
       /* End footer */
-

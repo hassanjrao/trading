@@ -16,4 +16,14 @@ class Firm extends Model
     {
         return $this->hasMany(FirmChallenge::class);
     }
+
+    public function assetType()
+    {
+        return $this->belongsTo(AssetType::class)->withDefault();
+    }
+
+    public function technology()
+    {
+        return $this->belongsTo(Technology::class)->withDefault();
+    }
 }
