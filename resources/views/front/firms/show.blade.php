@@ -23,7 +23,7 @@
                             <div class="p_data">
                                 <div class="data">
                                     <p style="display: flex;     align-items: center;">
-                                        <img class="img_data" src="..//assets/images/logo.png">
+                                        <img class="img_data" src="{{ $firm->logo_url }}">
                                         <span class="p_name">
                                             <b>
                                                 {{ $firm->name }}
@@ -159,10 +159,11 @@
                                     @foreach ($firm->firmChallenges as $challenge)
                                         <tr>
                                             <td>
-                                                <p class="wsx">{{ config('app.currency_symbol'). $challenge->before_price }}
+                                                <p class="wsx">
+                                                    {{ config('app.currency_symbol') . $challenge->before_price }}
                                                 </p>
                                                 <p class="orginal">
-                                                    {{ config('app.currency_symbol').$challenge->actual_price }}
+                                                    {{ config('app.currency_symbol') . $challenge->actual_price }}
                                                 </p>
                                                 @if ($challenge->actual_price_note)
                                                     <span>
@@ -174,30 +175,31 @@
                                                 {{ $challenge->accountSize->size }}
                                             </td>
                                             <td>
-                                                {{ config('app.currency_symbol').$challenge->profit_target }}
+                                                {{ config('app.currency_symbol') . $challenge->profit_target }}
                                             </td>
                                             <td>
-                                                {{ config('app.currency_symbol').$challenge->max_daily_loss }}
-                                                @if($challenge->max_daily_loss_note)
-                                                <br>
+                                                {{ config('app.currency_symbol') . $challenge->max_daily_loss }}
+                                                @if ($challenge->max_daily_loss_note)
+                                                    <br>
                                                     <span class="wsx" style="text-decoration: none">
                                                         ({{ $challenge->max_daily_loss_note }})
                                                     </span>
                                                 @endif
                                             </td>
                                             <td>
-                                                {{ config('app.currency_symbol').$challenge->max_total_drawdown }}
+                                                {{ config('app.currency_symbol') . $challenge->max_total_drawdown }}
                                             </td>
                                             <td>
                                                 {{ $challenge->profit_split }}
                                             </td>
                                             <td>
-                                                {{ config('app.currency_symbol').$challenge->activation_fee }}
+                                                {{ config('app.currency_symbol') . $challenge->activation_fee }}
                                             </td>
                                             <td>
                                                 {{ $challenge->rewards }}
                                             </td>
-                                            <td><img class="img_data" src="{{  asset('front-assets/images/922.png')}}" style="width: 50px;">
+                                            <td><img class="img_data" src="{{ asset('front-assets/images/922.png') }}"
+                                                    style="width: 50px;">
                                             </td>
                                         </tr>
                                     @endforeach
@@ -457,29 +459,55 @@
                                 <div class="col-md-3 ">
                                     <div class="chalng_tabs review_tab">
                                         <p class="p_text">Chief Executive Officer</p>
-                                        <p class="d_est1"><img src="{{  asset('front-assets/images/unnamed 1.png')}}"
-                                                class="about_img"><b>Leon Grimm</b></p>
+                                        <p class="d_est1"><img src="{{ asset('front-assets/images/unnamed 1.png') }}"
+                                                class="about_img"><b>
+                                                {{ $firm->about->chief_executive_officer }}
+                                            </b></p>
                                     </div>
                                 </div>
                                 <div class="col-md-3 ">
                                     <div class="chalng_tabs review_tab">
                                         <p class="p_text">TrustPilot</p>
-                                        <p class="d_est1"><b style="font-size:22px;">3.9 </b> <img
-                                                src="{{  asset('front-assets/images/image 1.png')}}" class="about_img"></p>
+                                        <p class="d_est1"><b style="font-size:22px;">
+                                                {{ $firm->about->trust_pilot }}
+                                            </b> <img src="{{ asset('front-assets/images/image 1.png') }}"
+                                                class="about_img"></p>
                                     </div>
                                 </div>
-                                <div class="col-md-3 ">
-                                    <div class="chalng_tabs review_tab">
-                                        <p class="p_text">Payment Method</p>
-                                        <p class="d_est1"> <img src="{{  asset('front-assets/images/payment 1.png')}}"
-                                                class="about_img"><b>Credit Card </b></p>
+                                @if ($firm->paymentMethods->count() > 0)
+                                    <div class="col-md-3 ">
+                                        <div class="chalng_tabs review_tab">
+                                            <p class="p_text">Payment Method</p>
+                                            <p class="d_est1">
+
+                                                @foreach ($firm->paymentMethods as $paymentMethod)
+                                                    <div>
+                                                        <img src="{{ $paymentMethod->image_url }}" class="about_img">
+                                                        <b>
+                                                            {{ $paymentMethod->name }}
+                                                        </b>
+                                                    </div>
+                                                @endforeach
+
+
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
+                                @endif
                                 <div class="col-md-3 ">
                                     <div class="chalng_tabs review_tab">
                                         <p class="p_text">Payout Method</p>
-                                        <p class="d_est1"> <img src="{{  asset('front-assets/images/unnamed 4.png')}}"
-                                                class="about_img"><b>Payoneer </b></p>
+                                        <p class="d_est1">
+
+                                            @foreach ($firm->payoutMethods as $payoutMethod)
+                                                <div>
+                                                    <img src="{{ $payoutMethod->image_url }}" class="about_img">
+                                                    <b>
+                                                        {{ $payoutMethod->name }}
+                                                    </b>
+                                                </div>
+                                            @endforeach
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -495,22 +523,15 @@
                                 <div class="col-md-6 ">
                                     <div class="chalng_tabs review_tab p-4 ">
                                         <p class="p_text_about">Platform</p>
-                                        <p class="d_est1_about">
-                                            <img src="..//assets/images/unnamed 7.png" class="about_img">
-                                            <b>R| Trader Pro </b>
-                                        </p>
-                                        <p class="d_est1_about">
-                                            <img src="..//assets/images/images 3.png" class="about_img">
-                                            <b>Trading View </b>
-                                        </p>
-                                        <p class="d_est1_about">
-                                            <img src="..//assets/images/unnamed 8.png" class="about_img">
-                                            <b>NinjaTrader </b>
-                                        </p>
-                                        <p class="d_est1_about">
-                                            <img src="..//assets/images/MetaTrader_5 1.png" class="about_img">
-                                            <b>Tradovate </b>
-                                        </p>
+
+                                        @foreach ($firm->platforms as $platform)
+                                            <p class="d_est1_about">
+                                                <img src="{{ $platform->image_url }}" class="about_img">
+                                                <b>{{ $platform->name }} <span
+                                                        style="font-size:smaller">{{ $platform->note ? '(' . $platform->note . ')' : '' }}
+                                                    </span></b>
+                                            </p>
+                                        @endforeach
                                     </div>
                                 </div>
 
@@ -518,21 +539,23 @@
                                     <div class="chalng_tabs review_tab p-4 ">
                                         <p class="p_text_about">Commissions Structure</p>
 
-                                        <p class="d_est1_about">
-                                            <img src="..//assets/images/images 2.png" class="about_img">
-                                            <b>Purple Trading</b>
-                                            <li>Forex, Oil, XPT, XPD, AU, AG: <b>$6</b> per standard lot</li>
-                                            <li> Indices, Crypto: <b>Commission Free</b></li>
-                                        </p>
-                                        <p class="d_est1_about">
-                                            <img src="..//assets/images/unnamed 2.png" class="about_img">
-                                            <b>Trading View </b>
-                                        </p>
-                                        <p class="d_est1_about">
-                                            <img src="..//assets/images/unnamed 3.png" class="about_img">
-                                            <b>NinjaTrader </b>
-                                        </p>
-
+                                        @if ($firm->about->commission_strucuture_link)
+                                            <b>See thier <a href="{{ $firm->commission_strucuture_link }} " target="__blank">full</a> article</b>
+                                        @else
+                                            @foreach ($firm->commissionStructures as $commission)
+                                                <p class="d_est1_about">
+                                                    <img src="{{ $commission->image_url }}" class="about_img">
+                                                    <b>{{ $commission->name }}</b>
+                                                    @if ($commission->points)
+                                                        @foreach ($commission->points as $point)
+                                                            <li>
+                                                                {{ $point }}
+                                                            </li>
+                                                        @endforeach
+                                                    @endif
+                                                </p>
+                                            @endforeach
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -551,10 +574,7 @@
                                         <p class="p_text_about">About</p>
                                         <p class="d_est1_about">
 
-                                            Description of the firm Description of the firmDescription of the
-                                            firmDescription of the firmDescription of the firmDescription of the
-                                            firmDescription of the firmDescription of the firmDescription of the firm
-                                            Description of the firmDescription of the firmDescription
+                                            {{ $firm->about->description }}
                                         </p>
                                     </div>
                                 </div>

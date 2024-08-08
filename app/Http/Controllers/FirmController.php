@@ -84,4 +84,19 @@ class FirmController extends Controller
     {
         //
     }
+
+
+    public function search(Request $request){
+        $request->validate([
+            'search'=>'required'
+        ]);
+
+        $firms=Firm::where('name', 'like', '%'.$request->search.'%')->get();
+
+        return response()->json([
+            'data'=>[
+                'firms'=>$firms
+            ]
+        ]);
+    }
 }

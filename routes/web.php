@@ -34,4 +34,5 @@ Route::view('/pages/datatables', 'pages.datatables');
 Route::view('/pages/blank', 'pages.blank');
 
 
+Route::get('firms/search', [FirmController::class, 'search'])->name('firms.search');
 Route::resource('firms', FirmController::class);

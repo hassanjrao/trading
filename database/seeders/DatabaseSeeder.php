@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Firm;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,6 +23,11 @@ class DatabaseSeeder extends Seeder
             TechnologySeeder::class,
             FirmSeeder::class,
             FirmChallengeSeeder::class,
+            FrimAboutSeeder::class,
+            FirmPaymentMethodSeeder::class,
+            FirmPayoutMethodSeeder::class,
+            FirmCommissionStructureSeeder::class,
+            FirmPlatformSeeder::class,
         ]);
     }
 }

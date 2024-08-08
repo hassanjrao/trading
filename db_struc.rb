@@ -22,7 +22,11 @@ firm_challenge_listings: id, firm_id, actual_price,actual_price_note, before_pri
 
 
 
-firm_abouts: id, firm_id, cheif_executive_officer, trust_pilot, payment_methods (json), payout_methods (json), more_than_5_platforms (boolean), commission_strucuture_link, description
+firm_abouts: id, firm_id, cheif_executive_officer, trust_pilot, more_than_5_platforms (boolean), commission_strucuture_link, description
+
+firm_payment_methods: id, firm_id, image_path, name
+
+firm_payout_methods: id, firm_id, image_path, name
 
 firm_about_platforms: id, firm_about_id, icon, name, note
 
