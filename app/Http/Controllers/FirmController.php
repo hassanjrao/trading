@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Firm;
+use App\Models\FirmRequest;
 use Illuminate\Http\Request;
 
 class FirmController extends Controller
@@ -35,7 +36,6 @@ class FirmController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
@@ -97,6 +97,21 @@ class FirmController extends Controller
             'data'=>[
                 'firms'=>$firms
             ]
+        ]);
+    }
+
+
+    public function request(Request $request){
+        $request->validate([
+            'name'=>'required',
+        ]);
+
+        FirmRequest::create([
+            'name'=>$request->name
+        ]);
+
+        return response()->json([
+            'message'=>'Request submitted successfully'
         ]);
     }
 }

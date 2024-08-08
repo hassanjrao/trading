@@ -22,8 +22,10 @@
                                 style="
                             width: 13px;position: relative;left: -15px;">
                         </button>
-                        <button class="search-button"><img src="https://img.icons8.com/ios-glyphs/30/ffffff/search.png"
-                                alt="Search" style="width: 20px;"></button>
+                        <button class="search-button">
+                            <img src="https://img.icons8.com/ios-glyphs/30/ffffff/search.png"
+                                alt="Search" style="width: 20px;">
+                        </button>
                     </div>
                     <div class="search-results" id="searchCont" style="display: none !important;">
                     </div>
@@ -131,6 +133,9 @@
                             let result = document.createElement('div');
                             result.classList.add('result');
 
+                            let anchor = document.createElement('a');
+                            anchor.href = '/firms/' + firm.id;
+
                             let img = document.createElement('img');
                             img.src = firm.logo_url;
                             img.alt = firm.name;
@@ -140,7 +145,9 @@
                             name.innerText = firm.name;
                             result.appendChild(name);
 
-                            searchResults.appendChild(result);
+                            anchor.appendChild(result);
+
+                            searchResults.appendChild(anchor);
                         });
                     } else {
 
@@ -168,6 +175,11 @@
                         let btn = document.createElement('button');
                         btn.classList.add('add-firm-btn');
                         btn.innerText = '+ Add Firm';
+                        // add click event to the button
+                        btn.addEventListener('click', function () {
+                            addFirm(enteredText);
+                        });
+
                         noResultDiv.appendChild(btn);
 
 
@@ -183,5 +195,30 @@
 
 
         }
+
+        function addFirm(text){
+
+            axios.post('/firms/request', {
+                name: text
+            })
+            .then(response => {
+                console.log('response', response);
+                // remove add-firm-btn
+                // add button with text Request Submitted
+                let firmBtn=document.querySelector('.add-firm-btn');
+                firmBtn.innerHTML='Request Submitted';
+                firmBtn.disabled=true;
+                firmBtn.style.backgroundColor='#41b618';
+
+
+
+
+                noResultDiv.appendChild(btn);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+        }
+
     </script>
 @endpush
