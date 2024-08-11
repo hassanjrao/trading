@@ -11,15 +11,15 @@
 
     <link rel="stylesheet" href="{{ asset('front-assets/css/compare_style.css') }}">
     <link rel="stylesheet" href="{{ asset('front-assets/css/style.css') }}">
-    {{-- <link rel="stylesheet" href="{{ asset('front-assets/css/top.css') }}"> --}}
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <title>
-       @yield('page-title') - {{ config('app.name') }}
+        @yield('page-title') - {{ config('app.name') }}
     </title>
 
     @yield('styles')
+    @livewireStyles
 </head>
 
 <body>
@@ -28,9 +28,9 @@
             <div class="row">
                 <div class="col-md-3 col-9">
                     {{-- <div > --}}
-                        <a href="{{ route('front.home') }}" class="logo">
-                            <img src="{{ asset('front-assets/images/logofull 1.png') }}">
-                        </a>
+                    <a href="{{ route('home') }}" class="logo">
+                        <img src="{{ asset('front-assets/images/logofull 1.png') }}">
+                    </a>
                     {{-- </div> --}}
                 </div>
                 <div class="col-md-3  ">
@@ -69,14 +69,20 @@
                                 <button class="menu-button">Top Lists <i class="fa fa-chevron-down"
                                         aria-hidden="true"></i></button>
                                 <div class="dropdown-content">
-                                    <a href="{{ route('front.map') }}">The Map</a>
-                                    <a href="{{ route('front.review_report') }}">Review</a>
+                                    <a href="{{ route('firms.most-voted') }}">Most Voted</a>
+                                    <a href="{{ route('firms.index') }}">Top Firms</a>
                                 </div>
                             </div>
                             <div class="menu-item">
-                                <a class="menu-button" href="{{ route('front.register') }}"><img
-                                        src="https://img.icons8.com/ios-glyphs/30/ffffff/user.png" alt="Sign In"> Sign
-                                    In</a>
+                                @auth
+
+                                @endauth
+                                @guest
+
+                                    <a class="menu-button" href="{{ route('register') }}"><img
+                                            src="https://img.icons8.com/ios-glyphs/30/ffffff/user.png" alt="Sign In"> Sign
+                                        In</a>
+                                @endguest
                             </div>
                         </div>
                     </div>
@@ -172,5 +178,6 @@
 
 @stack('scripts')
 
+@livewireScripts
 
 </html>

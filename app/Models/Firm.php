@@ -59,4 +59,13 @@ class Firm extends Model
     {
         return $this->hasMany(FirmCommissionStructure::class);
     }
+
+    public function accountSize()
+    {
+        return $this->belongsTo(AccountSize::class)->withDefault();
+    }
+
+    public function step(){
+        return $this->belongsTo(Step::class)->withDefault();
+    }
 }

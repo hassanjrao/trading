@@ -1,5 +1,7 @@
 @extends('layouts.front')
 
+
+
 @section('content')
     <!-- Page Title -->
 

@@ -23,42 +23,29 @@
                             width: 13px;position: relative;left: -15px;">
                         </button>
                         <button class="search-button">
-                            <img src="https://img.icons8.com/ios-glyphs/30/ffffff/search.png"
-                                alt="Search" style="width: 20px;">
+                            <img src="https://img.icons8.com/ios-glyphs/30/ffffff/search.png" alt="Search"
+                                style="width: 20px;">
                         </button>
                     </div>
                     <div class="search-results" id="searchCont" style="display: none !important;">
                     </div>
-                    <div class="no-results d-flex justify-content-between align-items-center" style="display: none !important;">
+                    <div class="no-results d-flex justify-content-between align-items-center"
+                        style="display: none !important;">
                     </div>
                 </div>
 
                 <p class="head_search mt-3">Popular Firms</p>
                 <div class="popular-firms">
-                    <div class="firm-logo">
-                        <img src="..//assets/images/Sans titre 1.png" alt="Topstep">
-                        <div>Topstep</div>
-                    </div>
-                    <div class="firm-logo">
-                        <img src="..//assets/images/Apex-Trader-Funding-logo 1.png" alt="Apex Trader Funding">
-                        <div>Apex Trader Funding</div>
-                    </div>
-                    <div class="firm-logo">
-                        <img src="..//assets/images/52xgnta2_400x400 1.png" alt="Goat Funded Trader">
-                        <div>Goat Funded Trader</div>
-                    </div>
-                    <div class="firm-logo">
-                        <img src="..//assets/images/e_NDgVTP_400x400 1.png" alt="MyFundedFX">
-                        <div>MyFundedFX</div>
-                    </div>
-                    <div class="firm-logo">
-                        <img src="..//assets/images/logo.png" alt="Phoenix Trader Funding">
-                        <div>Phoenix Trader Funding</div>
-                    </div>
-                    <div class="firm-logo">
-                        <img src="..//assets/images/images 1.png" alt="FTMO">
-                        <div>FTMO</div>
-                    </div>
+
+                    @foreach ($firms as $firm)
+                        <div class="firm-logo">
+                            <img src="{{ $firm->logo_url }}" alt="Topstep">
+                            <div>
+                                <a href="{{ route('firms.show', $firm->id) }}">{{ $firm->name }}</a>
+                            </div>
+                        </div>
+                    @endforeach
+
 
                 </div>
                 <div class="mt-4 text-center">
@@ -78,7 +65,7 @@
         var noResultDiv = document.querySelector('.no-results');
         var resultDiv = document.querySelector('#searchCont');
 
-        var crossBtn=document.querySelector('#crossBtn');
+        var crossBtn = document.querySelector('#crossBtn');
 
         function removeSearch() {
             console.log('remove search');
@@ -104,7 +91,7 @@
                 return;
             }
 
-            if(crossBtn.style.display == 'none'){
+            if (crossBtn.style.display == 'none') {
                 crossBtn.style.display = 'block';
             }
 
@@ -176,7 +163,7 @@
                         btn.classList.add('add-firm-btn');
                         btn.innerText = '+ Add Firm';
                         // add click event to the button
-                        btn.addEventListener('click', function () {
+                        btn.addEventListener('click', function() {
                             addFirm(enteredText);
                         });
 
@@ -196,29 +183,28 @@
 
         }
 
-        function addFirm(text){
+        function addFirm(text) {
 
             axios.post('/firms/request', {
-                name: text
-            })
-            .then(response => {
-                console.log('response', response);
-                // remove add-firm-btn
-                // add button with text Request Submitted
-                let firmBtn=document.querySelector('.add-firm-btn');
-                firmBtn.innerHTML='Request Submitted';
-                firmBtn.disabled=true;
-                firmBtn.style.backgroundColor='#41b618';
+                    name: text
+                })
+                .then(response => {
+                    console.log('response', response);
+                    // remove add-firm-btn
+                    // add button with text Request Submitted
+                    let firmBtn = document.querySelector('.add-firm-btn');
+                    firmBtn.innerHTML = 'Request Submitted';
+                    firmBtn.disabled = true;
+                    firmBtn.style.backgroundColor = '#41b618';
 
 
 
 
-                noResultDiv.appendChild(btn);
-            })
-            .catch(error => {
-                console.log(error);
-            })
+                    noResultDiv.appendChild(btn);
+                })
+                .catch(error => {
+                    console.log(error);
+                })
         }
-
     </script>
 @endpush

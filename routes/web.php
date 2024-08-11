@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\FirmController;
+use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 // Example Routes
 Route::view('/', 'front.home')->name('front.home');
@@ -34,6 +37,14 @@ Route::view('/pages/datatables', 'pages.datatables');
 Route::view('/pages/blank', 'pages.blank');
 
 
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+
+Route::get('firms/{firmChallenge}/summary', [FirmController::class, 'summary'])->name('firms.summary');
+Route::get('firms/most-voted', [FirmController::class, 'mostVoted'])->name('firms.most-voted');
 Route::post('firms/request', [FirmController::class, 'request'])->name('firms.request');
 Route::get('firms/search', [FirmController::class, 'search'])->name('firms.search');
 Route::resource('firms', FirmController::class);
+
+Auth::routes();
+

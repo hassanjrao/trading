@@ -198,8 +198,12 @@
                                             <td>
                                                 {{ $challenge->rewards }}
                                             </td>
-                                            <td><img class="img_data" src="{{ asset('front-assets/images/922.png') }}"
-                                                    style="width: 50px;">
+                                            <td>
+                                                <a href="{{ route('firms.summary',$challenge) }}">
+                                                    <img class="img_data"
+                                                        src="{{ asset('front-assets/images/922.png') }}"
+                                                        style="width: 50px;">
+                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -540,7 +544,8 @@
                                         <p class="p_text_about">Commissions Structure</p>
 
                                         @if ($firm->about->commission_strucuture_link)
-                                            <b>See thier <a href="{{ $firm->commission_strucuture_link }} " target="__blank">full</a> article</b>
+                                            <b>See thier <a href="{{ $firm->commission_strucuture_link }} "
+                                                    target="__blank">full</a> article</b>
                                         @else
                                             @foreach ($firm->commissionStructures as $commission)
                                                 <p class="d_est1_about">

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AssetType;
 use App\Models\Firm;
+use App\Models\FirmChallenge;
 use App\Models\FirmRequest;
+use App\Models\Step;
 use Illuminate\Http\Request;
 
 class FirmController extends Controller
@@ -13,9 +16,22 @@ class FirmController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $type=$request->type;
+
+        if($type=='all'){
+            $type=null;
+        }
+
+        $assetTypes=AssetType::all();
+
+        $firms=Firm::when($type, function($query) use($type){
+            return $query->where('asset_type_id', $type);
+        })->
+        latest()->get();
+
+        return view('front.firms.index', compact('firms', 'assetTypes'));
     }
 
     /**
@@ -113,5 +129,33 @@ class FirmController extends Controller
         return response()->json([
             'message'=>'Request submitted successfully'
         ]);
+    }
+
+
+    public function mostVoted(Request $request){
+
+        $type=$request->type;
+
+        if($type=='all'){
+            $type=null;
+        }
+
+        $assetTypes=AssetType::all();
+
+        $firms=Firm::when($type, function($query) use($type){
+            return $query->where('asset_type_id', $type);
+        })->
+        latest()->get();
+        return view('front.firms.most-voted', compact('firms', 'assetTypes'));
+    }
+
+
+    public function summary(FirmChallenge $firmChallenge){
+
+        $firm=$firmChallenge->firm;
+
+        $steps=Step::all();
+
+        return view('front.firms.summary', compact('firm', 'firmChallenge', 'steps'));
     }
 }

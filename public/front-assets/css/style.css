@@ -235,10 +235,11 @@ input:focus{
 button.back {
     background: transparent;
     border: 0;
-    position: absolute;
+    /* position: absolute;
     top: 167px;
     right: 257px;
-    left: 0;
+    left: 0; */
+    width: 6%;
 }
 button.back>i {
     color: #fff;
@@ -483,8 +484,13 @@ button.back>i {
         padding: 5px 70px;
         background: linear-gradient(to right, #7A95F8 8%, #6453CA 92%);
     }
+    .button_v>a {
+        padding: 5px 40px;
+        background: linear-gradient(to right, #7A95F8 8%, #6453CA 92%);
+    }
     .button_v>p{
         font-size: 13px;
+        font-weight: bolder;
     }
     .counter{
         color:  #6453CA ;
