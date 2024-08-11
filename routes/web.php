@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FirmController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ReviewReportController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserProfileController;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +25,6 @@ Route::view('/', 'front.home')->name('front.home');
 Route::view('/checkout', 'front.checkout')->name('front.checkout');
 Route::view('/compare', 'front.compare')->name('front.compare');
 Route::view('/profile', 'front.profile')->name('front.profile');
-Route::view('/review-report', 'front.review_report')->name('front.review_report');
 Route::view('/top', 'front.top')->name('front.top');
 Route::view('/user', 'front.user')->name('front.user');
 Route::view('/vote', 'front.vote')->name('front.vote');
@@ -41,18 +41,26 @@ Route::view('/pages/blank', 'pages.blank');
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
+Route::middleware(['auth'])->group(function(){
+
+    Route::post('profile/contact-us', [UserProfileController::class, 'submitContactUs'])->name('profile.contact-us');
+    Route::post('profile/update-password', [UserProfileController::class, 'updatePassword'])->name('profile.update-password');
+    Route::resource('profile', UserProfileController::class);
+
+    Route::post('firms/submit-vote', [FirmController::class, 'submitVote'])->name('firms.submit-vote');
+
+    Route::resource('review-report', ReviewReportController::class);
+
+});
+
+
+
 Route::get('firms/{firmChallenge}/summary', [FirmController::class, 'summary'])->name('firms.summary');
 Route::get('firms/most-voted', [FirmController::class, 'mostVoted'])->name('firms.most-voted');
 Route::post('firms/request', [FirmController::class, 'request'])->name('firms.request');
 Route::get('firms/search', [FirmController::class, 'search'])->name('firms.search');
 Route::resource('firms', FirmController::class);
 
-Route::middleware(['auth'])->group(function(){
-
-    Route::post('profile/contact-us', [UserProfileController::class, 'submitContactUs'])->name('profile.contact-us');
-    Route::post('profile/update-password', [UserProfileController::class, 'updatePassword'])->name('profile.update-password');
-    Route::resource('profile', UserProfileController::class);
-});
 
 Auth::routes();
 

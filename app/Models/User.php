@@ -59,4 +59,13 @@ class User extends Authenticatable
     }
 
 
+
+
+
+    public function firmVotes()
+    {
+        return $this->belongsToMany(Firm::class, 'firm_votes');
+    }
+
+
 }

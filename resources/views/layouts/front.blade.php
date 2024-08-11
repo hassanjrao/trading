@@ -68,7 +68,7 @@
 
                                     <a href="{{ route('front.map') }}">The Map</a>
 
-                                    <a href="{{ route('front.review_report') }}">Review</a>
+                                    <a href="{{ route('review-report.index') }}">Review</a>
                                 </div>
                             </div>
 
@@ -147,6 +147,8 @@
 <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 
 <script src="{{ asset('js/laravel.app.js') }}"></script>
+
+<script src="{{ asset('js/app.js') }}"></script>
 
 <script>
     var currentStep = 1;

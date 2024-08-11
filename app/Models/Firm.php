@@ -68,4 +68,9 @@ class Firm extends Model
     public function step(){
         return $this->belongsTo(Step::class)->withDefault();
     }
+
+    public function userVotes()
+    {
+        return $this->belongsToMany(User::class, 'firm_user_vote')->withTimestamps();
+    }
 }

@@ -63,13 +63,21 @@
                         <div class="col-md-3  col-3 border_line">
                             <div class="button_v">
                                 @auth
-                                    <button class="btn btn-primary"><b>Vote</b></button>
+                            
+                                    <form action="{{ route('firms.submit-vote') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="firm_id" value="{{ $firm->id }}">
+                                        <input type="hidden" name="type" value="{{ $tab }}">
+                                        <button class="btn btn-primary"><b>Vote</b></button>
+                                    </form>
                                 @endauth
                                 @guest
 
                                     <a href="{{ route('login') }}" class="btn btn-primary"><b>Sign In to vote</b></a>
                                 @endguest
-                                <p>Voted by <span class="counter">53</span> people</p>
+                                <p>Voted by <span class="counter">
+                                        {{ $firm->user_votes_count }}
+                                    </span> people</p>
                             </div>
                         </div>
                     </div>

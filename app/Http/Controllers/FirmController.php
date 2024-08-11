@@ -18,18 +18,17 @@ class FirmController extends Controller
      */
     public function index(Request $request)
     {
-        $type=$request->type;
+        $type = $request->type;
 
-        if($type=='all'){
-            $type=null;
+        if ($type == 'all') {
+            $type = null;
         }
 
-        $assetTypes=AssetType::all();
+        $assetTypes = AssetType::all();
 
-        $firms=Firm::when($type, function($query) use($type){
+        $firms = Firm::when($type, function ($query) use ($type) {
             return $query->where('asset_type_id', $type);
-        })->
-        latest()->get();
+        })->latest()->get();
 
         return view('front.firms.index', compact('firms', 'assetTypes'));
     }
@@ -50,9 +49,7 @@ class FirmController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-    }
+    public function store(Request $request) {}
 
     /**
      * Display the specified resource.
@@ -62,7 +59,7 @@ class FirmController extends Controller
      */
     public function show($id)
     {
-        $firm=Firm::findorfail($id);
+        $firm = Firm::findorfail($id);
 
         return view('front.firms.show', compact('firm'));
     }
@@ -102,60 +99,84 @@ class FirmController extends Controller
     }
 
 
-    public function search(Request $request){
+    public function search(Request $request)
+    {
         $request->validate([
-            'search'=>'required'
+            'search' => 'required'
         ]);
 
-        $firms=Firm::where('name', 'like', '%'.$request->search.'%')->get();
+        $firms = Firm::where('name', 'like', '%' . $request->search . '%')->get();
 
         return response()->json([
-            'data'=>[
-                'firms'=>$firms
+            'data' => [
+                'firms' => $firms
             ]
         ]);
     }
 
 
-    public function request(Request $request){
+    public function request(Request $request)
+    {
         $request->validate([
-            'name'=>'required',
+            'name' => 'required',
         ]);
 
         FirmRequest::create([
-            'name'=>$request->name
+            'name' => $request->name
         ]);
 
         return response()->json([
-            'message'=>'Request submitted successfully'
+            'message' => 'Request submitted successfully'
         ]);
     }
 
 
-    public function mostVoted(Request $request){
+    public function mostVoted(Request $request)
+    {
 
-        $type=$request->type;
+        $type = $request->type;
 
-        if($type=='all'){
-            $type=null;
+        if ($type == 'all') {
+            $type = null;
         }
 
-        $assetTypes=AssetType::all();
+        $assetTypes = AssetType::all();
 
-        $firms=Firm::when($type, function($query) use($type){
+        // ORDER BY votes and only those with votes
+        $firms = Firm::when($type, function ($query) use ($type) {
             return $query->where('asset_type_id', $type);
-        })->
-        latest()->get();
+        })
+        // ->has('userVotes')
+            ->withCount('userVotes')
+            ->orderBy('user_votes_count', 'desc')
+            ->get();
+
         return view('front.firms.most-voted', compact('firms', 'assetTypes'));
     }
 
 
-    public function summary(FirmChallenge $firmChallenge){
+    public function summary(FirmChallenge $firmChallenge)
+    {
 
-        $firm=$firmChallenge->firm;
+        $firm = $firmChallenge->firm;
 
-        $steps=Step::all();
+        $steps = Step::all();
 
         return view('front.firms.summary', compact('firm', 'firmChallenge', 'steps'));
+    }
+
+
+    public function submitVote(Request $request)
+    {
+
+        $request->validate([
+            'firm_id' => 'required|exists:firms,id'
+        ]);
+
+        $firm = Firm::find($request->firm_id);
+
+        $firm->userVotes()->attach(auth()->id());
+
+        return redirect()->route('firms.most-voted', ['type' => $request->type])->withToastSuccess('Vote submitted successfully');
     }
 }
