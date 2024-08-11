@@ -6,9 +6,9 @@
         @if ($step > 1)
             <button type="button" class="back" wire:click="backStep()"><i class="fa fa-chevron-left"
                     aria-hidden="true"></i></button>
-                    @endif
+        @endif
 
-            <h2 class="page_title text-center text-white">Sign up</h2>
+        <h2 class="page_title text-center text-white">Sign up</h2>
 
 
     </div>
@@ -96,10 +96,10 @@
                             <label class="form-check-label text-white" for="option5">5 years+</label>
                         </div>
                         @error('tradingExperience')
-                        <span class="text-white" role="alert">
-                            <strong>{{ '*' . $message }}</strong>
-                        </span>
-                    @enderror
+                            <span class="text-white" role="alert">
+                                <strong>{{ '*' . $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <button type="button" class="btn btn-primary pr-5 pl-5 frmbtn" wire:click="nextStep">Next</button>
                 </div>
@@ -109,38 +109,46 @@
                     <div class="form-group">
                         <label class="text-white"><b>Did you already take a prop firm challenge?</b></label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="prop_firm_challenge" id="option6"
+                            <input class="form-check-input" type="radio" wire:model='firmChallenge' id="option6"
                                 value="Never" required>
                             <label class="form-check-label text-white" for="option6">Never</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="prop_firm_challenge" id="option7"
+                            <input class="form-check-input" type="radio" wire:model='firmChallenge' id="option7"
                                 value="1">
                             <label class="form-check-label text-white" for="option7">1</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="prop_firm_challenge" id="option8"
+                            <input class="form-check-input" type="radio" wire:model='firmChallenge' id="option8"
                                 value="1-5">
                             <label class="form-check-label text-white" for="option8">1-5</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="prop_firm_challenge" id="option9"
+                            <input class="form-check-input" type="radio" wire:model='firmChallenge' id="option9"
                                 value="5+">
                             <label class="form-check-label text-white" for="option9">5+</label>
                         </div>
+
+                    @error('firmChallenge')
+                    <span class="text-white" role="alert">
+                        <strong>{{ '*' . $message }}</strong>
+                    </span>
+                @enderror
                     </div>
                     <div class="form-group form-check signup">
                         <input type="checkbox" class="form-check-input " id="terms" wire:model='termsAccepted'>
                         <label class="checkbox-label text-white" for="terms">I accept the Terms of Service &
                             Privacy
                             Policy</label>
-                            @error('termsAccepted')
-                            <span class="text-white" role="alert">
-                                <strong>{{ '*' . $message }}</strong>
-                            </span>
-                        @enderror
+
                     </div>
-                    <button type="button" wire:click='nextStep' class="btn btn-success frmbtn pr-5 pl-5">Create My Account</button>
+                    @error('termsAccepted')
+                        <span class="text-white" role="alert">
+                            <strong>{{ '*' . $message }}</strong>
+                        </span>
+                    @enderror
+                    <button type="button" wire:click='nextStep' class="btn btn-success frmbtn pr-5 pl-5">Create My
+                        Account</button>
                 </div>
             @endif
         </form>

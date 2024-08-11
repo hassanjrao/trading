@@ -18,8 +18,15 @@
         @yield('page-title') - {{ config('app.name') }}
     </title>
 
+    <style>
+        * {
+            font-weight: bold !important;
+        }
+    </style>
+
     @yield('styles')
     @livewireStyles
+
 </head>
 
 <body>
@@ -75,7 +82,9 @@
                             </div>
                             <div class="menu-item">
                                 @auth
-
+                                    <a class="menu-button" href="{{ route('profile.index') }}"><img
+                                            src="https://img.icons8.com/ios-glyphs/30/ffffff/user.png" alt="My Account">My
+                                        Account</a>
                                 @endauth
                                 @guest
 
@@ -179,5 +188,7 @@
 @stack('scripts')
 
 @livewireScripts
+
+@include('sweetalert::alert')
 
 </html>

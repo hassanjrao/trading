@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\FirmController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -27,7 +29,6 @@ Route::view('/top', 'front.top')->name('front.top');
 Route::view('/user', 'front.user')->name('front.user');
 Route::view('/vote', 'front.vote')->name('front.vote');
 Route::view('/map', 'front.map')->name('front.map');
-Route::view('/register', 'front.register')->name('front.register');
 
 Route::match(['get', 'post'], '/dashboard', function(){
     return view('dashboard');
@@ -45,6 +46,13 @@ Route::get('firms/most-voted', [FirmController::class, 'mostVoted'])->name('firm
 Route::post('firms/request', [FirmController::class, 'request'])->name('firms.request');
 Route::get('firms/search', [FirmController::class, 'search'])->name('firms.search');
 Route::resource('firms', FirmController::class);
+
+Route::middleware(['auth'])->group(function(){
+
+    Route::post('profile/contact-us', [UserProfileController::class, 'submitContactUs'])->name('profile.contact-us');
+    Route::post('profile/update-password', [UserProfileController::class, 'updatePassword'])->name('profile.update-password');
+    Route::resource('profile', UserProfileController::class);
+});
 
 Auth::routes();
 

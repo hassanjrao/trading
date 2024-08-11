@@ -1,334 +1,369 @@
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-        <link rel="stylesheet" href="..//assets/css/style.css">
-        <link rel="stylesheet" href="..//assets/css/top.css">
-        <link rel="stylesheet" href="..//assets/css/profile.css">
-        <link rel="stylesheet" href="..//assets/css/compare style.css">
-        <link rel="stylesheet" href="..//assets/css/user.css">
-        <link href="https://fonts.cdnfonts.com/css/metropolis-2" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <title>
-             User
-        </title>      
-    </head>
-                
-    <body>
-        <header  class="pt-5"> 
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-3 col-9">
-                        <div class="logo">
-                            <img src="..//assets/images/logofull 1.png" >
-                        </div>
-                    </div>
-                    <div class="col-md-3  ">
-                        <form>
-                            <div class="search">
-                                <span class="fa fa-search"></span>
-                               <input type="text" placeholder="Search 'Apex Trader Funding'">
-                              
-                              </div>
-                        </form>
-                    </div>
-                    <div class="col-md-6 col-12">
-                        <div class="navbar">
-    
-                            <div class="hamburger" onclick="toggleMenu()">
-                                <div class="bar"></div>
-                                <div class="bar"></div>
-                                <div class="bar"></div>
-                            </div>
-                            <div class="menu" id="menu">
-                                <div class="menu-item">
-                                    <a class="menu-button" href="..//compare/comapre.html">Compare</a>
-                                </div>
-                                <div class="dropdown">
-                                    <button class="menu-button">Tools <i class="fa fa-chevron-down" aria-hidden="true"></i></button>
-                                    <div class="dropdown-content">
-                                        
-                                        <a href="..//Map Page/map.html">The Map</a>
-                                
-                                        <a href="..//review report firm /review_report.html">Review</a>
-                                    </div>
-                                </div>
-                                
-                                <div class="dropdown">
-                                    <button class="menu-button">Top Lists <i class="fa fa-chevron-down" aria-hidden="true"></i></button>
-                                    <div class="dropdown-content">
-                                        <a href="..//Map Page/map.html">The Map</a>
-                                        <a href="..//review report firm /review_report.html">Review</a>
-                                    </div>
-                                </div>
-                                <div class="menu-item">
-                                    <a class="menu-button" href="..//Signup/Signup.html"><img src="https://img.icons8.com/ios-glyphs/30/ffffff/user.png" alt="Sign In"> Sign In</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-        </header>
-        <br><br>
 
-        <!-- Page Title -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="..//assets/css/style.css">
+    <link rel="stylesheet" href="..//assets/css/top.css">
+    <link rel="stylesheet" href="..//assets/css/profile.css">
+    <link rel="stylesheet" href="..//assets/css/compare style.css">
+    <link rel="stylesheet" href="..//assets/css/user.css">
+    <link href="https://fonts.cdnfonts.com/css/metropolis-2" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>
+        User
+    </title>
+</head>
 
-        <!-- <h2 class="page_title pt-4 text-center text-white">Top Firm</h2>
-        <p class="text-center text-white">Here is the list of top-ranked firms by their reviews</p> -->
-
-         <!-- End Page Title -->
-
-         
-           <!-- User Form -->
-
-        <div class="container-fluid  mt-2 pt-4 ">
+<body>
+    <header class="pt-5">
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-11">
-                    <p class="text-white" style="font: 14px;"> <img alt="User Pic" src="..//assets/images/65b97f82aa9d0b5ea0de494c_profile-image 1.png" id="profile-image1" > John Doe</p>
+                <div class="col-md-3 col-9">
+                    <div class="logo">
+                        <img src="..//assets/images/logofull 1.png">
+                    </div>
                 </div>
-            </div>
-            
-            <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-2">
-                
-                    <ul class="nav nav-tabs justify-content-center" id="EmyTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="all-tab" data-toggle="tab" href="#all" role="tab" aria-controls="home" aria-selected="true"><i class="fa fa-pencil" aria-hidden="true"></i> Edit My Profile</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="features-tab" data-toggle="tab" href="#features" role="tab" aria-controls="features" aria-selected="false"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Password</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="cfd-tab" data-toggle="tab" href="#cfd" role="tab" aria-controls="cfd" aria-selected="false"><img src="..//assets/images/feedback 1.png"> Reviews</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false"><i class="fa fa-comments" aria-hidden="true"></i> Support</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="sign-tab" data-toggle="tab" href="#sign" role="tab" aria-controls="sign" aria-selected="false"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign Out</a>
-                        </li>
-                    </ul>
+                <div class="col-md-3  ">
+                    <form>
+                        <div class="search">
+                            <span class="fa fa-search"></span>
+                            <input type="text" placeholder="Search 'Apex Trader Funding'">
+
+                        </div>
+                    </form>
                 </div>
-                <div class="col-md-9"> 
-                    <div class="tab-content user_tabs" id="EmyTabContent">
-                        <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
-                            <div class="user_form" >
-                              
-                                <form>
-                                    <div class="row" >
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Name</label>
-                                                <input type="text" class="form-control" id="name" placeholder="Name" name="name" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group"> 
-                                                <label>How long have you been Trading for?</label>
-                                                <select class="custom-select" id="inputGroupSelect02">
-                                                    <option selected>6 months - 1year</option>
-                                                    <option value="1">5 months - 1year</option>
-                                                    <option value="2">4 months - 1year</option>
-                                                    <option value="3">3 months - 1year</option>
-                                                  </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4"></div> 
-                                    </div>
-                                    <div class="row" >
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Did you already take a Propfirm Challenge?</label>
-                                                <select class="custom-select" id="inputGroupSelect02">
-                                                    <option selected>6 months - 1year</option>
-                                                    <option value="1">5 months - 1year</option>
-                                                    <option value="2">4 months - 1year</option>
-                                                    <option value="3">3 months - 1year</option>
-                                                  </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group"> 
-                                                <label>Profile Picture</label>
-                                                <div class="profile-pic">
-                 
-                                                    <img alt="User Pic" src="..//assets/images/65b97f82aa9d0b5ea0de494c_profile-image 1.png" id="profile-image1" >
-                                                    <input id="profile-image-upload" class="hidden" type="file" onchange="previewFile()" >
-                                                    <div style="color:#999;" >  </div>
-                                                    
-                                            </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <br>
-                                            <button type="button" class="btn btn-primary frmbtn pr-5 pl-5" >save</button>
-                                        </div>                               
-                                    </div>
-                                </form>
-                            </div>
-                        
-                            
-                        </div>
-                        <div class="tab-pane fade" id="features" role="tabpanel" aria-labelledby="features-tab">
-                            <div class="user_form">
-                                <form>
-                                    <div class="row" >
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Actual Password</label>
-                                                <input type="password" class="form-control" id="password" placeholder="**********" name="password" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group"> 
-                                                <label>New Password</label>
-                                                <input type="password" class="form-control" id="new_password" placeholder="**********" name="new_password" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4"></div> 
-                                    </div>
-                                    <div class="row" >
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                
-                                               
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group"> 
-                                                <label>Confirm New Password</label>
-                                                <input type="password" class="form-control" id="new_confirm_password" placeholder="**********" name="new_confirm_password" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <br>
-                                            <button type="button" class="btn btn-primary frmbtn pr-5 pl-5" >save</button>
-                                        </div>                               
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="cfd" role="tabpanel" aria-labelledby="cfd-tab">
-                            <p class="profile_review"><span>Your Reviews</span> </p>
+                <div class="col-md-6 col-12">
+                    <div class="navbar">
 
-                            <p class="mt-4 text-center text-white" style="font-weight: bold;">
-                                You don't have any reviews yet. When you do, they'll apear here.
-                            </p>
+                        <div class="hamburger" onclick="toggleMenu()">
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
                         </div>
-                        <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
-                            <p class="profile_review">A question ? Contact Us ! </p>
-                            <div class="user_form">
-                                <form>
-                                    <div class="row" >
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                               <textarea class="form-control">
+                        <div class="menu" id="menu">
+                            <div class="menu-item">
+                                <a class="menu-button" href="..//compare/comapre.html">Compare</a>
+                            </div>
+                            <div class="dropdown">
+                                <button class="menu-button">Tools <i class="fa fa-chevron-down"
+                                        aria-hidden="true"></i></button>
+                                <div class="dropdown-content">
 
-                                               </textarea>
-                                              
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="row" >
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                
-                                               
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group"> 
-                                               
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                           
-                                            <button type="button" class=" btn btn-primary frmbtn pr-5 pl-5" >save</button>
-                                        </div>                               
-                                    </div>
-                                </form>
+                                    <a href="..//Map Page/map.html">The Map</a>
+
+                                    <a href="..//review report firm /review_report.html">Review</a>
+                                </div>
                             </div>
 
+                            <div class="dropdown">
+                                <button class="menu-button">Top Lists <i class="fa fa-chevron-down"
+                                        aria-hidden="true"></i></button>
+                                <div class="dropdown-content">
+                                    <a href="..//Map Page/map.html">The Map</a>
+                                    <a href="..//review report firm /review_report.html">Review</a>
+                                </div>
+                            </div>
+                            <div class="menu-item">
+                                <a class="menu-button" href="..//Signup/Signup.html"><img
+                                        src="https://img.icons8.com/ios-glyphs/30/ffffff/user.png" alt="Sign In"> Sign
+                                    In</a>
+                            </div>
                         </div>
-                        <!-- <div class="tab-pane fade" id="sign" role="tabpanel" aria-labelledby="sign-tab">
-                           
-                        </div> -->
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Footer -->
-        <div class="footer_height"></div>
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <p class="footer_t">Disclaimer <br>The information provided is intended for general use and informational purposes only. Users are advised to proceed at their own risk and exercise due diligence before making any decisions based on the information provided. It is crucial to understand that our business offers information and does not endorse or recommend any specific proprietary trading firms. Users should independently evaluate and verify the suitability of any such entities before engaging with them. We do not assume responsibility for any consequences or losses arising from the use of the information provided. Thank you for your understanding and discretion.</p>
+    </header>
+    <br><br>
+
+    <!-- Page Title -->
+
+    <!-- <h2 class="page_title pt-4 text-center text-white">Top Firm</h2>
+        <p class="text-center text-white">Here is the list of top-ranked firms by their reviews</p> -->
+
+    <!-- End Page Title -->
+
+
+    <!-- User Form -->
+
+    <div class="container-fluid  mt-2 pt-4 ">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-11">
+                <p class="text-white" style="font: 14px;"> <img alt="User Pic"
+                        src="..//assets/images/65b97f82aa9d0b5ea0de494c_profile-image 1.png" id="profile-image1"> John
+                    Doe</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-2">
+
+                <ul class="nav nav-tabs justify-content-center" id="EmyTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="all-tab" data-toggle="tab" href="#all" role="tab"
+                            aria-controls="home" aria-selected="true"><i class="fa fa-pencil" aria-hidden="true"></i>
+                            Edit My Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="features-tab" data-toggle="tab" href="#features" role="tab"
+                            aria-controls="features" aria-selected="false"><i class="fa fa-unlock-alt"
+                                aria-hidden="true"></i> Password</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="cfd-tab" data-toggle="tab" href="#cfd" role="tab" aria-controls="cfd"
+                            aria-selected="false"><img src="..//assets/images/feedback 1.png"> Reviews</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab"
+                            aria-controls="review" aria-selected="false"><i class="fa fa-comments"
+                                aria-hidden="true"></i> Support</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="sign-tab" data-toggle="tab" href="#sign" role="tab" aria-controls="sign"
+                            aria-selected="false"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign Out</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-9">
+                <div class="tab-content user_tabs" id="EmyTabContent">
+                    <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
+                        <div class="user_form">
+
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Name</label>
+                                            <input type="text" class="form-control" id="name" placeholder="Name"
+                                                name="name" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>How long have you been Trading for?</label>
+                                            <select class="custom-select" id="inputGroupSelect02">
+                                                <option selected>6 months - 1year</option>
+                                                <option value="1">5 months - 1year</option>
+                                                <option value="2">4 months - 1year</option>
+                                                <option value="3">3 months - 1year</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Did you already take a Propfirm Challenge?</label>
+                                            <select class="custom-select" id="inputGroupSelect02">
+                                                <option selected>6 months - 1year</option>
+                                                <option value="1">5 months - 1year</option>
+                                                <option value="2">4 months - 1year</option>
+                                                <option value="3">3 months - 1year</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Profile Picture</label>
+                                            <div class="profile-pic">
+
+                                                <img alt="User Pic"
+                                                    src="..//assets/images/65b97f82aa9d0b5ea0de494c_profile-image 1.png"
+                                                    id="profile-image1">
+                                                <input id="profile-image-upload" class="hidden" type="file"
+                                                    onchange="previewFile()">
+                                                <div style="color:#999;"> </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <br>
+                                        <button type="button" class="btn btn-primary frmbtn pr-5 pl-5">save</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+
                     </div>
+                    <div class="tab-pane fade" id="features" role="tabpanel" aria-labelledby="features-tab">
+                        <div class="user_form">
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Actual Password</label>
+                                            <input type="password" class="form-control" id="password"
+                                                placeholder="**********" name="password" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>New Password</label>
+                                            <input type="password" class="form-control" id="new_password"
+                                                placeholder="**********" name="new_password" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Confirm New Password</label>
+                                            <input type="password" class="form-control" id="new_confirm_password"
+                                                placeholder="**********" name="new_confirm_password" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <br>
+                                        <button type="button" class="btn btn-primary frmbtn pr-5 pl-5">save</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="cfd" role="tabpanel" aria-labelledby="cfd-tab">
+                        <p class="profile_review"><span>Your Reviews</span> </p>
+
+                        <p class="mt-4 text-center text-white" style="font-weight: bold;">
+                            You don't have any reviews yet. When you do, they'll apear here.
+                        </p>
+                    </div>
+                    <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+                        <p class="profile_review">A question ? Contact Us ! </p>
+                        <div class="user_form">
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <textarea class="form-control">
+
+                                               </textarea>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+
+                                        <button type="button" class=" btn btn-primary frmbtn pr-5 pl-5">save</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                    <!-- <div class="tab-pane fade" id="sign" role="tabpanel" aria-labelledby="sign-tab">
+
+                        </div> -->
                 </div>
-                <div class="row">
-                    <div class="col-md-2">
-                       
-                    </div>
-                    <div class="col-md-8 col-12">
-                        <div class="footer_div">
-                            <div class="div-56">
-                                <a href="">Privacy Policy</a>
-                                <a href=""> Terms Of Use</a>
-                                <a href=""> Copyright @PropFirmMap 2024</a>
-                          </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer_height"></div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="footer_t">Disclaimer <br>The information provided is intended for general use and
+                        informational purposes only. Users are advised to proceed at their own risk and exercise due
+                        diligence before making any decisions based on the information provided. It is crucial to
+                        understand that our business offers information and does not endorse or recommend any specific
+                        proprietary trading firms. Users should independently evaluate and verify the suitability of any
+                        such entities before engaging with them. We do not assume responsibility for any consequences or
+                        losses arising from the use of the information provided. Thank you for your understanding and
+                        discretion.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+
+                </div>
+                <div class="col-md-8 col-12">
+                    <div class="footer_div">
+                        <div class="div-56">
+                            <a href="">Privacy Policy</a>
+                            <a href=""> Terms Of Use</a>
+                            <a href=""> Copyright @PropFirmMap 2024</a>
+                        </div>
                     </div>
                     <div class="col-md-2">
 
                     </div>
                 </div>
             </div>
-         </footer>
-         <!-- End Footer -->
+    </footer>
+    <!-- End Footer -->
 
-    </body>
-          <!--  End Sign Up Form -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-    
-    <script>
-        function toggleMenu() {
-            var menu = document.getElementById("menu");
-            if (menu.style.display === "flex") {
-                menu.style.display = "none";
-            } else {
-                menu.style.display = "flex";
-            }
+</body>
+<!--  End Sign Up Form -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous">
+</script>
+
+<script>
+    function toggleMenu() {
+        var menu = document.getElementById("menu");
+        if (menu.style.display === "flex") {
+            menu.style.display = "none";
+        } else {
+            menu.style.display = "flex";
         }
-    </script>
-    <script>
-         function previewFile() {
-  var preview = document.querySelector('img');
-  var file    = document.querySelector('input[type=file]').files[0];
-  var reader  = new FileReader();
+    }
 
-  reader.addEventListener("load", function () {
-    preview.src = reader.result;
-  }, false);
+</script>
+<script>
+    function previewFile() {
+        var preview = document.querySelector('img');
+        var file = document.querySelector('input[type=file]').files[0];
+        var reader = new FileReader();
 
-  if (file) {
-    reader.readAsDataURL(file);
-  }
-}
-                      $(function() {
-            $('#profile-image1').on('click', function() {
-                $('#profile-image-upload').click();
-            });
+        reader.addEventListener("load", function () {
+            preview.src = reader.result;
+        }, false);
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+    $(function () {
+        $('#profile-image1').on('click', function () {
+            $('#profile-image-upload').click();
         });
-        
-    </script>
-                        
-               
- </html>
+    });
+
+</script>
+
+
+</html>

@@ -1,3 +1,4 @@
+
 #EmyTab li.nav-item>a.nav-link.active{
     border-radius: 12px !important;
     padding: 6px 20px;
@@ -7,9 +8,9 @@
     background-color: transparent !important;
 }
 #EmyTab li.nav-item:last-child>a.nav-link.active{
-   
+
     border: 1px solid #fff !important;
-    
+
 }
 ul#EmyTab {
     display: block !important;
@@ -46,11 +47,11 @@ textarea.form-control {
     min-height: 135px;
 }
 textarea.form-control::placeholder {
-   
+
     color: #fff;
 }
 .user_form .form-control::placeholder {
-   
+
     color: #fff;
 }
 .form-group>label {
@@ -81,13 +82,13 @@ input:focus, select:focus {
 
 
 .profile-pic img{
-   
+
     border-radius: 50%;
     box-shadow: 0px 0px 5px 0px #c1c1c1;
     cursor: pointer;
     width: 36px;
-    
-}   
+
+}
 .hidden {
     display: none !important;
     visibility: hidden !important;
@@ -100,32 +101,32 @@ input:focus, select:focus {
 }
 .profile_review {
     color: #fff;
-   
+
     padding: 10px;
     font-size: 13px;
 }
 @media (max-width: 520px) {
     div#EmyTabContent{
       margin-top: 20px !important;
-     
+
   }
     }
     @media only screen and (min-device-width: 520px) and (max-device-width: 768px) {
-      
+
     ul#EmyTab li.nav-item>a.nav-link {
-   
+
         padding: 6px 7px !important;
         border: 0;
         font-size: 13px !important;
     }
     .user_form .form-control,.user_form select {
-       
+
         padding: 4px 15px;
-       
+
         font-size: 11px;
     }
     .form-group>label {
-        
+
         margin-right: -67px;
     }
 }

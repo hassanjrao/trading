@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\User;
 use Livewire\Component;
 
 class Register extends Component
@@ -13,7 +14,7 @@ class Register extends Component
     public $password;
     public $country;
     public $tradingExperience;
-    public $firmChallaenge;
+    public $firmChallenge;
 
     public $termsAccepted=false;
 
@@ -36,9 +37,22 @@ class Register extends Component
 
         // dd($this->step);
         if($this->step==3){
-            if(!$this->termsAccepted){
-                $this->addError('termsAccepted', 'You must accept the terms and conditions');
+
+            if(!$this->firmChallenge){
+               $this->validate([
+                   'firmChallenge'=>'required'
+               ]);
             }
+
+            if(!$this->termsAccepted){
+                // remove firmChallenge error
+                $this->resetErrorBag('firmChallenge');
+
+                $this->addError('termsAccepted', 'You must accept the terms and conditions');
+                return;
+            }
+
+            $this->submitForm();
         }
         $this->step++;
     }
@@ -46,6 +60,27 @@ class Register extends Component
     public function backStep()
     {
         $this->step--;
+    }
+
+    public function submitForm()
+    {
+        $user=User::create([
+            'name'=>$this->name,
+            'email'=>$this->email,
+            'password'=>bcrypt($this->password),
+            'country'=>$this->country,
+            'trading_experience'=>$this->tradingExperience,
+            'firm_challenge'=>$this->firmChallenge
+        ]);
+
+        $user->assignRole('user');
+
+        session()->flash('message', 'User created successfully');
+
+        // login user
+        auth()->login($user);
+
+        return redirect()->to('/dashboard');
     }
 
     public function render()

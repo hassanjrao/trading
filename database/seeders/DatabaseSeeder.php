@@ -28,6 +28,9 @@ class DatabaseSeeder extends Seeder
             FirmPayoutMethodSeeder::class,
             FirmCommissionStructureSeeder::class,
             FirmPlatformSeeder::class,
+            RoleSeeder::class,
+            TradingExperienceSeeder::class,
+            PropFirmChallengeSeeder::class,
         ]);
     }
 }
