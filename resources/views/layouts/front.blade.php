@@ -88,7 +88,7 @@
                                 @endauth
                                 @guest
 
-                                    <a class="menu-button" href="{{ route('register') }}"><img
+                                    <a class="menu-button" href="{{ route('login') }}"><img
                                             src="https://img.icons8.com/ios-glyphs/30/ffffff/user.png" alt="Sign In"> Sign
                                         In</a>
                                 @endguest

@@ -13,7 +13,7 @@
                 </p>
                 <a class="btn btn-alt-primary" href="/dashboard">
                     Enter Dashboard
-                    <i class="fa fa-fw fa-arrow-right opacity-50 ms-1"></i> 
+                    <i class="fa fa-fw fa-arrow-right opacity-50 ms-1"></i>
                 </a>
             </div>
         </div>

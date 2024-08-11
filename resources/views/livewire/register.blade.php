@@ -8,10 +8,13 @@
                     aria-hidden="true"></i></button>
         @endif
 
-        <h2 class="page_title text-center text-white">Sign up</h2>
+        <h2 class="page_title text-center text-white">Sign Up</h2>
+
 
 
     </div>
+
+
     <div class="container signup mt-2 pt-4 ">
 
 
@@ -129,11 +132,11 @@
                             <label class="form-check-label text-white" for="option9">5+</label>
                         </div>
 
-                    @error('firmChallenge')
-                    <span class="text-white" role="alert">
-                        <strong>{{ '*' . $message }}</strong>
-                    </span>
-                @enderror
+                        @error('firmChallenge')
+                            <span class="text-white" role="alert">
+                                <strong>{{ '*' . $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="form-group form-check signup">
                         <input type="checkbox" class="form-check-input " id="terms" wire:model='termsAccepted'>
@@ -151,6 +154,14 @@
                         Account</button>
                 </div>
             @endif
+
+
+        {{-- already've an account --}}
+        <div class="text-center mt-3">
+            <a href="{{ route('login') }}" class="text-white">Already have an account? Sign In</a>
+        </div>
         </form>
+
+
     </div>
 </div>
