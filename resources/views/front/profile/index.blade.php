@@ -59,9 +59,15 @@
                             Support</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="sign-tab" data-toggle="tab" href="#sign" role="tab"
-                            aria-controls="sign" aria-selected="false"><i class="fa fa-sign-out" aria-hidden="true"></i>
+                        <a class="nav-link" style="cursor: pointer;"  onclick="logout()"><i
+                                class="fa fa-sign-out" aria-hidden="true"></i>
                             Sign Out</a>
+
+                        <form action="{{ route('logout') }}" method="post" id="logoutForm">
+                            @csrf
+
+
+                        </form>
                     </li>
                 </ul>
             </div>
@@ -201,16 +207,16 @@
                             </form>
                         </div>
                     </div>
-                    <div class="tab-pane fade {{ $tab == 'review' ? 'show active' : '' }}" id="review" role="tabpanel"
-                        aria-labelledby="review-tab">
+                    <div class="tab-pane fade {{ $tab == 'review' ? 'show active' : '' }}" id="review"
+                        role="tabpanel" aria-labelledby="review-tab">
                         <p class="profile_review"><span>Your Reviews</span> </p>
 
                         <p class="mt-4 text-center text-white" style="font-weight: bold;">
                             You don't have any reviews yet. When you do, they'll apear here.
                         </p>
                     </div>
-                    <div class="tab-pane fade {{ $tab == 'support' ? 'show active' : '' }}" id="support" role="tabpanel"
-                        aria-labelledby="support-tab">
+                    <div class="tab-pane fade {{ $tab == 'support' ? 'show active' : '' }}" id="support"
+                        role="tabpanel" aria-labelledby="support-tab">
                         <p class="profile_review">A question? Contact Us! </p>
                         <div class="user_form">
                             <form method="POST" action="{{ route('profile.contact-us', auth()->user()->id) }}"
@@ -250,7 +256,7 @@
                     </div>
                     <!-- <div class="tab-pane fade" id="sign" role="tabpanel" aria-labelledby="sign-tab">
 
-                                                    </div> -->
+                                                        </div> -->
                 </div>
             </div>
         </div>
@@ -278,5 +284,10 @@
                 $('#profile-image-upload').click();
             });
         });
+
+        function logout() {
+            document.getElementById('logoutForm').submit();
+        }
+
     </script>
 @endpush
