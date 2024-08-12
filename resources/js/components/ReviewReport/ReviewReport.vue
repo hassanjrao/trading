@@ -135,7 +135,8 @@
                     padding-top: 23px;
                     padding-bottom: 23px;
                     background: #d0d0d0;
-                    border: 0;"
+                    border: 0;
+                  "
                 />
               </div>
             </div>
@@ -149,16 +150,17 @@
                     :key="accountSize.id"
                     :value="accountSize.id"
                     :selected="index === 0"
-                    >
-                        {{ accountSize.size }}
-                    </option>
+                  >
+                    {{ accountSize.size }}
+                  </option>
                 </select>
               </div>
               <div class="col-md-6">
                 <select class="form-control review_form_input" style="height: 47px">
-                  <option v-for="(step,index) in steps"
-                  :key="step.id"
-                  :value="step.id"
+                  <option
+                    v-for="(step, index) in steps"
+                    :key="step.id"
+                    :value="step.id"
                     :selected="index === 0"
                   >
                     {{ step.step }}
@@ -213,91 +215,40 @@
             <br />
             <textarea
               placeholder="Review of the firm (minimum 150 characters)"
-              id="myTextarea"
+                v-model="review"
               class="form-control review_form_input p-4"
               rows="10"
             ></textarea>
+            <p class="text-danger" v-if="reviewError ? true : false">
+                {{ reviewError }}
+            </p>
             <br />
-            <div class="row">
-              <div class="col-lg-6 d-flex flex-column justify-content-center align-items-center">
-                <div class="rating rating d-flex justify-content-center align-items-center">
-                  <svg class="star-container" data-value="1">
-                    <use xlink:href="#star" class="star"></use>
-                  </svg>
-                  <svg class="star-container" data-value="2">
-                    <use xlink:href="#star" class="star"></use>
-                  </svg>
-                  <svg class="star-container" data-value="3">
-                    <use xlink:href="#star" class="star"></use>
-                  </svg>
-                  <svg class="star-container" data-value="4">
-                    <use xlink:href="#star" class="star"></use>
-                  </svg>
-                  <svg class="star-container" data-value="5">
+            <div class="row justify-content-center">
+              <div
+                class="col-lg-6 d-flex flex-column justify-content-center align-items-center"
+                v-for="rating in ratings"
+              >
+                <div
+                  class="rating rating d-flex justify-content-center align-items-center"
+                >
+                  <svg
+                    class="star-container"
+                    :class="rating.key"
+                    v-for="i in 5"
+                    :data-value="i"
+                    @click="starSelected(i, rating.key)"
+                  >
                     <use xlink:href="#star" class="star"></use>
                   </svg>
                 </div>
-                <p>Dashboard</p>
+                <p>
+                  {{ rating.label }}
+                </p>
               </div>
-              <div class="col-lg-6 d-flex flex-column justify-content-center align-items-center">
-                <div class="rating rating d-flex justify-content-center align-items-center">
-                  <svg class="star-container" data-value="1">
-                    <use xlink:href="#star" class="star"></use>
-                  </svg>
-                  <svg class="star-container" data-value="2">
-                    <use xlink:href="#star" class="star"></use>
-                  </svg>
-                  <svg class="star-container" data-value="3">
-                    <use xlink:href="#star" class="star"></use>
-                  </svg>
-                  <svg class="star-container" data-value="4">
-                    <use xlink:href="#star" class="star"></use>
-                  </svg>
-                  <svg class="star-container" data-value="5">
-                    <use xlink:href="#star" class="star"></use>
-                  </svg>
-                </div>
-                <p>Support Team</p>
-              </div>
-              <div class="col-lg-6 d-flex flex-column justify-content-center align-items-center">
-                <div class="rating rating d-flex justify-content-center align-items-center">
-                  <svg class="star-container" data-value="1">
-                    <use xlink:href="#star" class="star"></use>
-                  </svg>
-                  <svg class="star-container" data-value="2">
-                    <use xlink:href="#star" class="star"></use>
-                  </svg>
-                  <svg class="star-container" data-value="3">
-                    <use xlink:href="#star" class="star"></use>
-                  </svg>
-                  <svg class="star-container" data-value="4">
-                    <use xlink:href="#star" class="star"></use>
-                  </svg>
-                  <svg class="star-container" data-value="5">
-                    <use xlink:href="#star" class="star"></use>
-                  </svg>
-                </div>
-                <p>Payout Process</p>
-              </div>
-              <div class="col-lg-6 d-flex flex-column justify-content-center align-items-center">
-                <div class="rating rating d-flex justify-content-center align-items-center">
-                  <svg class="star-container" data-value="1">
-                    <use xlink:href="#star" class="star"></use>
-                  </svg>
-                  <svg class="star-container" data-value="2">
-                    <use xlink:href="#star" class="star"></use>
-                  </svg>
-                  <svg class="star-container" data-value="3">
-                    <use xlink:href="#star" class="star"></use>
-                  </svg>
-                  <svg class="star-container" data-value="4">
-                    <use xlink:href="#star" class="star"></use>
-                  </svg>
-                  <svg class="star-container" data-value="5">
-                    <use xlink:href="#star" class="star"></use>
-                  </svg>
-                </div>
-                <p>Rules</p>
+
+              <div
+                class="col-lg-12 d-flex flex-column justify-content-center align-items-center"
+              >
                 <svg width="0" height="0" class="star-outline">
                   <defs>
                     <linearGradient id="gradientBorder" gradientTransform="rotate(45)">
@@ -312,8 +263,8 @@
                       <!-- Rounded star path -->
                       <path
                         d="M12 2.5
-                                                                     L14.09 8.26
-                                                                     L20.18 8.84
+                                                                    L14.09 8.26
+                                                                    L20.18 8.84
                                                                      L15.64 12.97
                                                                      L17.45 19.02
                                                                      L12 15.77
@@ -329,32 +280,13 @@
                 </svg>
               </div>
             </div>
-            <div class="ratingss">
-              <div class="rating rating d-flex justify-content-center align-items-center">
-                <svg class="star-container" data-value="1">
-                  <use xlink:href="#star" class="star"></use>
-                </svg>
-                <svg class="star-container" data-value="2">
-                  <use xlink:href="#star" class="star"></use>
-                </svg>
-                <svg class="star-container" data-value="3">
-                  <use xlink:href="#star" class="star"></use>
-                </svg>
-                <svg class="star-container" data-value="4">
-                  <use xlink:href="#star" class="star"></use>
-                </svg>
-                <svg class="star-container" data-value="5">
-                  <use xlink:href="#star" class="star"></use>
-                </svg>
-              </div>
-              <p>General Rating</p>
-            </div>
+
             <br />
             <div class="row">
               <div class="col-md-6 text-right col-6">
                 <button
                   type="button"
-                  onclick="showStep(2)"
+                    @click="backStep()"
                   class="btn btn-primary r_button frmbtn_back"
                 >
                   Back
@@ -363,7 +295,7 @@
               <div class="col-md-6 text-left col-6">
                 <button
                   type="button"
-                  onclick="showStep(4)"
+                  @click="nextStep()"
                   class="btn btn-primary frmbtn r_button"
                 >
                   Next
@@ -709,12 +641,75 @@ export default {
       firms: [],
       selectedFirm: null,
       step: 1,
+      reviewError: false,
+      review: null,
+      ratings: [
+        {
+          key: "dashboard",
+          label: "Dashboard",
+          ratings: 0,
+        },
+        {
+          key: "support_team",
+          label: "Support Team",
+          ratings: 0,
+        },
+        {
+          key: "payout_process",
+          label: "Payout Process",
+          ratings: 0,
+        },
+        {
+          key: "rules",
+          label: "Rules",
+          ratings: 0,
+        },
+        {
+          key: "general_rating",
+          label: "General Rating",
+          ratings: 0,
+        },
+      ],
+      userRatings: {},
     };
   },
 
   methods: {
+    starSelected(stars, container) {
+      //   add class to the selected star
+      const starContainers = document.querySelectorAll(`.${container}`);
+      console.log(starContainers);
+      starContainers.forEach((starContainer) => {
+        const star = starContainer.querySelector("use");
+        const starValue = starContainer.getAttribute("data-value");
+
+        if (starValue <= stars) {
+          star.classList.add("selected");
+        } else {
+          star.classList.remove("selected");
+        }
+      });
+
+      this.userRatings[container] = stars;
+
+      console.log("userRatings", this.userRatings);
+    },
 
     nextStep() {
+      if (this.step == 3) {
+
+        console.log('review',this.review);
+
+        if(!this.review) {
+          this.reviewError = "Please write a review of at least 150 characters";
+          return;
+        }
+
+        if (this.review.length < 150) {
+          this.reviewError = "Review must be at least 150 characters";
+          return;
+        }
+      }
       this.step++;
     },
 

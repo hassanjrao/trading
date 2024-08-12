@@ -5469,74 +5469,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     accountSizes: {
@@ -5560,11 +5492,66 @@ __webpack_require__.r(__webpack_exports__);
       search: "",
       firms: [],
       selectedFirm: null,
-      step: 1
+      step: 1,
+      reviewError: false,
+      review: null,
+      ratings: [{
+        key: "dashboard",
+        label: "Dashboard",
+        ratings: 0
+      }, {
+        key: "support_team",
+        label: "Support Team",
+        ratings: 0
+      }, {
+        key: "payout_process",
+        label: "Payout Process",
+        ratings: 0
+      }, {
+        key: "rules",
+        label: "Rules",
+        ratings: 0
+      }, {
+        key: "general_rating",
+        label: "General Rating",
+        ratings: 0
+      }],
+      userRatings: {}
     };
   },
   methods: {
+    starSelected: function starSelected(stars, container) {
+      //   add class to the selected star
+      var starContainers = document.querySelectorAll(".".concat(container));
+      console.log(starContainers);
+      starContainers.forEach(function (starContainer) {
+        var star = starContainer.querySelector("use");
+        var starValue = starContainer.getAttribute("data-value");
+
+        if (starValue <= stars) {
+          star.classList.add("selected");
+        } else {
+          star.classList.remove("selected");
+        }
+      });
+      this.userRatings[container] = stars;
+      console.log("userRatings", this.userRatings);
+    },
     nextStep: function nextStep() {
+      if (this.step == 3) {
+        console.log('review', this.review);
+
+        if (!this.review) {
+          this.reviewError = "Please write a review of at least 150 characters";
+          return;
+        }
+
+        if (this.review.length < 150) {
+          this.reviewError = "Review must be at least 150 characters";
+          return;
+        }
+      }
+
       this.step++;
     },
     backStep: function backStep() {
@@ -27942,9 +27929,9 @@ var render = function () {
                           },
                           [
                             _vm._v(
-                              "\n                      " +
+                              "\n                  " +
                                 _vm._s(accountSize.size) +
-                                "\n                  "
+                                "\n                "
                             ),
                           ]
                         )
@@ -28056,550 +28043,231 @@ var render = function () {
                   _c("br"),
                   _vm._v(" "),
                   _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.review,
+                        expression: "review",
+                      },
+                    ],
                     staticClass: "form-control review_form_input p-4",
                     attrs: {
                       placeholder:
                         "Review of the firm (minimum 150 characters)",
-                      id: "myTextarea",
                       rows: "10",
                     },
+                    domProps: { value: _vm.review },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.review = $event.target.value
+                      },
+                    },
                   }),
+                  _vm._v(" "),
+                  (_vm.reviewError ? true : false)
+                    ? _c("p", { staticClass: "text-danger" }, [
+                        _vm._v(
+                          "\n              " +
+                            _vm._s(_vm.reviewError) +
+                            "\n          "
+                        ),
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "row justify-content-center" },
+                    [
+                      _vm._l(_vm.ratings, function (rating) {
+                        return _c(
+                          "div",
+                          {
+                            staticClass:
+                              "col-lg-6 d-flex flex-column justify-content-center align-items-center",
+                          },
+                          [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "rating rating d-flex justify-content-center align-items-center",
+                              },
+                              _vm._l(5, function (i) {
+                                return _c(
+                                  "svg",
+                                  {
+                                    staticClass: "star-container",
+                                    class: rating.key,
+                                    attrs: { "data-value": i },
+                                    on: {
+                                      click: function ($event) {
+                                        return _vm.starSelected(i, rating.key)
+                                      },
+                                    },
+                                  },
+                                  [
+                                    _c("use", {
+                                      staticClass: "star",
+                                      attrs: { "xlink:href": "#star" },
+                                    }),
+                                  ]
+                                )
+                              }),
+                              0
+                            ),
+                            _vm._v(" "),
+                            _c("p", [
+                              _vm._v(
+                                "\n                " +
+                                  _vm._s(rating.label) +
+                                  "\n              "
+                              ),
+                            ]),
+                          ]
+                        )
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "col-lg-12 d-flex flex-column justify-content-center align-items-center",
+                        },
+                        [
+                          _c(
+                            "svg",
+                            {
+                              staticClass: "star-outline",
+                              attrs: { width: "0", height: "0" },
+                            },
+                            [
+                              _c(
+                                "defs",
+                                [
+                                  _c(
+                                    "linearGradient",
+                                    {
+                                      attrs: {
+                                        id: "gradientBorder",
+                                        gradientTransform: "rotate(45)",
+                                      },
+                                    },
+                                    [
+                                      _c("stop", {
+                                        attrs: {
+                                          offset: "10%",
+                                          "stop-color": "#7a95f8",
+                                        },
+                                      }),
+                                      _vm._v(" "),
+                                      _c("stop", {
+                                        attrs: {
+                                          offset: "90%",
+                                          "stop-color": "#6453ca",
+                                        },
+                                      }),
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "linearGradient",
+                                    {
+                                      attrs: {
+                                        id: "gradientFill",
+                                        gradientTransform: "rotate(45)",
+                                      },
+                                    },
+                                    [
+                                      _c("stop", {
+                                        attrs: {
+                                          offset: "20%",
+                                          "stop-color": "#7a95f8",
+                                        },
+                                      }),
+                                      _vm._v(" "),
+                                      _c("stop", {
+                                        attrs: {
+                                          offset: "80%",
+                                          "stop-color": "#6453ca",
+                                        },
+                                      }),
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "symbol",
+                                    {
+                                      attrs: {
+                                        id: "star",
+                                        viewBox: "0 0 24 24",
+                                      },
+                                    },
+                                    [
+                                      _c("path", {
+                                        staticStyle: {
+                                          "stroke-linejoin": "round",
+                                          "stroke-linecap": "round",
+                                        },
+                                        attrs: {
+                                          d: "M12 2.5\n                                                                  L14.09 8.26\n                                                                  L20.18 8.84\n                                                                   L15.64 12.97\n                                                                   L17.45 19.02\n                                                                   L12 15.77\n                                                                   L6.55 19.02\n                                                                   L8.36 12.97\n                                                                   L3.82 8.84\n                                                                   L9.91 8.26\n                                                                   Z",
+                                        },
+                                      }),
+                                    ]
+                                  ),
+                                ],
+                                1
+                              ),
+                            ]
+                          ),
+                        ]
+                      ),
+                    ],
+                    2
+                  ),
                   _vm._v(" "),
                   _c("br"),
                   _vm._v(" "),
                   _c("div", { staticClass: "row" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "col-lg-6 d-flex flex-column justify-content-center align-items-center",
-                      },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "rating rating d-flex justify-content-center align-items-center",
+                    _c("div", { staticClass: "col-md-6 text-right col-6" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary r_button frmbtn_back",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.backStep()
+                            },
                           },
-                          [
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "star-container",
-                                attrs: { "data-value": "1" },
-                              },
-                              [
-                                _c("use", {
-                                  staticClass: "star",
-                                  attrs: { "xlink:href": "#star" },
-                                }),
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "star-container",
-                                attrs: { "data-value": "2" },
-                              },
-                              [
-                                _c("use", {
-                                  staticClass: "star",
-                                  attrs: { "xlink:href": "#star" },
-                                }),
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "star-container",
-                                attrs: { "data-value": "3" },
-                              },
-                              [
-                                _c("use", {
-                                  staticClass: "star",
-                                  attrs: { "xlink:href": "#star" },
-                                }),
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "star-container",
-                                attrs: { "data-value": "4" },
-                              },
-                              [
-                                _c("use", {
-                                  staticClass: "star",
-                                  attrs: { "xlink:href": "#star" },
-                                }),
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "star-container",
-                                attrs: { "data-value": "5" },
-                              },
-                              [
-                                _c("use", {
-                                  staticClass: "star",
-                                  attrs: { "xlink:href": "#star" },
-                                }),
-                              ]
-                            ),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("p", [_vm._v("Dashboard")]),
-                      ]
-                    ),
+                        },
+                        [_vm._v("\n                Back\n              ")]
+                      ),
+                    ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "col-lg-6 d-flex flex-column justify-content-center align-items-center",
-                      },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "rating rating d-flex justify-content-center align-items-center",
+                    _c("div", { staticClass: "col-md-6 text-left col-6" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary frmbtn r_button",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.nextStep()
+                            },
                           },
-                          [
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "star-container",
-                                attrs: { "data-value": "1" },
-                              },
-                              [
-                                _c("use", {
-                                  staticClass: "star",
-                                  attrs: { "xlink:href": "#star" },
-                                }),
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "star-container",
-                                attrs: { "data-value": "2" },
-                              },
-                              [
-                                _c("use", {
-                                  staticClass: "star",
-                                  attrs: { "xlink:href": "#star" },
-                                }),
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "star-container",
-                                attrs: { "data-value": "3" },
-                              },
-                              [
-                                _c("use", {
-                                  staticClass: "star",
-                                  attrs: { "xlink:href": "#star" },
-                                }),
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "star-container",
-                                attrs: { "data-value": "4" },
-                              },
-                              [
-                                _c("use", {
-                                  staticClass: "star",
-                                  attrs: { "xlink:href": "#star" },
-                                }),
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "star-container",
-                                attrs: { "data-value": "5" },
-                              },
-                              [
-                                _c("use", {
-                                  staticClass: "star",
-                                  attrs: { "xlink:href": "#star" },
-                                }),
-                              ]
-                            ),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("p", [_vm._v("Support Team")]),
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "col-lg-6 d-flex flex-column justify-content-center align-items-center",
-                      },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "rating rating d-flex justify-content-center align-items-center",
-                          },
-                          [
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "star-container",
-                                attrs: { "data-value": "1" },
-                              },
-                              [
-                                _c("use", {
-                                  staticClass: "star",
-                                  attrs: { "xlink:href": "#star" },
-                                }),
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "star-container",
-                                attrs: { "data-value": "2" },
-                              },
-                              [
-                                _c("use", {
-                                  staticClass: "star",
-                                  attrs: { "xlink:href": "#star" },
-                                }),
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "star-container",
-                                attrs: { "data-value": "3" },
-                              },
-                              [
-                                _c("use", {
-                                  staticClass: "star",
-                                  attrs: { "xlink:href": "#star" },
-                                }),
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "star-container",
-                                attrs: { "data-value": "4" },
-                              },
-                              [
-                                _c("use", {
-                                  staticClass: "star",
-                                  attrs: { "xlink:href": "#star" },
-                                }),
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "star-container",
-                                attrs: { "data-value": "5" },
-                              },
-                              [
-                                _c("use", {
-                                  staticClass: "star",
-                                  attrs: { "xlink:href": "#star" },
-                                }),
-                              ]
-                            ),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("p", [_vm._v("Payout Process")]),
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "col-lg-6 d-flex flex-column justify-content-center align-items-center",
-                      },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "rating rating d-flex justify-content-center align-items-center",
-                          },
-                          [
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "star-container",
-                                attrs: { "data-value": "1" },
-                              },
-                              [
-                                _c("use", {
-                                  staticClass: "star",
-                                  attrs: { "xlink:href": "#star" },
-                                }),
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "star-container",
-                                attrs: { "data-value": "2" },
-                              },
-                              [
-                                _c("use", {
-                                  staticClass: "star",
-                                  attrs: { "xlink:href": "#star" },
-                                }),
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "star-container",
-                                attrs: { "data-value": "3" },
-                              },
-                              [
-                                _c("use", {
-                                  staticClass: "star",
-                                  attrs: { "xlink:href": "#star" },
-                                }),
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "star-container",
-                                attrs: { "data-value": "4" },
-                              },
-                              [
-                                _c("use", {
-                                  staticClass: "star",
-                                  attrs: { "xlink:href": "#star" },
-                                }),
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "star-container",
-                                attrs: { "data-value": "5" },
-                              },
-                              [
-                                _c("use", {
-                                  staticClass: "star",
-                                  attrs: { "xlink:href": "#star" },
-                                }),
-                              ]
-                            ),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("p", [_vm._v("Rules")]),
-                        _vm._v(" "),
-                        _c(
-                          "svg",
-                          {
-                            staticClass: "star-outline",
-                            attrs: { width: "0", height: "0" },
-                          },
-                          [
-                            _c(
-                              "defs",
-                              [
-                                _c(
-                                  "linearGradient",
-                                  {
-                                    attrs: {
-                                      id: "gradientBorder",
-                                      gradientTransform: "rotate(45)",
-                                    },
-                                  },
-                                  [
-                                    _c("stop", {
-                                      attrs: {
-                                        offset: "10%",
-                                        "stop-color": "#7a95f8",
-                                      },
-                                    }),
-                                    _vm._v(" "),
-                                    _c("stop", {
-                                      attrs: {
-                                        offset: "90%",
-                                        "stop-color": "#6453ca",
-                                      },
-                                    }),
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "linearGradient",
-                                  {
-                                    attrs: {
-                                      id: "gradientFill",
-                                      gradientTransform: "rotate(45)",
-                                    },
-                                  },
-                                  [
-                                    _c("stop", {
-                                      attrs: {
-                                        offset: "20%",
-                                        "stop-color": "#7a95f8",
-                                      },
-                                    }),
-                                    _vm._v(" "),
-                                    _c("stop", {
-                                      attrs: {
-                                        offset: "80%",
-                                        "stop-color": "#6453ca",
-                                      },
-                                    }),
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "symbol",
-                                  {
-                                    attrs: { id: "star", viewBox: "0 0 24 24" },
-                                  },
-                                  [
-                                    _c("path", {
-                                      staticStyle: {
-                                        "stroke-linejoin": "round",
-                                        "stroke-linecap": "round",
-                                      },
-                                      attrs: {
-                                        d: "M12 2.5\n                                                                   L14.09 8.26\n                                                                   L20.18 8.84\n                                                                   L15.64 12.97\n                                                                   L17.45 19.02\n                                                                   L12 15.77\n                                                                   L6.55 19.02\n                                                                   L8.36 12.97\n                                                                   L3.82 8.84\n                                                                   L9.91 8.26\n                                                                   Z",
-                                      },
-                                    }),
-                                  ]
-                                ),
-                              ],
-                              1
-                            ),
-                          ]
-                        ),
-                      ]
-                    ),
+                        },
+                        [_vm._v("\n                Next\n              ")]
+                      ),
+                    ]),
                   ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "ratingss" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "rating rating d-flex justify-content-center align-items-center",
-                      },
-                      [
-                        _c(
-                          "svg",
-                          {
-                            staticClass: "star-container",
-                            attrs: { "data-value": "1" },
-                          },
-                          [
-                            _c("use", {
-                              staticClass: "star",
-                              attrs: { "xlink:href": "#star" },
-                            }),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "svg",
-                          {
-                            staticClass: "star-container",
-                            attrs: { "data-value": "2" },
-                          },
-                          [
-                            _c("use", {
-                              staticClass: "star",
-                              attrs: { "xlink:href": "#star" },
-                            }),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "svg",
-                          {
-                            staticClass: "star-container",
-                            attrs: { "data-value": "3" },
-                          },
-                          [
-                            _c("use", {
-                              staticClass: "star",
-                              attrs: { "xlink:href": "#star" },
-                            }),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "svg",
-                          {
-                            staticClass: "star-container",
-                            attrs: { "data-value": "4" },
-                          },
-                          [
-                            _c("use", {
-                              staticClass: "star",
-                              attrs: { "xlink:href": "#star" },
-                            }),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "svg",
-                          {
-                            staticClass: "star-container",
-                            attrs: { "data-value": "5" },
-                          },
-                          [
-                            _c("use", {
-                              staticClass: "star",
-                              attrs: { "xlink:href": "#star" },
-                            }),
-                          ]
-                        ),
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("p", [_vm._v("General Rating")]),
-                  ]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _vm._m(4),
                 ]
               )
             : _vm._e(),
@@ -28609,7 +28277,11 @@ var render = function () {
                 "div",
                 { staticClass: "review_tabs", attrs: { id: "step4" } },
                 [
+                  _vm._m(4),
+                  _vm._v(" "),
                   _vm._m(5),
+                  _vm._v(" "),
+                  _c("br"),
                   _vm._v(" "),
                   _vm._m(6),
                   _vm._v(" "),
@@ -28620,10 +28292,6 @@ var render = function () {
                   _c("br"),
                   _vm._v(" "),
                   _vm._m(8),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _vm._m(9),
                 ]
               )
             : _vm._e(),
@@ -28633,7 +28301,11 @@ var render = function () {
                 "div",
                 { staticClass: "review_tabs", attrs: { id: "step5" } },
                 [
+                  _vm._m(9),
+                  _vm._v(" "),
                   _vm._m(10),
+                  _vm._v(" "),
+                  _c("br"),
                   _vm._v(" "),
                   _vm._m(11),
                   _vm._v(" "),
@@ -28648,10 +28320,6 @@ var render = function () {
                   _c("br"),
                   _vm._v(" "),
                   _vm._m(14),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _vm._m(15),
                 ]
               )
             : _vm._e(),
@@ -28661,7 +28329,11 @@ var render = function () {
                 "div",
                 { staticClass: "review_tabs", attrs: { id: "step6" } },
                 [
+                  _vm._m(15),
+                  _vm._v(" "),
                   _vm._m(16),
+                  _vm._v(" "),
+                  _c("br"),
                   _vm._v(" "),
                   _vm._m(17),
                   _vm._v(" "),
@@ -28676,16 +28348,12 @@ var render = function () {
                   _c("br"),
                   _vm._v(" "),
                   _vm._m(20),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _vm._m(21),
                 ]
               )
             : _vm._e(),
         ]),
         _vm._v(" "),
-        _vm._m(22),
+        _vm._m(21),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-2" }),
@@ -28761,34 +28429,6 @@ var staticRenderFns = [
             _vm._v("Step 3 : Rating / Review"),
           ]),
         ]),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-6 text-right col-6" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-primary r_button frmbtn_back",
-            attrs: { type: "button", onclick: "showStep(2)" },
-          },
-          [_vm._v("\n                Back\n              ")]
-        ),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-6 text-left col-6" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-primary frmbtn r_button",
-            attrs: { type: "button", onclick: "showStep(4)" },
-          },
-          [_vm._v("\n                Next\n              ")]
-        ),
       ]),
     ])
   },

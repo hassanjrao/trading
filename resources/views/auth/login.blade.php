@@ -1,5 +1,5 @@
 @extends('layouts.front')
-
+@section('page-title', 'Sign In')
 @section('content')
     <br><br>
     <div class="d-flex justify-content-center w-100 mt-4 align-items-center">
