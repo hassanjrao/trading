@@ -5478,6 +5478,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     accountSizes: {
@@ -5507,7 +5517,11 @@ __webpack_require__.r(__webpack_exports__);
       orderConfirmationError: false,
       orderConfirmation: null,
       termsCondtionsError: false,
+      mainAdvantages: null,
+      mainDrawbacks: null,
       termsCondtions: null,
+      selectedAccountSize: null,
+      selectedStep: null,
       ratings: [{
         key: "dashboard",
         label: "Dashboard",
@@ -5534,15 +5548,42 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     submitReview: function submitReview() {
+      var _this = this;
+
       if (!this.orderConfirmation) {
         this.orderConfirmationError = "Order Confirmation is required";
         return;
+      } else {
+        this.orderConfirmationError = false;
       }
 
       if (!this.termsCondtions) {
         this.termsCondtionsError = "Please accept the terms and conditions";
         return;
+      } else {
+        this.termsCondtionsError = false;
       }
+
+      var formData = new FormData();
+      formData.append("firm_id", this.selectedFirm.id);
+      formData.append("review", this.review);
+      formData.append("order_confirmation", this.orderConfirmation);
+      formData.append("main_advantages", this.mainAdvantages);
+      formData.append("main_drawbacks", this.mainDrawbacks);
+      formData.append("ratings", JSON.stringify(this.userRatings));
+      formData.append("account_size_id", this.selectedAccountSize);
+      formData.append("step_id", this.selectedStep);
+      console.log("formData", formData);
+      axios.post("/review-report/store", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      }).then(function (response) {
+        console.log(response.data);
+        _this.step++;
+      })["catch"](function (error) {
+        console.log(error);
+      });
     },
     starSelected: function starSelected(stars, container) {
       //   add class to the selected star
@@ -5563,7 +5604,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     nextStep: function nextStep() {
       if (this.step == 3) {
-        console.log('review', this.review);
+        console.log("review", this.review);
 
         if (!this.review) {
           this.reviewError = "Please write a review of at least 150 characters";
@@ -5582,7 +5623,7 @@ __webpack_require__.r(__webpack_exports__);
       this.step--;
     },
     searchFirm: function searchFirm() {
-      var _this = this;
+      var _this2 = this;
 
       if (!this.search) {
         this.firms = [];
@@ -5594,11 +5635,11 @@ __webpack_require__.r(__webpack_exports__);
           search: this.search
         }
       }).then(function (response) {
-        _this.firms = response.data.data.firms;
-        console.log(_this.firms);
+        _this2.firms = response.data.data.firms;
+        console.log(_this2.firms);
       })["catch"](function (error) {
         console.log(error);
-        _this.firms = [];
+        _this2.firms = [];
       })["finally"](function () {
         console.log("Request completed.");
       });
@@ -27938,8 +27979,31 @@ var render = function () {
                     _c(
                       "select",
                       {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.selectedAccountSize,
+                            expression: "selectedAccountSize",
+                          },
+                        ],
                         staticClass: "form-control review_form_input",
                         staticStyle: { height: "47px" },
+                        on: {
+                          change: function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.selectedAccountSize = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          },
+                        },
                       },
                       _vm._l(_vm.accountSizes, function (accountSize, index) {
                         return _c(
@@ -27968,8 +28032,31 @@ var render = function () {
                     _c(
                       "select",
                       {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.selectedStep,
+                            expression: "selectedStep",
+                          },
+                        ],
                         staticClass: "form-control review_form_input",
                         staticStyle: { height: "47px" },
+                        on: {
+                          change: function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.selectedStep = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          },
+                        },
                       },
                       _vm._l(_vm.steps, function (step, index) {
                         return _c(
@@ -28095,7 +28182,7 @@ var render = function () {
                   (_vm.reviewError ? true : false)
                     ? _c("p", { staticClass: "text-danger" }, [
                         _vm._v(
-                          "\n              " +
+                          "\n            " +
                             _vm._s(_vm.reviewError) +
                             "\n          "
                         ),
@@ -28365,14 +28452,74 @@ var render = function () {
                     _vm._v(" "),
                     (_vm.orderConfirmationError ? true : false)
                       ? _c("p", { staticClass: "text-danger pl-3" }, [
-                          _vm._v(_vm._s(_vm.orderConfirmationError)),
+                          _vm._v(
+                            "\n              " +
+                              _vm._s(_vm.orderConfirmationError) +
+                              "\n            "
+                          ),
                         ])
                       : _vm._e(),
                   ]),
                   _vm._v(" "),
                   _c("br"),
                   _vm._v(" "),
-                  _vm._m(5),
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c("textarea", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.mainAdvantages,
+                            expression: "mainAdvantages",
+                          },
+                        ],
+                        staticClass: "form-control review_form_input p-4",
+                        attrs: {
+                          rows: "6",
+                          placeholder:
+                            "What are the main advantages of this company?",
+                        },
+                        domProps: { value: _vm.mainAdvantages },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.mainAdvantages = $event.target.value
+                          },
+                        },
+                      }),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c("textarea", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.mainDrawbacks,
+                            expression: "mainDrawbacks",
+                          },
+                        ],
+                        staticClass: "form-control review_form_input p-4",
+                        attrs: {
+                          rows: "6",
+                          placeholder:
+                            "What are the main drawbacks of this company?",
+                        },
+                        domProps: { value: _vm.mainDrawbacks },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.mainDrawbacks = $event.target.value
+                          },
+                        },
+                      }),
+                    ]),
+                  ]),
                   _vm._v(" "),
                   _c("br"),
                   _vm._v(" "),
@@ -28428,7 +28575,11 @@ var render = function () {
                     _vm._v(" "),
                     (_vm.termsCondtionsError ? true : false)
                       ? _c("p", { staticClass: "text-danger" }, [
-                          _vm._v(_vm._s(_vm.termsCondtionsError)),
+                          _vm._v(
+                            "\n              " +
+                              _vm._s(_vm.termsCondtionsError) +
+                              "\n            "
+                          ),
                         ])
                       : _vm._e(),
                   ]),
@@ -28477,7 +28628,11 @@ var render = function () {
                 "div",
                 { staticClass: "review_tabs", attrs: { id: "step5" } },
                 [
+                  _vm._m(5),
+                  _vm._v(" "),
                   _vm._m(6),
+                  _vm._v(" "),
+                  _c("br"),
                   _vm._v(" "),
                   _vm._m(7),
                   _vm._v(" "),
@@ -28492,10 +28647,6 @@ var render = function () {
                   _c("br"),
                   _vm._v(" "),
                   _vm._m(10),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _vm._m(11),
                 ]
               )
             : _vm._e(),
@@ -28505,7 +28656,11 @@ var render = function () {
                 "div",
                 { staticClass: "review_tabs", attrs: { id: "step6" } },
                 [
+                  _vm._m(11),
+                  _vm._v(" "),
                   _vm._m(12),
+                  _vm._v(" "),
+                  _c("br"),
                   _vm._v(" "),
                   _vm._m(13),
                   _vm._v(" "),
@@ -28520,16 +28675,12 @@ var render = function () {
                   _c("br"),
                   _vm._v(" "),
                   _vm._m(16),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _vm._m(17),
                 ]
               )
             : _vm._e(),
         ]),
         _vm._v(" "),
-        _vm._m(18),
+        _vm._m(17),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-2" }),
@@ -28619,32 +28770,6 @@ var staticRenderFns = [
             _vm._v("Step 4 : Conformation"),
           ]),
         ]),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-6" }, [
-        _c("textarea", {
-          staticClass: "form-control review_form_input p-4",
-          attrs: {
-            rows: "6",
-            placeholder: "What are the main advantages of this company?",
-          },
-        }),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-6" }, [
-        _c("textarea", {
-          staticClass: "form-control review_form_input p-4",
-          attrs: {
-            rows: "6",
-            placeholder: "What are the main drawbacks of this company?",
-          },
-        }),
       ]),
     ])
   },

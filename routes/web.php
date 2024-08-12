@@ -49,6 +49,7 @@ Route::middleware(['auth'])->group(function(){
 
     Route::post('firms/submit-vote', [FirmController::class, 'submitVote'])->name('firms.submit-vote');
 
+    Route::post('review-report/store', [ReviewReportController::class, 'store'])->name('review-report.store');
     Route::resource('review-report', ReviewReportController::class);
 
 });

@@ -143,7 +143,7 @@
             <br class="none" />
             <div class="row">
               <div class="col-md-6">
-                <select class="form-control review_form_input" style="height: 47px">
+                <select class="form-control review_form_input" style="height: 47px" v-model="selectedAccountSize">
                   <!-- select first index -->
                   <option
                     v-for="(accountSize, index) in accountSizes"
@@ -156,7 +156,7 @@
                 </select>
               </div>
               <div class="col-md-6">
-                <select class="form-control review_form_input" style="height: 47px">
+                <select class="form-control review_form_input" style="height: 47px" v-model="selectedStep">
                   <option
                     v-for="(step, index) in steps"
                     :key="step.id"
@@ -215,12 +215,12 @@
             <br />
             <textarea
               placeholder="Review of the firm (minimum 150 characters)"
-                v-model="review"
+              v-model="review"
               class="form-control review_form_input p-4"
               rows="10"
             ></textarea>
             <p class="text-danger" v-if="reviewError ? true : false">
-                {{ reviewError }}
+              {{ reviewError }}
             </p>
             <br />
             <div class="row justify-content-center">
@@ -286,7 +286,7 @@
               <div class="col-md-6 text-right col-6">
                 <button
                   type="button"
-                    @click="backStep()"
+                  @click="backStep()"
                   class="btn btn-primary r_button frmbtn_back"
                 >
                   Back
@@ -337,11 +337,13 @@
                     ref="orderConfirmationFile"
                     @change="orderConfirmation = $refs.orderConfirmationFile.files[0]"
                   />
-                    <img src="/front-assets/images/document 1.png" alt="document" />
+                  <img src="/front-assets/images/document 1.png" alt="document" />
                 </div>
               </div>
 
-              <p class="text-danger pl-3" v-if='orderConfirmationError ? true: false'>{{ orderConfirmationError }}</p>
+              <p class="text-danger pl-3" v-if="orderConfirmationError ? true : false">
+                {{ orderConfirmationError }}
+              </p>
             </div>
             <br />
             <div class="row">
@@ -350,6 +352,7 @@
                   class="form-control review_form_input p-4"
                   rows="6"
                   placeholder="What are the main advantages of this company?"
+                  v-model="mainAdvantages"
                 ></textarea>
               </div>
               <div class="col-md-6">
@@ -357,16 +360,24 @@
                   class="form-control review_form_input p-4"
                   rows="6"
                   placeholder="What are the main drawbacks of this company?"
+                  v-model="mainDrawbacks"
                 ></textarea>
               </div>
             </div>
             <br />
             <div class="form-group form-check review">
-              <input type="checkbox" class="form-check-input" id="terms" v-model='termsCondtions' />
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="terms"
+                v-model="termsCondtions"
+              />
               <label class="checkbox-label" for="terms"
                 >I accept the Terms of Service & Privacy Policy</label
               >
-              <p class="text-danger" v-if='termsCondtionsError ? true: false'>{{ termsCondtionsError }}</p>
+              <p class="text-danger" v-if="termsCondtionsError ? true : false">
+                {{ termsCondtionsError }}
+              </p>
             </div>
             <br />
 
@@ -374,7 +385,7 @@
               <div class="col-md-6 text-right col-6">
                 <button
                   type="button"
-                    @click="backStep()"
+                  @click="backStep()"
                   class="btn btn-primary r_button frmbtn_back"
                 >
                   Back
@@ -492,7 +503,6 @@
               </div>
             </div>
           </div>
-
 
           <div class="review_tabs" id="step6" v-if="step == 6">
             <div class="row">
@@ -655,7 +665,11 @@ export default {
       orderConfirmationError: false,
       orderConfirmation: null,
       termsCondtionsError: false,
+      mainAdvantages: null,
+      mainDrawbacks: null,
       termsCondtions: null,
+      selectedAccountSize: null,
+      selectedStep: null,
       ratings: [
         {
           key: "dashboard",
@@ -688,19 +702,46 @@ export default {
   },
 
   methods: {
-
     submitReview() {
-
       if (!this.orderConfirmation) {
         this.orderConfirmationError = "Order Confirmation is required";
         return;
+      } else {
+        this.orderConfirmationError = false;
       }
 
-      if(!this.termsCondtions) {
+      if (!this.termsCondtions) {
         this.termsCondtionsError = "Please accept the terms and conditions";
         return;
+      } else {
+        this.termsCondtionsError = false;
       }
 
+      const formData = new FormData();
+      formData.append("firm_id", this.selectedFirm.id);
+      formData.append("review", this.review);
+      formData.append("order_confirmation", this.orderConfirmation);
+      formData.append("main_advantages", this.mainAdvantages);
+      formData.append("main_drawbacks", this.mainDrawbacks);
+      formData.append("ratings", JSON.stringify(this.userRatings));
+      formData.append("account_size_id", this.selectedAccountSize);
+      formData.append("step_id", this.selectedStep);
+
+      console.log("formData", formData);
+
+      axios
+        .post("/review-report/store", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          this.step++;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
 
     starSelected(stars, container) {
@@ -725,10 +766,9 @@ export default {
 
     nextStep() {
       if (this.step == 3) {
+        console.log("review", this.review);
 
-        console.log('review',this.review);
-
-        if(!this.review) {
+        if (!this.review) {
           this.reviewError = "Please write a review of at least 150 characters";
           return;
         }

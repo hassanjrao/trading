@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AccountSize;
+use App\Models\FirmReview;
 use App\Models\Step;
 use Illuminate\Http\Request;
 
@@ -41,7 +42,21 @@ class ReviewReportController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'firm_id'=>'required|exists:firms,id',
+            'review'=>'required',
+            'order_confirmation'=>'required|file',
+            'main_advantages'=>'nullable',
+            'main_drawbacks'=>'nullable',
+            'ratings'=>'required',
+        ]);
+
+        $ratings=json_decode($request->ratings);
+
+        FirmReview::create([
+            'firm_id'=>$request->firm_id,
+            'user_id'=>auth()->id(),
+        ]);
     }
 
     /**
