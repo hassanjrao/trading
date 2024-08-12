@@ -5469,6 +5469,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     accountSizes: {
@@ -5495,6 +5504,10 @@ __webpack_require__.r(__webpack_exports__);
       step: 1,
       reviewError: false,
       review: null,
+      orderConfirmationError: false,
+      orderConfirmation: null,
+      termsCondtionsError: false,
+      termsCondtions: null,
       ratings: [{
         key: "dashboard",
         label: "Dashboard",
@@ -5520,6 +5533,17 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    submitReview: function submitReview() {
+      if (!this.orderConfirmation) {
+        this.orderConfirmationError = "Order Confirmation is required";
+        return;
+      }
+
+      if (!this.termsCondtions) {
+        this.termsCondtionsError = "Please accept the terms and conditions";
+        return;
+      }
+    },
     starSelected: function starSelected(stars, container) {
       //   add class to the selected star
       var starContainers = document.querySelectorAll(".".concat(container));
@@ -28277,21 +28301,173 @@ var render = function () {
                 "div",
                 { staticClass: "review_tabs", attrs: { id: "step4" } },
                 [
-                  _vm._m(4),
+                  _c("div", { staticClass: "row" }, [
+                    _vm._m(4),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-8" }, [
+                      _c("div", { staticClass: "data" }, [
+                        _c(
+                          "p",
+                          {
+                            staticStyle: {
+                              display: "flex",
+                              "align-items": "center",
+                              "justify-content": "flex-end",
+                            },
+                          },
+                          [
+                            _c("img", {
+                              staticClass: "img_data",
+                              attrs: { src: _vm.selectedFirm.logo_url },
+                            }),
+                            _vm._v(" "),
+                            _c("span", { staticClass: "p_name" }, [
+                              _c("b", [
+                                _vm._v(
+                                  "\n                      " +
+                                    _vm._s(_vm.selectedFirm.name) +
+                                    "\n                    "
+                                ),
+                              ]),
+                            ]),
+                          ]
+                        ),
+                      ]),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-md-12" }, [
+                      _c("div", { staticClass: "Confirmation_container" }, [
+                        _c("input", {
+                          ref: "orderConfirmationFile",
+                          staticClass: "confirmation-input",
+                          attrs: {
+                            type: "file",
+                            placeholder: "Order Confirmation (Required)",
+                          },
+                          on: {
+                            change: function ($event) {
+                              _vm.orderConfirmation =
+                                _vm.$refs.orderConfirmationFile.files[0]
+                            },
+                          },
+                        }),
+                        _vm._v(" "),
+                        _c("img", {
+                          attrs: {
+                            src: "/front-assets/images/document 1.png",
+                            alt: "document",
+                          },
+                        }),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    (_vm.orderConfirmationError ? true : false)
+                      ? _c("p", { staticClass: "text-danger pl-3" }, [
+                          _vm._v(_vm._s(_vm.orderConfirmationError)),
+                        ])
+                      : _vm._e(),
+                  ]),
+                  _vm._v(" "),
+                  _c("br"),
                   _vm._v(" "),
                   _vm._m(5),
                   _vm._v(" "),
                   _c("br"),
                   _vm._v(" "),
-                  _vm._m(6),
+                  _c("div", { staticClass: "form-group form-check review" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.termsCondtions,
+                          expression: "termsCondtions",
+                        },
+                      ],
+                      staticClass: "form-check-input",
+                      attrs: { type: "checkbox", id: "terms" },
+                      domProps: {
+                        checked: Array.isArray(_vm.termsCondtions)
+                          ? _vm._i(_vm.termsCondtions, null) > -1
+                          : _vm.termsCondtions,
+                      },
+                      on: {
+                        change: function ($event) {
+                          var $$a = _vm.termsCondtions,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                (_vm.termsCondtions = $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                (_vm.termsCondtions = $$a
+                                  .slice(0, $$i)
+                                  .concat($$a.slice($$i + 1)))
+                            }
+                          } else {
+                            _vm.termsCondtions = $$c
+                          }
+                        },
+                      },
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "checkbox-label",
+                        attrs: { for: "terms" },
+                      },
+                      [_vm._v("I accept the Terms of Service & Privacy Policy")]
+                    ),
+                    _vm._v(" "),
+                    (_vm.termsCondtionsError ? true : false)
+                      ? _c("p", { staticClass: "text-danger" }, [
+                          _vm._v(_vm._s(_vm.termsCondtionsError)),
+                        ])
+                      : _vm._e(),
+                  ]),
                   _vm._v(" "),
                   _c("br"),
                   _vm._v(" "),
-                  _vm._m(7),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _vm._m(8),
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-md-6 text-right col-6" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary r_button frmbtn_back",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.backStep()
+                            },
+                          },
+                        },
+                        [_vm._v("\n                Back\n              ")]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-6 text-left col-6" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary frmbtn r_button",
+                          attrs: { type: "button", id: "submit_form" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.submitReview()
+                            },
+                          },
+                        },
+                        [_vm._v("\n                Submit\n              ")]
+                      ),
+                    ]),
+                  ]),
                 ]
               )
             : _vm._e(),
@@ -28301,25 +28477,25 @@ var render = function () {
                 "div",
                 { staticClass: "review_tabs", attrs: { id: "step5" } },
                 [
+                  _vm._m(6),
+                  _vm._v(" "),
+                  _vm._m(7),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _vm._m(8),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
                   _vm._m(9),
+                  _vm._v(" "),
+                  _c("br"),
                   _vm._v(" "),
                   _vm._m(10),
                   _vm._v(" "),
                   _c("br"),
                   _vm._v(" "),
                   _vm._m(11),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _vm._m(12),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _vm._m(13),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _vm._m(14),
                 ]
               )
             : _vm._e(),
@@ -28329,31 +28505,31 @@ var render = function () {
                 "div",
                 { staticClass: "review_tabs", attrs: { id: "step6" } },
                 [
+                  _vm._m(12),
+                  _vm._v(" "),
+                  _vm._m(13),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _vm._m(14),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
                   _vm._m(15),
+                  _vm._v(" "),
+                  _c("br"),
                   _vm._v(" "),
                   _vm._m(16),
                   _vm._v(" "),
                   _c("br"),
                   _vm._v(" "),
                   _vm._m(17),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _vm._m(18),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _vm._m(19),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _vm._m(20),
                 ]
               )
             : _vm._e(),
         ]),
         _vm._v(" "),
-        _vm._m(21),
+        _vm._m(18),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-2" }),
@@ -28436,61 +28612,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-4" }, [
-        _c("div", { staticClass: "p_data" }, [
-          _c("div", { staticClass: "data_r" }, [
-            _c("p", { staticClass: "revie_title" }, [
-              _vm._v("Step 4 : Conformation"),
-            ]),
+    return _c("div", { staticClass: "col-md-4" }, [
+      _c("div", { staticClass: "p_data" }, [
+        _c("div", { staticClass: "data_r" }, [
+          _c("p", { staticClass: "revie_title" }, [
+            _vm._v("Step 4 : Conformation"),
           ]),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-8" }, [
-        _c("div", { staticClass: "data" }, [
-          _c(
-            "p",
-            {
-              staticStyle: {
-                display: "flex",
-                "align-items": "center",
-                "justify-content": "flex-end",
-              },
-            },
-            [
-              _c("img", {
-                staticClass: "img_data",
-                attrs: { src: "firm.logo_url" },
-              }),
-              _vm._v(" "),
-              _c("span", { staticClass: "p_name" }, [
-                _c("b", [_vm._v("Phoenix Trader Funding")]),
-              ]),
-            ]
-          ),
-        ]),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("div", { staticClass: "Confirmation_container" }, [
-          _c("input", {
-            staticClass: "confirmation-input",
-            attrs: {
-              type: "text",
-              placeholder: "Order Confirmation (Required)",
-            },
-          }),
-          _vm._v(" "),
-          _c("img", {
-            attrs: { src: "assets/images/document 1.png", alt: "document" },
-          }),
         ]),
       ]),
     ])
@@ -28518,53 +28645,6 @@ var staticRenderFns = [
             placeholder: "What are the main drawbacks of this company?",
           },
         }),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group form-check review" }, [
-      _c("input", {
-        staticClass: "form-check-input",
-        attrs: { type: "checkbox", id: "terms", name: "terms" },
-      }),
-      _vm._v(" "),
-      _c("label", { staticClass: "checkbox-label", attrs: { for: "terms" } }, [
-        _vm._v("I accept the Terms of Service & Privacy Policy"),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-6 text-right col-6" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-primary r_button frmbtn_back",
-            attrs: { type: "button", onclick: "showStep(3)" },
-          },
-          [_vm._v("\n                Back\n              ")]
-        ),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-6 text-left col-6" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-primary frmbtn r_button",
-            attrs: {
-              type: "submit",
-              id: "submit_form",
-              onclick: "submitForm()",
-            },
-          },
-          [_vm._v("\n                Submit\n              ")]
-        ),
       ]),
     ])
   },

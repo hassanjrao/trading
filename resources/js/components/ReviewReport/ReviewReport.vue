@@ -317,9 +317,11 @@
                   <p
                     style="display: flex; align-items: center; justify-content: flex-end"
                   >
-                    <img class="img_data" src="firm.logo_url" />
+                    <img class="img_data" :src="selectedFirm.logo_url" />
                     <span class="p_name">
-                      <b>Phoenix Trader Funding</b>
+                      <b>
+                        {{ selectedFirm.name }}
+                      </b>
                     </span>
                   </p>
                 </div>
@@ -329,13 +331,17 @@
               <div class="col-md-12">
                 <div class="Confirmation_container">
                   <input
-                    type="text"
+                    type="file"
                     class="confirmation-input"
                     placeholder="Order Confirmation (Required)"
+                    ref="orderConfirmationFile"
+                    @change="orderConfirmation = $refs.orderConfirmationFile.files[0]"
                   />
-                  <img src="assets/images/document 1.png" alt="document" />
+                    <img src="/front-assets/images/document 1.png" alt="document" />
                 </div>
               </div>
+
+              <p class="text-danger pl-3" v-if='orderConfirmationError ? true: false'>{{ orderConfirmationError }}</p>
             </div>
             <br />
             <div class="row">
@@ -356,10 +362,11 @@
             </div>
             <br />
             <div class="form-group form-check review">
-              <input type="checkbox" class="form-check-input" id="terms" name="terms" />
+              <input type="checkbox" class="form-check-input" id="terms" v-model='termsCondtions' />
               <label class="checkbox-label" for="terms"
                 >I accept the Terms of Service & Privacy Policy</label
               >
+              <p class="text-danger" v-if='termsCondtionsError ? true: false'>{{ termsCondtionsError }}</p>
             </div>
             <br />
 
@@ -367,7 +374,7 @@
               <div class="col-md-6 text-right col-6">
                 <button
                   type="button"
-                  onclick="showStep(3)"
+                    @click="backStep()"
                   class="btn btn-primary r_button frmbtn_back"
                 >
                   Back
@@ -375,10 +382,10 @@
               </div>
               <div class="col-md-6 text-left col-6">
                 <button
-                  type="submit"
+                  type="button"
                   id="submit_form"
                   class="btn btn-primary frmbtn r_button"
-                  onclick="submitForm()"
+                  @click="submitReview()"
                 >
                   Submit
                 </button>
@@ -485,6 +492,8 @@
               </div>
             </div>
           </div>
+
+
           <div class="review_tabs" id="step6" v-if="step == 6">
             <div class="row">
               <div class="col-md-4">
@@ -643,6 +652,10 @@ export default {
       step: 1,
       reviewError: false,
       review: null,
+      orderConfirmationError: false,
+      orderConfirmation: null,
+      termsCondtionsError: false,
+      termsCondtions: null,
       ratings: [
         {
           key: "dashboard",
@@ -675,6 +688,21 @@ export default {
   },
 
   methods: {
+
+    submitReview() {
+
+      if (!this.orderConfirmation) {
+        this.orderConfirmationError = "Order Confirmation is required";
+        return;
+      }
+
+      if(!this.termsCondtions) {
+        this.termsCondtionsError = "Please accept the terms and conditions";
+        return;
+      }
+
+    },
+
     starSelected(stars, container) {
       //   add class to the selected star
       const starContainers = document.querySelectorAll(`.${container}`);

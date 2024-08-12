@@ -73,4 +73,9 @@ class Firm extends Model
     {
         return $this->belongsToMany(User::class, 'firm_user_vote')->withTimestamps();
     }
+
+    public function firmReviews()
+    {
+        return $this->hasMany(FirmReview::class);
+    }
 }

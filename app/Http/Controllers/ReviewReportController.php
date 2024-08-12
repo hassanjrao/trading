@@ -17,9 +17,10 @@ class ReviewReportController extends Controller
     {
         $accountSizes=AccountSize::all();
         $steps=Step::all();
-        
 
-        return view('front.review-report.index',compact('accountSizes','steps'));
+        $documentIconUrl=asset('front-assets/images/document 1.png');
+
+        return view('front.review-report.index',compact('accountSizes','steps','documentIconUrl'));
     }
 
     /**
