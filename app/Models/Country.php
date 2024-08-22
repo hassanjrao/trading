@@ -18,11 +18,11 @@ class Country extends Model
 
     public function getFlagUrlAttribute()
     {
-        if(!$this->flag){
+        if(!$this->flag_image){
             return asset('countries/ae.png');
         }
 
-        return Storage::url($this->flag);
+        return Storage::url($this->flag_image);
     }
 
 }

@@ -1,5 +1,14 @@
 <?php
 
+use App\Http\Controllers\AdminAccountSizeController;
+use App\Http\Controllers\AdminAssetTypeController;
+use App\Http\Controllers\AdminCountryController;
+use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\AdminFirmController;
+use App\Http\Controllers\AdminProfileController;
+use App\Http\Controllers\AdminStepController;
+use App\Http\Controllers\AdminTechnologyController;
+use App\Http\Controllers\AdminTradingExperienceController;
 use App\Http\Controllers\CompareController;
 use App\Http\Controllers\FirmController;
 use App\Http\Controllers\HomeController;
@@ -24,18 +33,8 @@ use Illuminate\Support\Facades\Route;
 // Example Routes
 Route::view('/', 'front.home')->name('front.home');
 Route::view('/checkout', 'front.checkout')->name('front.checkout');
-Route::view('/profile', 'front.profile')->name('front.profile');
-Route::view('/top', 'front.top')->name('front.top');
-Route::view('/user', 'front.user')->name('front.user');
-Route::view('/vote', 'front.vote')->name('front.vote');
 Route::view('/map', 'front.map')->name('front.map');
 
-Route::match(['get', 'post'], '/dashboard', function(){
-    return view('dashboard');
-});
-Route::view('/pages/slick', 'pages.slick');
-Route::view('/pages/datatables', 'pages.datatables');
-Route::view('/pages/blank', 'pages.blank');
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -56,6 +55,7 @@ Route::middleware(['auth'])->group(function(){
 
 
 
+
 Route::get('compare', [CompareController::class, 'index'])->name('compare.index');
 
 Route::get('firms/{firmChallenge}/summary', [FirmController::class, 'summary'])->name('firms.summary');
@@ -66,4 +66,27 @@ Route::resource('firms', FirmController::class);
 
 
 Auth::routes();
+
+
+
+Route::prefix('admin')->name('admin.')->middleware(['role:admin'])->group(function(){
+
+    Route::get('',[AdminDashboardController::class,'index'])->name('dashboard.index');
+    Route::resource("profile", AdminProfileController::class)->only(["index", "update"]);
+
+    Route::resource('steps', AdminStepController::class);
+
+    Route::resource('account-sizes', AdminAccountSizeController::class);
+
+
+    Route::resource('asset-types', AdminAssetTypeController::class);
+
+    Route::resource('countries', AdminCountryController::class);
+
+
+
+    Route::resource('firms', AdminFirmController::class);
+
+
+});
 

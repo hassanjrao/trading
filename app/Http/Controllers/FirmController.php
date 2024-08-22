@@ -163,6 +163,7 @@ class FirmController extends Controller
     public function summary(FirmChallenge $firmChallenge)
     {
 
+        $firmChallenge->load(['firm', 'step', 'accountSize', 'firmChallengeDetails']);
         $firm = $firmChallenge->firm;
 
         $steps = Step::all();

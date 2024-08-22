@@ -21,7 +21,7 @@
                         <b>{{ $firm->name }}</b>
                     </h5>
                     <a href="{{ $firm->url }}" class="p_des">{{ $firm->url }}</a><br>
-                    <img class="img_data" src="..//assets/images/france.png">
+                    <img class="img_data img-fluid" style="width: 3rem !important" src="{{ $firm->country->flag_url }}">
                 </div>
 
             </div>
@@ -46,7 +46,7 @@
                                 </p>
                                 <div class="detaits_name">
                                     <b>
-                                        {{ $firmChallenge->step->step }}
+                                        {{ $firmChallenge->step->name }}
                                     </b>
                                 </div>
                             </div>
@@ -55,7 +55,15 @@
                                     Profit Target
                                 </p>
                                 <div class="detaits_name">
-                                    <b>8% ({{ config('app.currency_symbol') . $firmChallenge->profit_target }})</b>
+                                    @foreach ($firmChallenge->firmChallengeDetails as $detail)
+                                        <span class="mb-2">
+                                            <b>
+                                                {{ $detail->profit_target }}
+                                            </b>
+                                            <br>
+                                        </span>
+                                    @endforeach
+
                                 </div>
                             </div>
                             <div class="section_order_details">
@@ -63,7 +71,11 @@
                                     Max. Daily Loss
                                 </p>
                                 <div class="detaits_name">
-                                    <b>8% ({{ config('app.currency_symbol') . $firmChallenge->max_daily_loss }})</b>
+
+                                    @foreach ($firmChallenge->firmChallengeDetails as $detail)
+                                        <b>{{ $detail->max_daily_loss }}</b>
+                                        <br>
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="section_order_details">
@@ -71,7 +83,12 @@
                                     Max. Total Drawdown
                                 </p>
                                 <div class="detaits_name">
-                                    <b>8% ({{ config('app.currency_symbol') . $firmChallenge->max_total_drawdown }})</b>
+
+                                    @foreach ($firmChallenge->firmChallengeDetails as $detail)
+                                        <b>{{ $detail->max_total_drawdown }}</b>
+                                        <br>
+                                    @endforeach
+
                                 </div>
                             </div>
 
@@ -103,13 +120,14 @@
 
                                 @foreach ($steps as $step)
                                     <li class="nav-item">
-                                        <a class="nav-link active" id="step{{ $step->id }}" data-toggle="tab" href="#step{{ $step->id }}"
-                                            role="tab" aria-controls="home" aria-selected="true">
-                                            {{ $step->step }}
+                                        <a class="nav-link active" id="step{{ $step->id }}" data-toggle="tab"
+                                            href="#step{{ $step->id }}" role="tab" aria-controls="home"
+                                            aria-selected="true">
+                                            {{ $step->name }}
                                         </a>
                                     </li>
                                 @endforeach
-                             
+
                             </ul>
                             <div class="tab-content checkout_tabs" id="checkmyTabContent">
                                 <div class="tab-pane fade show active" id="all" role="tabpanel"

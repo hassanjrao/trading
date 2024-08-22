@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             TradingExperienceSeeder::class,
             PropFirmChallengeSeeder::class,
-
+            UserSeeder::class,
         ]);
     }
 }
