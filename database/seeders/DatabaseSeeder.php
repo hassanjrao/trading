@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        $this->run([
+        $this->call([
+            CountrySeeder::class,
             AccountSizeSeeder::class,
             AssetTypeSeeder::class,
             StepSeeder::class,
@@ -31,6 +32,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             TradingExperienceSeeder::class,
             PropFirmChallengeSeeder::class,
+
         ]);
     }
 }

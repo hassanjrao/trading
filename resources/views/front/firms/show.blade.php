@@ -27,7 +27,7 @@
                                         <span class="p_name">
                                             <b>
                                                 {{ $firm->name }}
-                                            </b> <img class="img_data" src="..//assets/images/france.png"> <br>
+                                            </b> <img class="img_data img-fluid" style="width: 2rem !important" src="{{ $firm->country->flag_url }}"> <br>
                                             <a href="{{ $firm->url }}" target="__blank"
                                                 class="p_des">{{ $firm->url }}
                                             </a>
@@ -156,7 +156,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($firm->firmChallenges as $challenge)
+                                    @foreach ($firmChallenges as $challenge)
                                         <tr>
                                             <td>
                                                 <p class="wsx">
@@ -172,22 +172,28 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                {{ $challenge->accountSize->size }}
+                                                {{ $challenge->accountSize->size }} ({{ $challenge->step->name }})
                                             </td>
                                             <td>
-                                                {{ config('app.currency_symbol') . $challenge->profit_target }}
-                                            </td>
-                                            <td>
-                                                {{ config('app.currency_symbol') . $challenge->max_daily_loss }}
-                                                @if ($challenge->max_daily_loss_note)
+
+
+                                                @foreach ($challenge->firmChallengeDetails as $detail)
+                                                    {{ 'P' . $loop->iteration . ': ' . $detail->profit_target }}
                                                     <br>
-                                                    <span class="wsx" style="text-decoration: none">
-                                                        ({{ $challenge->max_daily_loss_note }})
-                                                    </span>
-                                                @endif
+                                                @endforeach
                                             </td>
                                             <td>
-                                                {{ config('app.currency_symbol') . $challenge->max_total_drawdown }}
+                                                @foreach ($challenge->firmChallengeDetails as $detail)
+                                                    {{ 'P' . $loop->iteration . ': ' . $detail->max_daily_loss }}
+                                                    <br>
+                                                @endforeach
+                                            </td>
+                                            <td>
+
+                                                @foreach ($challenge->firmChallengeDetails as $detail)
+                                                    {{ 'P' . $loop->iteration . ': ' . $detail->max_total_drawdown }}
+                                                    <br>
+                                                @endforeach
                                             </td>
                                             <td>
                                                 {{ $challenge->profit_split }}
@@ -199,9 +205,8 @@
                                                 {{ $challenge->rewards }}
                                             </td>
                                             <td>
-                                                <a href="{{ route('firms.summary',$challenge) }}">
-                                                    <img class="img_data"
-                                                        src="{{ asset('front-assets/images/922.png') }}"
+                                                <a href="{{ route('firms.summary', $challenge) }}">
+                                                    <img class="img_data" src="{{ asset('front-assets/images/922.png') }}"
                                                         style="width: 50px;">
                                                 </a>
                                             </td>

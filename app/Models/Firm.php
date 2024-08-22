@@ -78,4 +78,9 @@ class Firm extends Model
     {
         return $this->hasMany(FirmReview::class);
     }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class)->withDefault();
+    }
 }

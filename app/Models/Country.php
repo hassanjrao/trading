@@ -7,21 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 
-class FirmPaymentMethod extends Model
+class Country extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $guarded = [];
 
-    protected $appends=['image_url'];
 
-    public function getImageUrlAttribute()
+    protected $appends=['flag_url'];
+
+    public function getFlagUrlAttribute()
     {
-        return $this->image_path ? Storage::url($this->image_path) : null;
+        if(!$this->flag){
+            return asset('countries/ae.png');
+        }
+
+        return Storage::url($this->flag);
     }
 
-    public function firm()
-    {
-        return $this->belongsTo(Firm::class);
-    }
 }

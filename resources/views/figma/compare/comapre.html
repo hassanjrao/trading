@@ -1,394 +1,425 @@
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
-        <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
-        <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.0/css/boxicons.min.css">
-        <link rel="stylesheet" href="..//assets/css/compare style.css">
-        <link rel="stylesheet" href="..//assets/css/style.css">
-        <!-- <link href="https://fonts.cdnfonts.com/css/metropolis-2" rel="stylesheet"> -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <title>
-             Compare
-        </title>      
-    </head>
-                
-    <body>
-        <header  class="pt-5"> 
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-3 col-9">
-                        <div class="logo">
-                            <img src="..//assets/images/logofull 1.png" >
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.0/css/boxicons.min.css">
+    <link rel="stylesheet" href="..//assets/css/compare style.css">
+    <link rel="stylesheet" href="..//assets/css/style.css">
+    <!-- <link href="https://fonts.cdnfonts.com/css/metropolis-2" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>
+        Compare
+    </title>
+</head>
+
+<body>
+    <header class="pt-5">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3 col-9">
+                    <div class="logo">
+                        <img src="..//assets/images/logofull 1.png">
+                    </div>
+                </div>
+                <div class="col-md-3  ">
+                    <form>
+                        <div class="search">
+                            <span class="fa fa-search"></span>
+                            <input type="text" placeholder="Search 'Apex Trader Funding'">
+
                         </div>
-                    </div>
-                    <div class="col-md-3  ">
-                        <form>
-                            <div class="search">
-                                <span class="fa fa-search"></span>
-                               <input type="text" placeholder="Search 'Apex Trader Funding'">
-                              
-                              </div>
-                        </form>
-                    </div>
-                    <div class="col-md-6 col-12">
-                        <div class="navbar">
-    
-                            <div class="hamburger" onclick="toggleMenu()">
-                                <div class="bar"></div>
-                                <div class="bar"></div>
-                                <div class="bar"></div>
+                    </form>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="navbar">
+
+                        <div class="hamburger" onclick="toggleMenu()">
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                        </div>
+                        <div class="menu" id="menu">
+                            <div class="menu-item">
+                                <a class="menu-button" href="..//compare/comapre.html">Compare</a>
                             </div>
-                            <div class="menu" id="menu">
-                                <div class="menu-item">
-                                    <a class="menu-button" href="..//compare/comapre.html">Compare</a>
+                            <div class="dropdown">
+                                <button class="menu-button">Tools <i class="fa fa-chevron-down"
+                                        aria-hidden="true"></i></button>
+                                <div class="dropdown-content">
+
+                                    <a href="..//Map Page/map.html">The Map</a>
+
+                                    <a href="..//review report firm /review_report.html">Review</a>
                                 </div>
-                                <div class="dropdown">
-                                    <button class="menu-button">Tools <i class="fa fa-chevron-down" aria-hidden="true"></i></button>
-                                    <div class="dropdown-content">
-                                        
-                                        <a href="..//Map Page/map.html">The Map</a>
-                                
-                                        <a href="..//review report firm /review_report.html">Review</a>
-                                    </div>
+                            </div>
+
+                            <div class="dropdown">
+                                <button class="menu-button">Top Lists <i class="fa fa-chevron-down"
+                                        aria-hidden="true"></i></button>
+                                <div class="dropdown-content">
+                                    <a href="..//Map Page/map.html">The Map</a>
+                                    <a href="..//review report firm /review_report.html">Review</a>
                                 </div>
-                                
-                                <div class="dropdown">
-                                    <button class="menu-button">Top Lists <i class="fa fa-chevron-down" aria-hidden="true"></i></button>
-                                    <div class="dropdown-content">
-                                        <a href="..//Map Page/map.html">The Map</a>
-                                        <a href="..//review report firm /review_report.html">Review</a>
-                                    </div>
-                                </div>
-                                <div class="menu-item">
-                                    <a class="menu-button" href="..//Signup/Signup.html"><img src="https://img.icons8.com/ios-glyphs/30/ffffff/user.png" alt="Sign In"> Sign In</a>
-                                </div>
+                            </div>
+                            <div class="menu-item">
+                                <a class="menu-button" href="..//Signup/Signup.html"><img
+                                        src="https://img.icons8.com/ios-glyphs/30/ffffff/user.png" alt="Sign In"> Sign
+                                    In</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
-        </header>
-
-        <!-- Page Title -->
-
-        <h2 class="page_title pt-4 text-center text-white">Find Your Best Plan</h2>
-
-         <!-- End Page Title -->
-
-         
-           <!-- Sign Up Form -->
-
-        <div class="container  mt-2 pt-4 ">
-
-            <div class="tab-content" id="myTabContent">
-                 <div class="container">
-        <div class="section-title">Asset Type</div>
-        <div class="btn-group btn-group-toggle compare_tog" data-toggle="buttons">
-            <label class="btn custom-radio-label">
-                <input type="radio" name="asset-type" class="custom-radio-input" autocomplete="off"> Futures</label>
-            <label class="btn custom-radio-label">
-                <input type="radio" name="asset-type" class="custom-radio-input" autocomplete="off"> CFD
-            </label>
-            <label class="btn custom-radio-label">
-                <input type="radio" name="asset-type" class="custom-radio-input" autocomplete="off"> Stocks
-            </label>
-            <label class="btn custom-radio-label">
-                <input type="radio" name="asset-type" class="custom-radio-input" autocomplete="off"> Crypto
-            </label>
         </div>
 
-        <div class="section-title">Account Size</div>
-        <div class="btn-group btn-group-toggle compare_tog" data-toggle="buttons">
-            <label class="btn custom-radio-label">
-                <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 5K
-            </label>
-            <label class="btn custom-radio-label">
-                <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 10K
-            </label>
-            <label class="btn custom-radio-label">
-                <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 25K
-            </label>
-            <label class="btn custom-radio-label">
-                <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 50K
-            </label>
-            <label class="btn custom-radio-label">
-                <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 100K
-            </label>
-            <label class="btn custom-radio-label">
-                <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 200K
-            </label>
-            <label class="btn custom-radio-label">
-                <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 300K
-            </label>
-        </div>
-        <div class="section-title">See More </div>
-        <div class="btn-group btn-group-toggle d-flex flex-wrap mt-3" data-toggle="buttons">
-            <label class="btn custom-radio-label">
-                <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 2K
-            </label>
-            <label class="btn custom-radio-label">
-                <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 6K
-            </label>
-            <label class="btn custom-radio-label">
-                <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 15K
-            </label>
-            <label class="btn custom-radio-label">
-                <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 20K
-            </label>
-            <label class="btn custom-radio-label">
-                <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 30K
-            </label>
-            <label class="btn custom-radio-label">
-                <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 40K
-            </label>
-            <label class="btn custom-radio-label">
-                <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 60K
-            </label>
-            <label class="btn custom-radio-label">
-                <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 120K
-            </label>
-            <label class="btn custom-radio-label">
-                <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 240K
-            </label>
-            <label class="btn custom-radio-label">
-                <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 250K
-            </label>
-            <label class="btn custom-radio-label">
-                <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 400K
-            </label>
-            <label class="btn custom-radio-label">
-                <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 500K
-            </label>
-            <label class="btn custom-radio-label">
-                <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 1M
-            </label>
-            <label class="btn custom-radio-label">
-                <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 2M
-            </label>
+    </header>
+
+    <!-- Page Title -->
+
+    <h2 class="page_title pt-4 text-center text-white">Find Your Best Plan</h2>
+
+    <!-- End Page Title -->
+
+
+    <!-- Sign Up Form -->
+
+    <div class="container  mt-2 pt-4 ">
+
+        <div class="tab-content" id="myTabContent">
+            <div class="container">
+                <div class="section-title">Asset Type</div>
+                <div class="btn-group btn-group-toggle compare_tog" data-toggle="buttons">
+                    <label class="btn custom-radio-label">
+                        <input type="radio" name="asset-type" class="custom-radio-input" autocomplete="off">
+                        Futures</label>
+                    <label class="btn custom-radio-label">
+                        <input type="radio" name="asset-type" class="custom-radio-input" autocomplete="off"> CFD
+                    </label>
+                    <label class="btn custom-radio-label">
+                        <input type="radio" name="asset-type" class="custom-radio-input" autocomplete="off"> Stocks
+                    </label>
+                    <label class="btn custom-radio-label">
+                        <input type="radio" name="asset-type" class="custom-radio-input" autocomplete="off"> Crypto
+                    </label>
+                </div>
+
+                <div class="section-title">Account Size</div>
+                <div class="btn-group btn-group-toggle compare_tog" data-toggle="buttons">
+                    <label class="btn custom-radio-label">
+                        <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 5K
+                    </label>
+                    <label class="btn custom-radio-label">
+                        <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 10K
+                    </label>
+                    <label class="btn custom-radio-label">
+                        <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 25K
+                    </label>
+                    <label class="btn custom-radio-label">
+                        <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 50K
+                    </label>
+                    <label class="btn custom-radio-label">
+                        <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 100K
+                    </label>
+                    <label class="btn custom-radio-label">
+                        <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 200K
+                    </label>
+                    <label class="btn custom-radio-label">
+                        <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 300K
+                    </label>
+                </div>
+                <div class="section-title">See More </div>
+                <div class="btn-group btn-group-toggle d-flex flex-wrap mt-3" data-toggle="buttons">
+                    <label class="btn custom-radio-label">
+                        <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 2K
+                    </label>
+                    <label class="btn custom-radio-label">
+                        <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 6K
+                    </label>
+                    <label class="btn custom-radio-label">
+                        <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 15K
+                    </label>
+                    <label class="btn custom-radio-label">
+                        <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 20K
+                    </label>
+                    <label class="btn custom-radio-label">
+                        <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 30K
+                    </label>
+                    <label class="btn custom-radio-label">
+                        <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 40K
+                    </label>
+                    <label class="btn custom-radio-label">
+                        <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 60K
+                    </label>
+                    <label class="btn custom-radio-label">
+                        <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 120K
+                    </label>
+                    <label class="btn custom-radio-label">
+                        <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 240K
+                    </label>
+                    <label class="btn custom-radio-label">
+                        <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 250K
+                    </label>
+                    <label class="btn custom-radio-label">
+                        <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 400K
+                    </label>
+                    <label class="btn custom-radio-label">
+                        <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 500K
+                    </label>
+                    <label class="btn custom-radio-label">
+                        <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 1M
+                    </label>
+                    <label class="btn custom-radio-label">
+                        <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 2M
+                    </label>
+                </div>
+
+                <div class="section-title">Steps</div>
+                <div class="btn-group btn-group-toggle compare_tog" data-toggle="buttons">
+                    <label class="btn custom-radio-label">
+                        <input type="radio" name="steps" class="custom-radio-input" autocomplete="off"> Instant
+                    </label>
+                    <label class="btn custom-radio-label">
+                        <input type="radio" name="steps" class="custom-radio-input" autocomplete="off"> 1-Step
+                    </label>
+                    <label class="btn custom-radio-label">
+                        <input type="radio" name="steps" class="custom-radio-input" autocomplete="off"> 2-Step
+                    </label>
+                    <label class="btn custom-radio-label">
+                        <input type="radio" name="steps" class="custom-radio-input" autocomplete="off"> 3-Step
+                    </label>
+                </div>
+
+                <div class="section-title">Extra Filters</div>
+                <div class="btn-group btn-group-toggle compare_togs" data-toggle="buttons">
+                    <label class="btn custom-radio-label">
+                        <input type="radio" name="extra-filters" class="custom-radio-input" autocomplete="off"> News
+                        Trading Allowed
+                    </label>
+                    <label class="btn custom-radio-label">
+                        <input type="radio" name="extra-filters" class="custom-radio-input" autocomplete="off"> Only
+                        White-Label Tech.
+                    </label>
+                    <label class="btn custom-radio-label">
+                        <input type="radio" name="extra-filters" class="custom-radio-input" autocomplete="off"> Only
+                        Proprietary Tech.
+                    </label>
+                </div>
+
+                <div class="mt-4">
+                    <button class="btn btn-primary btn-block"
+                        style="background-color: #7A95F8; border: none;width: 30%;">Search</button>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="features" role="tabpanel" aria-labelledby="features-tab">
+                <form class="mt-3">
+                    <div class="form-group">
+                        <label for="featuresInput1">features Input 1</label>
+                        <input type="text" class="form-control" id="featuresInput1" placeholder="Enter something">
+                    </div>
+                    <div class="form-group">
+                        <label for="featuresInput2">features Input 2</label>
+                        <input type="text" class="form-control" id="featuresInput2" placeholder="Enter something">
+                    </div>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="cfd" role="tabpanel" aria-labelledby="cfd-tab">
+                <form class="mt-3">
+                    <div class="form-group">
+                        <label for="cfdInput1">cfd Input 1</label>
+                        <input type="text" class="form-control" id="cfdInput1" placeholder="Enter something">
+                    </div>
+                    <div class="form-group">
+                        <label for="cfdInput2">cfd Input 2</label>
+                        <input type="text" class="form-control" id="cfdInput2" placeholder="Enter something">
+                    </div>
+                </form>
+            </div>
         </div>
 
-        <div class="section-title">Steps</div>
-        <div class="btn-group btn-group-toggle compare_tog" data-toggle="buttons">
-            <label class="btn custom-radio-label">
-                <input type="radio" name="steps" class="custom-radio-input" autocomplete="off"> Instant
-            </label>
-            <label class="btn custom-radio-label">
-                <input type="radio" name="steps" class="custom-radio-input" autocomplete="off"> 1-Step
-            </label>
-            <label class="btn custom-radio-label">
-                <input type="radio" name="steps" class="custom-radio-input" autocomplete="off"> 2-Step
-            </label>
-            <label class="btn custom-radio-label">
-                <input type="radio" name="steps" class="custom-radio-input" autocomplete="off"> 3-Step
-            </label>
-        </div>
 
-        <div class="section-title">Extra Filters</div>
-        <div class="btn-group btn-group-toggle compare_togs" data-toggle="buttons">
-            <label class="btn custom-radio-label">
-                <input type="radio" name="extra-filters" class="custom-radio-input" autocomplete="off"> News Trading Allowed
-            </label>
-            <label class="btn custom-radio-label">
-                <input type="radio" name="extra-filters" class="custom-radio-input" autocomplete="off"> Only White-Label Tech.
-            </label>
-            <label class="btn custom-radio-label">
-                <input type="radio" name="extra-filters" class="custom-radio-input" autocomplete="off"> Only Proprietary Tech.
-            </label>
-        </div>
 
-        <div class="mt-4">
-            <button class="btn btn-primary btn-block" style="background-color: #7A95F8; border: none;width: 30%;">Search</button>
+
+
+    </div>
+    <div class="container-fluid">
+        <div class="search-container">
+            <div class="input-group">
+                <span class="search-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-search" viewBox="0 0 16 16">
+                        <path
+                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001a1.007 1.007 0 0 0-.11.11l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.11-.11zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                    </svg>
+                </span>
+
+            </div>
+            <br>
+        </div>
+        <div class="content-3" id="">
+            <div class="container-fluid mt-5 tabss">
+                <div class="table-responsivess">
+
+                    <table class="table table-bordered nowrap" id="example"
+                        style="width:100%;     border-collapse: collapse !important;">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Firm</th>
+                                <th>Price</th>
+                                <th>Account Size</th>
+                                <th>Profit Target</th>
+                                <th>Max. Daily Loss</th>
+                                <th>Max. Total Drawdown</th>
+                                <th>Years Established</th>
+                                <th>Technology</th>
+                                <th>Reward</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><img class="img_data" src="..//assets/images/1.png">
+                                    <p class="text_name">MyFunded Fx</p>
+                                </td>
+                                <td>
+                                    <p class="wsx">$41.50</p>$31.50
+                                </td>
+                                <td>5K (2-Step)</td>
+                                <td>P1: 8% ($400)<br>P2: 5% ($250)</td>
+                                <td>P1: 5% ($250)<br>P2: 5% ($250)<br>Funded: 12% ($600)</td>
+                                <td>P1: 10% ($500)<br>P2: 8% ($400)</td>
+                                <td>June 2022<br><img class="img_data"
+                                        src="..//assets/images/united-states.png"><br><span class="c_name">USA</span>
+                                </td>
+                                <td>White-Label</td>
+                                <td class="r_data">5 Points<img class="img_data" src="..//assets/images/922.png"
+                                        style="width: 50px;"></td>
+                            </tr>
+                            <tr>
+                                <td><img class="img_data" src="..//assets/images/logo.png">
+                                    <p class="text_name">Phoenix Trader Funding</p>
+                                </td>
+                                <td>
+                                    <p class="wsx">$41.50</p>$62.5<p class="wsxx">Monthly</p>
+                                </td>
+                                <td>50K</td>
+                                <td>$3000</td>
+                                <td>None</td>
+                                <td>$2000</td>
+                                <td>August 2023 <br><img class="img_data" src="..//assets/images/france.png"><br><span
+                                        class="c_name">France</span></td>
+                                <td>Proprietary</td>
+                                <td class="r_data">5 Points<img class="img_data" src="..//assets/images/922.png"
+                                        style="width: 50px;"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
         </div>
     </div>
 
-                <div class="tab-pane fade" id="features" role="tabpanel" aria-labelledby="features-tab">
-                    <form class="mt-3">
-                        <div class="form-group">
-                            <label for="featuresInput1">features Input 1</label>
-                            <input type="text" class="form-control" id="featuresInput1" placeholder="Enter something">
-                        </div>
-                        <div class="form-group">
-                            <label for="featuresInput2">features Input 2</label>
-                            <input type="text" class="form-control" id="featuresInput2" placeholder="Enter something">
-                        </div>
-                    </form>
-                </div>
-                <div class="tab-pane fade" id="cfd" role="tabpanel" aria-labelledby="cfd-tab">
-                    <form class="mt-3">
-                        <div class="form-group">
-                            <label for="cfdInput1">cfd Input 1</label>
-                            <input type="text" class="form-control" id="cfdInput1" placeholder="Enter something">
-                        </div>
-                        <div class="form-group">
-                            <label for="cfdInput2">cfd Input 2</label>
-                            <input type="text" class="form-control" id="cfdInput2" placeholder="Enter something">
-                        </div>
-                    </form>
+
+    <!--  End Sign Up Form -->
+
+
+    <!-- Footer -->
+    <div class="footer_height"></div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="footer_t">Disclaimer <br>The information provided is intended for general use and
+                        informational purposes only. Users are advised to proceed at their own risk and exercise due
+                        diligence before making any decisions based on the information provided. It is crucial to
+                        understand that our business offers information and does not endorse or recommend any specific
+                        proprietary trading firms. Users should independently evaluate and verify the suitability of any
+                        such entities before engaging with them. We do not assume responsibility for any consequences or
+                        losses arising from the use of the information provided. Thank you for your understanding and
+                        discretion.</p>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-2">
 
-
-
-           
-           
-        </div>
-        <div class="container-fluid">
-            <div class="search-container">
-                <div class="input-group">
-                    <span class="search-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001a1.007 1.007 0 0 0-.11.11l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.11-.11zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                        </svg>
-                    </span>
-                   
                 </div>
-               <br>
-            </div>
-            <div class="content-3" id="">
-                <div class="container-fluid mt-5 tabss">
-                    <div class="table-responsivess">
-                        
-                        <table class="table table-bordered nowrap" id="example" style="width:100%;     border-collapse: collapse !important;">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th>Firm</th>
-                                    <th>Price</th>
-                                    <th>Account Size</th>
-                                    <th>Profit Target</th>
-                                    <th>Max. Daily Loss</th>
-                                    <th>Max. Total Drawdown</th>
-                                    <th>Years Established</th>
-                                    <th>Technology</th>
-                                    <th>Reward</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><img class="img_data" src="..//assets/images/1.png">
-                                        <p class="text_name">MyFunded Fx</p>
-                                    </td>
-                                    <td><p class="wsx">$41.50</p>$31.50</td>
-                                    <td>5K (2-Step)</td>
-                                    <td>P1: 8% ($400)<br>P2: 5% ($250)</td>
-                                    <td>P1: 5% ($250)<br>P2: 5% ($250)<br>Funded: 12% ($600)</td>
-                                    <td>P1: 10% ($500)<br>P2: 8% ($400)</td>
-                                    <td>June 2022<br><img class="img_data" src="..//assets/images/united-states.png"><br><span class="c_name">USA</span></td>
-                                    <td>White-Label</td>
-                                    <td class="r_data">5 Points<img class="img_data" src="..//assets/images/922.png" style="width: 50px;"></td>
-                                </tr>
-                                <tr>
-                                    <td><img class="img_data" src="..//assets/images/logo.png">
-                                        <p class="text_name">Phoenix Trader Funding</p>
-                                    </td>
-                                    <td><p class="wsx">$41.50</p>$62.5<p class="wsxx">Monthly</p></td>
-                                    <td>50K</td>
-                                    <td>$3000</td>
-                                    <td>None</td>
-                                    <td>$2000</td>
-                                    <td>August 2023 <br><img class="img_data" src="..//assets/images/france.png"><br><span class="c_name">France</span></td>
-                                    <td>Proprietary</td>
-                                    <td class="r_data">5 Points<img class="img_data" src="..//assets/images/922.png"style="width: 50px;"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-               
-           </div>
-        </div>
-     
-
-          <!--  End Sign Up Form -->
-
-
-            <!-- Footer -->
-        <div class="footer_height"></div>
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <p class="footer_t">Disclaimer <br>The information provided is intended for general use and informational purposes only. Users are advised to proceed at their own risk and exercise due diligence before making any decisions based on the information provided. It is crucial to understand that our business offers information and does not endorse or recommend any specific proprietary trading firms. Users should independently evaluate and verify the suitability of any such entities before engaging with them. We do not assume responsibility for any consequences or losses arising from the use of the information provided. Thank you for your understanding and discretion.</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2">
-                       
-                    </div>
-                    <div class="col-md-8 col-12">
-                        <div class="footer_div">
-                            <div class="div-56">
-                                <a href="">Privacy Policy</a>
-                                <a href=""> Terms Of Use</a>
-                                <a href=""> Copyright @PropFirmMap 2024</a>
-                          </div>
+                <div class="col-md-8 col-12">
+                    <div class="footer_div">
+                        <div class="div-56">
+                            <a href="">Privacy Policy</a>
+                            <a href=""> Terms Of Use</a>
+                            <a href=""> Copyright @PropFirmMap 2024</a>
+                        </div>
                     </div>
                     <div class="col-md-2">
 
                     </div>
                 </div>
             </div>
-         </footer>
-         <!-- End Footer -->
-    </body>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/js/jquery.dataTables.min.js"></script>
-   <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-   <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>      
+    </footer>
+    <!-- End Footer -->
+</body>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+</script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 
 
 
-    <script>
-        function toggleMenu() {
-            var menu = document.getElementById("menu");
-            if (menu.style.display === "flex") {
-                menu.style.display = "none";
-            } else {
-                menu.style.display = "flex";
-            }
+<script>
+    function toggleMenu() {
+        var menu = document.getElementById("menu");
+        if (menu.style.display === "flex") {
+            menu.style.display = "none";
+        } else {
+            menu.style.display = "flex";
         }
-    </script>
-    <script>
-        $(document).ready(function() {
-  $("#example").DataTable({
-    aaSorting: [],
-    // responsive: true,
-      scrollCollapse: true,
-    scrollX: '200px',
+    }
 
-    columnDefs: [
-      {
-        responsivePriority: 1,
-        targets: 0
-      },
-      {
-        responsivePriority: 2,
-        targets: -1
-      }
-    ]
-  });
+</script>
+<script>
+    $(document).ready(function () {
+        $("#example").DataTable({
+            aaSorting: [],
+            // responsive: true,
+            scrollCollapse: true,
+            scrollX: '200px',
 
-  $(".dataTables_filter input")
-    .attr("placeholder", "Search for a company or chalange from the list")
-    .css({
-      width: "300px",
-      display: "inline-block"
+            columnDefs: [{
+                    responsivePriority: 1,
+                    targets: 0
+                },
+                {
+                    responsivePriority: 2,
+                    targets: -1
+                }
+            ]
+        });
+
+        $(".dataTables_filter input")
+            .attr("placeholder", "Search for a company or chalange from the list")
+            .css({
+                width: "300px",
+                display: "inline-block"
+            });
+
+        $('[data-toggle="tooltip"]').tooltip();
     });
 
-  $('[data-toggle="tooltip"]').tooltip();
-});
-
-    </script>
+</script>
 
 
-                        
-               
- </html>
+
+
+</html>

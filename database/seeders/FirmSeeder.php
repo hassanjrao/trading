@@ -26,7 +26,8 @@ class FirmSeeder extends Seeder
         //     'payout_frequency'=>'Every 10 trading days',
         //     'account_size_id'=>1,
         //     'step_id'=>1,
-        //     'rewards'=>'5 Points'
+        //     'rewards'=>'5 Points',
+        //     'country_id'=>1
         // ]);
 
 
@@ -44,7 +45,8 @@ class FirmSeeder extends Seeder
             'account_size_id'=>2,
             'step_id'=>2,
             'rewards'=>'5 Points',
-            'daily_drawdown'=>'Balanced-Based'
+            'daily_drawdown'=>'Balanced-Based',
+            'country_id'=>1
         ]);
     }
 }

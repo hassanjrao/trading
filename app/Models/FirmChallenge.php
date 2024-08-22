@@ -26,4 +26,9 @@ class FirmChallenge extends Model
     {
         return $this->belongsTo(Step::class)->withDefault();
     }
+
+    public function firmChallengeDetails()
+    {
+        return $this->hasMany(FirmChallengeDetail::class);
+    }
 }

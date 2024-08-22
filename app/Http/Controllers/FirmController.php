@@ -28,7 +28,8 @@ class FirmController extends Controller
 
         $firms = Firm::when($type, function ($query) use ($type) {
             return $query->where('asset_type_id', $type);
-        })->latest()->get();
+        })
+        ->latest()->get();
 
         return view('front.firms.index', compact('firms', 'assetTypes'));
     }
@@ -61,7 +62,11 @@ class FirmController extends Controller
     {
         $firm = Firm::findorfail($id);
 
-        return view('front.firms.show', compact('firm'));
+        $firmChallenges = $firm->firmChallenges()
+        ->with(['step','accountSize','firmChallengeDetails'])
+        ->latest()->get();
+
+        return view('front.firms.show', compact('firm','firmChallenges'));
     }
 
     /**

@@ -23,6 +23,7 @@ class User extends Authenticatable
         'email',
         'password',
         'country',
+        'country_flag',
         'trading_experience_id',
         'prop_firm_challenge_id',
     ];
@@ -47,7 +48,7 @@ class User extends Authenticatable
     ];
 
 
-    protected $appends=['profile_picture_url'];
+    protected $appends=['profile_picture_url','country_flag_url'];
 
     public function getProfilePictureUrlAttribute()
     {
@@ -56,6 +57,15 @@ class User extends Authenticatable
        }
 
        return Storage::url($this->profile_picture);
+    }
+
+    public function getCountryFlagUrlAttribute()
+    {
+        if(!$this->country_flag){
+            return asset('countries/ae.png');
+        }
+
+        return Storage::url($this->country_flag);
     }
 
 

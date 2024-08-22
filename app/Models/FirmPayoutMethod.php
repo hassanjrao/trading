@@ -17,7 +17,7 @@ class FirmPayoutMethod extends Model
 
     public function getImageUrlAttribute()
     {
-        return Storage::url($this->image_path);
+        return $this->image_path ? Storage::url($this->image_path) : null;
     }
 
     public function firm()

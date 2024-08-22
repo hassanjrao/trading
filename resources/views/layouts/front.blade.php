@@ -59,7 +59,7 @@
                         </div>
                         <div class="menu" id="menu">
                             <div class="menu-item">
-                                <a class="menu-button" href="{{ route('front.compare') }}">Compare</a>
+                                <a class="menu-button" href="{{ route('compare.index') }}">Compare</a>
                             </div>
                             <div class="dropdown">
                                 <button class="menu-button">Tools <i class="fa fa-chevron-down"

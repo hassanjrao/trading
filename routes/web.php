@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CompareController;
 use App\Http\Controllers\FirmController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ReviewReportController;
@@ -23,7 +24,6 @@ use Illuminate\Support\Facades\Route;
 // Example Routes
 Route::view('/', 'front.home')->name('front.home');
 Route::view('/checkout', 'front.checkout')->name('front.checkout');
-Route::view('/compare', 'front.compare')->name('front.compare');
 Route::view('/profile', 'front.profile')->name('front.profile');
 Route::view('/top', 'front.top')->name('front.top');
 Route::view('/user', 'front.user')->name('front.user');
@@ -55,6 +55,8 @@ Route::middleware(['auth'])->group(function(){
 });
 
 
+
+Route::get('compare', [CompareController::class, 'index'])->name('compare.index');
 
 Route::get('firms/{firmChallenge}/summary', [FirmController::class, 'summary'])->name('firms.summary');
 Route::get('firms/most-voted', [FirmController::class, 'mostVoted'])->name('firms.most-voted');
