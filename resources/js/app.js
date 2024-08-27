@@ -8,6 +8,9 @@ require('./bootstrap');
 
 window.Vue = require('vue').default;
 
+
+import veutify from './plugins/veutify';
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -21,6 +24,8 @@ window.Vue = require('vue').default;
 
 Vue.component('review-report', require('./components/ReviewReport/ReviewReport.vue').default);
 
+Vue.component('add-edit-firm', require('./components/Firms/AddEditFirm.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -29,4 +34,10 @@ Vue.component('review-report', require('./components/ReviewReport/ReviewReport.v
 
 const app = new Vue({
     el: '#mapVue',
+});
+
+
+new Vue({
+    el: '#main-container',
+    vuetify: veutify,
 });

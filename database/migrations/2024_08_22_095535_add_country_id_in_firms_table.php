@@ -17,6 +17,7 @@ class AddCountryIdInFirmsTable extends Migration
             $table->foreignId('country_id')
             ->nullable()
             ->constrained('countries')->after('id');
+
         });
     }
 

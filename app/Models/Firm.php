@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -13,7 +14,12 @@ class Firm extends Model
 
     protected $guarded = [];
 
-    protected $appends = ['logo_url'];
+    protected $appends = ['logo_url','established_date_formatted'];
+
+    public function getEstablishedDateFormattedAttribute()
+    {
+        return Carbon::parse($this->established_date)->format('M Y');
+    }
 
     public function getLogoUrlAttribute()
     {
@@ -40,20 +46,6 @@ class Firm extends Model
         return $this->hasOne(FirmAbout::class, 'firm_id')->withDefault();
     }
 
-    public function paymentMethods()
-    {
-        return $this->hasMany(FirmPaymentMethod::class);
-    }
-
-    public function payoutMethods()
-    {
-        return $this->hasMany(FirmPayoutMethod::class);
-    }
-
-    public function platforms()
-    {
-        return $this->hasMany(FirmPlatform::class);
-    }
 
     public function commissionStructures()
     {
@@ -83,4 +75,20 @@ class Firm extends Model
     {
         return $this->belongsTo(Country::class)->withDefault();
     }
+
+    public function paymentMethods()
+    {
+        return $this->belongsToMany(PaymentMethod::class, 'firm_payment_method');
+    }
+
+    public function payoutMethods()
+    {
+        return $this->belongsToMany(PayoutMethod::class, 'firm_payout_method');
+    }
+
+    public function platforms()
+    {
+        return $this->belongsToMany(Platform::class, 'firm_platform');
+    }
+
 }

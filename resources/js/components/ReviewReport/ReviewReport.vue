@@ -96,7 +96,7 @@
                   <p
                     style="display: flex; align-items: center; justify-content: flex-end"
                   >
-                    <img class="img_data" :src="selectedFirm.logo_url" />
+                    <img class="img_data" style="width: 50px" :src="selectedFirm.logo_url"/>
                     <span class="p_name">
                       <b>
                         {{ selectedFirm.name }}
@@ -204,7 +204,7 @@
                   <p
                     style="display: flex; align-items: center; justify-content: flex-end"
                   >
-                    <img class="img_data" :src="selectedFirm.logo_url" />
+                    <img class="img_data" style="width: 50px" :src="selectedFirm.logo_url" />
                     <span class="p_name">
                       <b>{{ selectedFirm.name }}</b>
                     </span>
@@ -317,7 +317,7 @@
                   <p
                     style="display: flex; align-items: center; justify-content: flex-end"
                   >
-                    <img class="img_data" :src="selectedFirm.logo_url" />
+                    <img class="img_data" style="width: 50px" :src="selectedFirm.logo_url" />
                     <span class="p_name">
                       <b>
                         {{ selectedFirm.name }}
@@ -417,7 +417,7 @@
                   <p
                     style="display: flex; align-items: center; justify-content: flex-end"
                   >
-                    <img class="img_data" src="firm.logo_url" />
+                    <img class="img_data" style="width: 50px" src="firm.logo_url" />
                     <span class="p_name">
                       <b>Phoenix Trader Funding</b>
                     </span>
@@ -518,7 +518,7 @@
                   <p
                     style="display: flex; align-items: center; justify-content: flex-end"
                   >
-                    <img class="img_data" src="firm.logo_url" />
+                    <img class="img_data" style="width: 50px" src="firm.logo_url" />
                     <span class="p_name">
                       <b>Phoenix Trader Funding</b>
                     </span>
@@ -611,7 +611,7 @@
             style="background-color: #fbf5f3; border-radius: 20px; padding: 20px"
           >
             <p style="display: flex; align-items: center; justify-content: center">
-              <img class="img_data" src="firm.logo_url" />
+              <img class="img_data" style="width: 50px" src="firm.logo_url" />
               <span class="p_name">
                 <b>Phoenix Trader Funding</b>
               </span>

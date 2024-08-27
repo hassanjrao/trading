@@ -22,6 +22,9 @@
         * {
             font-weight: bold !important;
         }
+        .img_data{
+            width: 60px !important;
+        }
     </style>
 
     @yield('styles')

@@ -23,7 +23,7 @@
                             <div class="p_data">
                                 <div class="data">
                                     <p style="display: flex;     align-items: center;">
-                                        <img class="img_data" src="{{ $firm->logo_url }}">
+                                        <img class="img_data" src="{{ $firm->logo_url }}" style="width: 50px">
                                         <span class="p_name">
                                             <b>
                                                 {{ $firm->name }}
@@ -491,7 +491,7 @@
 
                                                 @foreach ($firm->paymentMethods as $paymentMethod)
                                                     <div>
-                                                        <img src="{{ $paymentMethod->image_url }}" class="about_img">
+                                                        <img src="{{ $paymentMethod->logo_url }}" class="about_img">
                                                         <b>
                                                             {{ $paymentMethod->name }}
                                                         </b>
@@ -510,7 +510,7 @@
 
                                             @foreach ($firm->payoutMethods as $payoutMethod)
                                                 <div>
-                                                    <img src="{{ $payoutMethod->image_url }}" class="about_img">
+                                                    <img src="{{ $payoutMethod->logo_url }}" class="about_img">
                                                     <b>
                                                         {{ $payoutMethod->name }}
                                                     </b>
@@ -535,7 +535,7 @@
 
                                         @foreach ($firm->platforms as $platform)
                                             <p class="d_est1_about">
-                                                <img src="{{ $platform->image_url }}" class="about_img">
+                                            <img src="{{ $platform->logo_url }}" class="about_img">
                                                 <b>{{ $platform->name }} <span
                                                         style="font-size:smaller">{{ $platform->note ? '(' . $platform->note . ')' : '' }}
                                                     </span></b>

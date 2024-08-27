@@ -43,7 +43,7 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         if ($user->hasRole('admin')) {
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('admin.dashboard.index');
         } else {
             return redirect()->route('profile.index');
         }

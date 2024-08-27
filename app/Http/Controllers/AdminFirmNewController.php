@@ -1,0 +1,253 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\AccountSize;
+use App\Models\AssetType;
+use App\Models\Country;
+use App\Models\Firm;
+use App\Models\FirmAbout;
+use App\Models\PaymentMethod;
+use App\Models\PayoutMethod;
+use App\Models\Platform;
+use App\Models\Step;
+use App\Models\Technology;
+use Illuminate\Http\Request;
+
+class AdminFirmNewController extends Controller
+{
+    public function index()
+    {
+        $firms = Firm::latest()
+            ->with(['assetType', 'technology', 'country'])
+            ->get();
+
+        return view('admin.firms.index', compact('firms'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $firm = null;
+
+        $assetTypes = AssetType::latest()->get();
+        $technologies = Technology::latest()->get();
+        $steps = Step::latest()->get();
+        $accountSizes = AccountSize::latest()->get();
+        $countries = Country::latest()->get();
+
+        $paymentMethods = PaymentMethod::latest()->get();
+        $payoutMethods = PayoutMethod::latest()->get();
+        $platforms = Platform::latest()->get();
+
+
+        $firmID = null;
+
+
+        return view('admin.firms.add_edit', compact('firm', 'assetTypes', 'technologies', 'steps', 'accountSizes', 'countries', 'firmID', 'paymentMethods', 'payoutMethods', 'platforms'));
+    }
+
+
+    public function getInitialData()
+    {
+
+        $assetTypes = AssetType::latest()->get();
+        $tecnologies = Technology::latest()->get();
+        $steps = Step::latest()->get();
+        $accountSizes = AccountSize::latest()->get();
+
+        return response()->json([
+            'data' => [
+                'assetTypes' => $assetTypes,
+                'tecnologies' => $tecnologies,
+                'steps' => $steps,
+                'accountSizes' => $accountSizes,
+            ]
+        ]);
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function createFirm(Request $request)
+    {
+        $request->validate([
+            'firm_id' => 'nullable|exists:firms,id',
+            'name' => 'required',
+            'url' => 'required',
+            'established_date' => 'required|date',
+            'asset_type' => 'required|exists:asset_types,id',
+            'technology' => 'required|exists:technologies,id',
+            'direct_path_to_live_funded' => 'required',
+            'payout_frequency' => 'required',
+            'payout_frequency_note' => 'nullable',
+            'daily_drawdown' => 'required',
+            'country' => 'required|exists:countries,id',
+            'logo' => 'nullable|image',
+            'profit_split'=> 'required',
+        ]);
+
+        $firmData = [
+            'name' => $request->name,
+            'url' => $request->url,
+            'established_date' => $request->established_date,
+            'asset_type_id' => $request->asset_type,
+            'technology_id' => $request->technology,
+            'direct_path_to_live_funded' => $request->direct_path_to_live_funded == 'true' ? 1 : 0,
+            'payout_frequency' => $request->payout_frequency,
+            'payout_frequency_note' => $request->payout_frequency_note,
+            'daily_drawdown' => $request->daily_drawdown,
+            'country_id' => $request->country,
+            'profit_split' => $request->profit_split,
+        ];
+
+
+
+        $firm = Firm::find($request->firm_id);
+
+        if ($firm) {
+            $firm->update($firmData);
+        } else {
+            $firm = Firm::create($firmData);
+        }
+
+        if ($request->hasFile('logo')) {
+            $firm->update([
+                'logo_path' => $request->file('logo')->store('firms')
+            ]);
+        }
+
+        return response()->json([
+            'message' => 'Firm created successfully',
+            'data' => [
+                'firm' => $firm
+            ]
+        ]);
+    }
+
+    public function submitAbout(Request $request)
+    {
+
+        $request->validate([
+            'firm_id' => 'required|exists:firms,id',
+            'chief_executive_officer' => 'required',
+            'trust_pilot' => 'required',
+            'payment_methods' => 'required|array',
+            'payment_methods.*' => 'required|exists:payment_methods,id',
+            'payout_methods' => 'required|array',
+            'payout_methods.*' => 'required|exists:payout_methods,id',
+            'platforms' => 'required|array',
+            'platforms.*' => 'required|exists:platforms,id',
+            'description' => 'required',
+        ]);
+
+        $firm= Firm::find($request->firm_id);
+
+
+        $firmAbout =   FirmAbout::updateOrCreate(
+            [
+                'firm_id' => $request->firm_id
+            ],
+            [
+                'firm_id' => $request->firm_id,
+                'chief_executive_officer' => $request->chief_executive_officer,
+                'trust_pilot' => $request->trust_pilot,
+                'description' => $request->description,
+            ]
+        );
+
+        $firm->paymentMethods()->sync($request->payment_methods);
+        $firm->payoutMethods()->sync($request->payout_methods);
+        $firm->platforms()->sync($request->platforms);
+
+        return response()->json([
+            'message' => 'Firm about updated successfully',
+            'data' => [
+                'firmAbout' => $firmAbout
+            ]
+        ]);
+
+    }
+
+
+
+    public function edit($id)
+    {
+        $firm = Firm::with([
+            'assetType',
+            'technology',
+            'country',
+            'about',
+            'paymentMethods',
+            'payoutMethods',
+            'platforms'
+            ])
+            ->findorfail($id);
+
+        $assetTypes = AssetType::latest()->get();
+        $technologies = Technology::latest()->get();
+        $steps = Step::latest()->get();
+        $accountSizes = AccountSize::latest()->get();
+        $countries = Country::latest()->get();
+
+        $firmID = $firm->id;
+
+        $paymentMethods = PaymentMethod::latest()->get();
+        $payoutMethods = PayoutMethod::latest()->get();
+        $platforms = Platform::latest()->get();
+
+
+
+        return view(
+            'admin.firms.add_edit',
+            compact('firmID', 'firm', 'assetTypes', 'technologies', 'steps', 'accountSizes', 'countries', 'paymentMethods', 'payoutMethods', 'platforms')
+        );
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+
+
+    public function challenges(Firm $firm)
+    {
+        $firmChallenges = $firm->firmChallenges()
+            ->with(['step', 'accountSize', 'firmChallengeDetails'])
+            ->latest()->get();
+
+        return view('admin.firm_challenges.challenges', compact('firm', 'firmChallenges'));
+    }
+}

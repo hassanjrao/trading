@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-    <title>@yield('page-title') -  Admin Panel - {{ config('app.name') }}</title>
+    <title>@yield('page-title') - Admin Panel - {{ config('app.name') }}</title>
 
     <meta name="author" content="pixelcave">
     <meta name="robots" content="noindex, nofollow">
@@ -22,6 +22,7 @@
     @yield('css_before')
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" id="css-main" href="{{ asset('css/oneui.css') }}">
+
 
     <!-- You can include a specific file from public/css/themes/ folder to alter the default color theme of the template. eg: -->
     <!-- <link rel="stylesheet" id="css-theme" href="{{ asset('css/themes/amethyst.css') }}"> -->
@@ -205,6 +206,14 @@
                             </a>
                         </li>
 
+                        <li class="nav-main-item">
+                            <a class="nav-main-link{{ request()->is('admin/firms*') ? ' active' : '' }}"
+                                href="{{ route('admin.firms.index') }}">
+                                <i class="nav-main-link-icon si si-cursor"></i>
+                                <span class="nav-main-link-name">Firms</span>
+                            </a>
+                        </li>
+
 
 
                     </ul>
@@ -340,6 +349,8 @@
 
     <!-- Laravel Scaffolding JS -->
     <!-- <script src="{{ asset('/js/laravel.app.js') }}"></script> -->
+
+    <script src="{{ asset('js/app.js') }}"></script>
 
     <script src="{{ asset('js/lib/jquery.min.js') }}"></script>
 

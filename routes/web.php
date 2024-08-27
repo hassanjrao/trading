@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminAssetTypeController;
 use App\Http\Controllers\AdminCountryController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminFirmController;
+use App\Http\Controllers\AdminFirmNewController;
 use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\AdminStepController;
 use App\Http\Controllers\AdminTechnologyController;
@@ -69,7 +70,7 @@ Auth::routes();
 
 
 
-Route::prefix('admin')->name('admin.')->middleware(['role:admin'])->group(function(){
+Route::prefix('admin')->name('admin.')->middleware(['auth','role:admin'])->group(function(){
 
     Route::get('',[AdminDashboardController::class,'index'])->name('dashboard.index');
     Route::resource("profile", AdminProfileController::class)->only(["index", "update"]);
@@ -85,7 +86,15 @@ Route::prefix('admin')->name('admin.')->middleware(['role:admin'])->group(functi
 
 
 
-    Route::resource('firms', AdminFirmController::class);
+    Route::post('firms/create-firm', [AdminFirmNewController::class, 'createFirm'])->name('firms.create-firm');
+    Route::post('firms/submit-about', [AdminFirmNewController::class, 'submitAbout'])->name('firms.submit-about');
+
+    Route::get('firms/inital-data', [AdminFirmNewController::class, 'getInitialData'])->name('firms.inital-data');
+    Route::get('firms/{firm}/challenges', [AdminFirmNewController::class, 'challenges'])->name('firms.challenges');
+    Route::get('firms/create', [AdminFirmNewController::class, 'create'])->name('firms.create');
+    Route::get('firms/{firm}/edit', [AdminFirmNewController::class, 'edit'])->name('firms.edit');
+    Route::delete('firms/{firm}', [AdminFirmNewController::class, 'destroy'])->name('firms.destroy');
+    Route::get('firms', [AdminFirmNewController::class,'index'])->name('firms.index');
 
 
 });
