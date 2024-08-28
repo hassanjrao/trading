@@ -4,7 +4,9 @@
 
 @section('styles')
 
+<style>
 
+</style>
 
 @endsection
 
@@ -259,15 +261,15 @@
                 scrollCollapse: true,
                 scrollX: '200px',
 
-                columnDefs: [{
-                        responsivePriority: 1,
-                        targets: 0
-                    },
-                    {
-                        responsivePriority: 2,
-                        targets: -1
-                    }
-                ]
+                // columnDefs: [{
+                //         responsivePriority: 1,
+                //         targets: 0
+                //     },
+                //     {
+                //         responsivePriority: 2,
+                //         targets: -1
+                //     }
+                // ]
             });
 
             $(".dataTables_filter input")
