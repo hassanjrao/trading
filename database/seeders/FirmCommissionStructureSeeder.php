@@ -15,7 +15,7 @@ class FirmCommissionStructureSeeder extends Seeder
     public function run()
     {
         FirmCommissionStructure::create([
-            'firm_id' => 2,
+            'firm_id' => 1,
             'image_path'=>'firms/commission1.png',
             'name'=>'Purple Trading',
             'points'=>json_encode([
@@ -25,14 +25,14 @@ class FirmCommissionStructureSeeder extends Seeder
         ]);
 
         FirmCommissionStructure::create([
-            'firm_id' => 2,
+            'firm_id' => 1,
             'image_path'=>'firms/commission2.png',
             'name'=>'DXTrade:$3/round lot',
         ]);
 
 
         FirmCommissionStructure::create([
-            'firm_id' => 2,
+            'firm_id' => 1,
             'image_path'=>'firms/commission2.png',
             'name'=>'MatchTrade:$3/round lot',
         ]);
