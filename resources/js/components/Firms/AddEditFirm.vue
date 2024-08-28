@@ -35,7 +35,11 @@
           </v-card-text>
 
           <v-card-text v-if="tab.label == 'firm_challenges'">
-            <FirmChallenges />
+            <FirmChallenges
+            :firm="firm"
+            :account-sizes="accountSizes"
+            :steps="steps"
+            />
           </v-card-text>
         </v-card>
       </v-tab-item>

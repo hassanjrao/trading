@@ -88,6 +88,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','role:admin'])->group
 
     Route::post('firms/create-firm', [AdminFirmNewController::class, 'createFirm'])->name('firms.create-firm');
     Route::post('firms/submit-about', [AdminFirmNewController::class, 'submitAbout'])->name('firms.submit-about');
+    Route::post('firms/submit-challenges', [AdminFirmNewController::class, 'submitChallenges'])->name('firms.submit-challenges');
 
     Route::get('firms/inital-data', [AdminFirmNewController::class, 'getInitialData'])->name('firms.inital-data');
     Route::get('firms/{firm}/challenges', [AdminFirmNewController::class, 'challenges'])->name('firms.challenges');

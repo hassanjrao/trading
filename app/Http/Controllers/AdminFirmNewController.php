@@ -184,6 +184,61 @@ class AdminFirmNewController extends Controller
     }
 
 
+    public function submitChallenges(Request $request){
+        $request->validate([
+            'firm_id' => 'required|exists:firms,id',
+            'firm_challenges' => 'required|array',
+            'firm_challenges.*.actual_price' => 'required',
+            'firm_challenges.*.actual_price_note' => 'nullable',
+            'firm_challenges.*.before_price' => 'required',
+            'firm_challenges.*.account_size_id' => 'required|exists:account_sizes,id',
+            'firm_challenges.*.step_id' => 'required|exists:steps,id',
+            'firm_challenges.*.activation_fee' => 'required',
+            'firm_challenges.*.rewards' => 'required',
+            'firm_challenges.*.profit_split' => 'nullable',
+            'firm_challenges.*.firm_challenge_details' => 'required|array',
+            'firm_challenges.*.firm_challenge_details.*.profit_target' => 'required',
+            'firm_challenges.*.firm_challenge_details.*.max_daily_loss' => 'required',
+            'firm_challenges.*.firm_challenge_details.*.max_daily_loss_note' => 'nullable',
+            'firm_challenges.*.firm_challenge_details.*.max_total_drawdown' => 'required',
+
+
+        ]);
+
+        $firm = Firm::find($request->firm_id);
+
+        // hard delete all firm challenges
+        $firm->firmChallenges()->delete();
+
+        foreach ($request->firm_challenges as $challenge) {
+            $firmChallenge = $firm->firmChallenges()->create([
+                'actual_price' => $challenge['actual_price'],
+                'actual_price_note' => $challenge['actual_price_note'],
+                'before_price' => $challenge['before_price'],
+                'account_size_id' => $challenge['account_size_id'],
+                'step_id' => $challenge['step_id'],
+                'activation_fee' => $challenge['activation_fee'],
+                'rewards' => $challenge['rewards'],
+                'profit_split' => $challenge['profit_split'],
+            ]);
+
+            foreach ($challenge['firm_challenge_details'] as $detail) {
+                $firmChallenge->firmChallengeDetails()->create([
+                    'profit_target' => $detail['profit_target'],
+                    'max_daily_loss' => $detail['max_daily_loss'],
+                    'max_daily_loss_note' => $detail['max_daily_loss_note'],
+                    'max_total_drawdown' => $detail['max_total_drawdown'],
+                ]);
+            }
+        }
+
+        return response()->json([
+            'message' => 'Firm challenges updated successfully'
+        ]);
+
+    }
+
+
 
     public function edit($id)
     {
@@ -194,7 +249,10 @@ class AdminFirmNewController extends Controller
             'about',
             'paymentMethods',
             'payoutMethods',
-            'platforms'
+            'platforms',
+            'firmChallenges',
+            'firmChallenges.firmChallengeDetails',
+            'firmChallenges.step',
             ])
             ->findorfail($id);
 
