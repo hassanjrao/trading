@@ -5,6 +5,7 @@
 p.top_firm_title {
     font-size: 15px;
     font-weight: 800;
+    
 }
 .new_top {
    width: 100%;
@@ -38,9 +39,7 @@ p.top_firm_title {
         right: 30px !important;
         left: 18.6rem;
     }
-    p.top_firm_title {
-        display: flex;
-    }
+
 
 }
 
@@ -50,9 +49,7 @@ p.top_firm_title {
         right: 30px !important;
         left: auto;
     }
-    p.top_firm_title {
-        display: flex;
-    }
+
 
 }
 
