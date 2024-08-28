@@ -24,14 +24,6 @@ class FrimAboutSeeder extends Seeder
         ]);
 
 
-        FirmAbout::create([
-            'firm_id'=>2,
-            'chief_executive_officer'=>'Matt Doe',
-            'trust_pilot'=>'4.3',
-            'more_than_5_platforms'=>true,
-            'commission_strucuture_link'=>'https://myfundedfx.com/commission-structure/',
-            'description'=>'Description for MyFundedFX Description for MyFundedFXDescription for MyFundedFXDescription for MyFundedFXDescription for MyFundedFXDescription for MyFundedFX'
-        ]);
 
     }
 }
