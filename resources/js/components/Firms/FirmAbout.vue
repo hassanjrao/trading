@@ -144,7 +144,7 @@ export default {
 
 
       axios
-        .post("/admin/firms/submit-about/", {
+        .post("/admin/firms/submit-about", {
             ...this.firmAbout,
             firm_id: this.firm.id,
         })

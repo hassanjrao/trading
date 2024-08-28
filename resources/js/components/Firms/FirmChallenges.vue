@@ -255,7 +255,7 @@ export default {
         this.loading = true;
 
         axios
-        .post("/admin/firms/submit-challenges/", {
+        .post("/admin/firms/submit-challenges", {
             firm_challenges: this.firmChallenges,
             firm_id: this.firm.id,
         })
@@ -299,7 +299,7 @@ export default {
 
     if(this.firm){
         this.firmChallenges = this.firm.firm_challenges;
-        
+
     }
 
   },
