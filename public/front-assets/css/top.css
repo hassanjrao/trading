@@ -46,7 +46,7 @@ p.top_firm_title {
 
 @media screen and (max-width: 520px) {
     .mb-0_1 {
-        top: 2rem !important;
+        top: 2.4rem !important;
         right: 30px !important;
         left: auto;
     }
