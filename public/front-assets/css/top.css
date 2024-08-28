@@ -32,9 +32,21 @@ p.top_firm_title {
     margin-top: -23px;
 }
 
-@media screen and (max-width: 1440px) {
+@media screen and (min-width: 960px) {
     .mb-0_1 {
-        top: 29px !important;
+        top: 2rem !important;
+        right: 30px !important;
+        left: 18.6rem;
+    }
+    p.top_firm_title {
+        display: flex;
+    }
+
+}
+
+@media screen and (max-width: 520px) {
+    .mb-0_1 {
+        top: 2rem !important;
         right: 30px !important;
         left: auto;
     }
@@ -46,19 +58,7 @@ p.top_firm_title {
 
 @media screen and (max-width: 520px) {
     .mb-0_1 {
-        top: 29px !important;
-        right: 30px !important;
-        left: auto;
-    }
-    p.top_firm_title {
-        display: flex;
-    }
-
-}
-
-@media screen and (max-width: 520px) {
-    .mb-0_1 {
-        top: 29px !important;
+        top: 2rem !important;
         right: 30px !important;
         left: auto;
     }
