@@ -46,7 +46,7 @@
                     </a>
                     {{-- </div> --}}
                 </div>
-                <div class="col-md-3  ">
+                {{-- <div class="col-md-3  ">
                     <form>
                         <div class="search">
                             <span class="fa fa-search"></span>
@@ -54,7 +54,7 @@
 
                         </div>
                     </form>
-                </div>
+                </div> --}}
                 <div class="col-md-6 col-12">
                     <div class="navbar">
 
