@@ -4,9 +4,9 @@
 
 @section('styles')
 
-<style>
+    <style>
 
-</style>
+    </style>
 
 @endsection
 
@@ -189,7 +189,7 @@
                                 @foreach ($firmChallenges as $challenge)
                                     <tr>
                                         <td>
-                                            <a href="{{ route('firms.show',$challenge->firm->id) }}">
+                                            <a href="{{ route('firms.show', $challenge->firm->id) }}">
                                                 <img class="img_data" src="{{ $challenge->firm->logo_url }}">
                                                 <p class="text_name">
 
@@ -285,5 +285,9 @@
             // add click event to custom-radio-label
 
         });
+
+        /* add flex-column-reverse class in a div which is after div with id=example_wrapper */
+        $("#example_wrapper").next().addClass("d-flex flex-column-reverse");
+
     </script>
 @endpush
