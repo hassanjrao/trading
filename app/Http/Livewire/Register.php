@@ -80,7 +80,7 @@ class Register extends Component
         // login user
         auth()->login($user);
 
-        return redirect()->to('/dashboard');
+        return redirect()->to('/profile');
     }
 
     public function render()

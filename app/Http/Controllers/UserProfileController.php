@@ -98,7 +98,7 @@ class UserProfileController extends Controller
 
 
         return redirect()->route('profile.index', ['tab' => 'profile'])
-            ->withToastSuccess('Password updated successfully');
+            ->withToastSuccess('Updated successfully');
     }
 
 
@@ -126,7 +126,7 @@ class UserProfileController extends Controller
         ]);
 
         return redirect()->route('profile.index', ['tab' => 'password'])
-            ->withToastSuccess('Password updated successfully');
+            ->withToastSuccess('Updated successfully');
     }
 
 
@@ -141,7 +141,7 @@ class UserProfileController extends Controller
         ]);
 
         return redirect()->route('profile.index', ['tab' => 'support'])
-            ->withToastSuccess('Question submitted successfully');
+            ->withToastSuccess('Submitted successfully');
     }
 
     /**
