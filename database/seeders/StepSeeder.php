@@ -15,20 +15,24 @@ class StepSeeder extends Seeder
     public function run()
     {
         Step::create([
-            'step'=>'Instant'
+            'name'=>'Instant',
+            'steps'=>1
         ]);
 
 
         Step::create([
-            'step'=>'1-Step'
+            'name'=>'1-Step',
+            'steps'=>1
         ]);
 
 
         Step::create([
-            'step'=>'2-Step'
+            'name'=>'2-Step',
+            'steps'=>2
         ]);
         Step::create([
-            'step'=>'3-Step'
+            'name'=>'3-Step',
+            'steps'=>3
         ]);
     }
 }
