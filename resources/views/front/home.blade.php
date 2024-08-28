@@ -50,7 +50,7 @@
                 </div>
                 <div class="mt-4 text-center">
                     <p class="compare_texts">Not sure what you're looking for?</p>
-                    <button class="compare-button">Compare</button>
+                    <a href="{{ route('compare.index') }}" class="compare-button">Compare</a>
                 </div>
             </div>
             <div class="col-md-1"></div>
