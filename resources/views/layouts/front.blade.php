@@ -25,6 +25,9 @@
         .img_data{
             width: 60px !important;
         }
+        .about_img{
+            width: 32px !important;
+        }
     </style>
 
     @yield('styles')

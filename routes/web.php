@@ -6,6 +6,9 @@ use App\Http\Controllers\AdminCountryController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminFirmController;
 use App\Http\Controllers\AdminFirmNewController;
+use App\Http\Controllers\AdminPaymentMethodController;
+use App\Http\Controllers\AdminPayoutMethodController;
+use App\Http\Controllers\AdminPlatformController;
 use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\AdminStepController;
 use App\Http\Controllers\AdminTechnologyController;
@@ -83,7 +86,13 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','role:admin'])->group
     Route::resource('asset-types', AdminAssetTypeController::class);
 
     Route::resource('countries', AdminCountryController::class);
+    Route::resource('payment-methods', AdminPaymentMethodController::class);
 
+
+    Route::resource('payout-methods', AdminPayoutMethodController::class);
+
+
+    Route::resource('platforms', AdminPlatformController::class);
 
 
     Route::post('firms/create-firm', [AdminFirmNewController::class, 'createFirm'])->name('firms.create-firm');

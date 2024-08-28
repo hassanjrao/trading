@@ -27,7 +27,8 @@
                                         <span class="p_name">
                                             <b>
                                                 {{ $firm->name }}
-                                            </b> <img class="img_data img-fluid" style="width: 2rem !important" src="{{ $firm->country->flag_url }}"> <br>
+                                            </b> <img class="img_data img-fluid" style="width: 2rem !important"
+                                                src="{{ $firm->country->flag_url }}"> <br>
                                             <a href="{{ $firm->url }}" target="__blank"
                                                 class="p_des">{{ $firm->url }}
                                             </a>
@@ -206,7 +207,8 @@
                                             </td>
                                             <td>
                                                 <a href="{{ route('firms.summary', $challenge) }}">
-                                                    <img class="img_data" src="{{ asset('front-assets/images/922.png') }}"
+                                                    <img class="img_data"
+                                                        src="{{ asset('front-assets/images/922.png') }}"
                                                         style="width: 50px;">
                                                 </a>
                                             </td>
@@ -477,10 +479,14 @@
                                 <div class="col-md-3 ">
                                     <div class="chalng_tabs review_tab">
                                         <p class="p_text">TrustPilot</p>
-                                        <p class="d_est1"><b style="font-size:22px;">
-                                                {{ $firm->about->trust_pilot }}
-                                            </b> <img src="{{ asset('front-assets/images/image 1.png') }}"
-                                                class="about_img"></p>
+                                        <p class="d_est1">
+                                        <div>
+
+                                            <img src="{{ asset('front-assets/images/image 1.png') }}" class="about_img">
+                                            <b>{{ $firm->about->trust_pilot }}</b>
+                                        </div>
+                                        </p>
+
                                     </div>
                                 </div>
                                 @if ($firm->paymentMethods->count() > 0)
@@ -535,7 +541,7 @@
 
                                         @foreach ($firm->platforms as $platform)
                                             <p class="d_est1_about">
-                                            <img src="{{ $platform->logo_url }}" class="about_img">
+                                                <img src="{{ $platform->logo_url }}" class="about_img">
                                                 <b>{{ $platform->name }} <span
                                                         style="font-size:smaller">{{ $platform->note ? '(' . $platform->note . ')' : '' }}
                                                     </span></b>

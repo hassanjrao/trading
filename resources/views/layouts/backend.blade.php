@@ -207,6 +207,30 @@
                         </li>
 
                         <li class="nav-main-item">
+                            <a class="nav-main-link{{ request()->is('admin/payment-methods') ? ' active' : '' }}"
+                                href="{{ route('admin.payment-methods.index') }}">
+                                <i class="nav-main-link-icon si si-cursor"></i>
+                                <span class="nav-main-link-name">Payment Methods</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-main-item">
+                            <a class="nav-main-link{{ request()->is('admin/payout-methods') ? ' active' : '' }}"
+                                href="{{ route('admin.payout-methods.index') }}">
+                                <i class="nav-main-link-icon si si-cursor"></i>
+                                <span class="nav-main-link-name">Payout Methods</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-main-item">
+                            <a class="nav-main-link{{ request()->is('admin/platforms*') ? ' active' : '' }}"
+                                href="{{ route('admin.platforms.index') }}">
+                                <i class="nav-main-link-icon si si-cursor"></i>
+                                <span class="nav-main-link-name">Platforms</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-main-item">
                             <a class="nav-main-link{{ request()->is('admin/firms*') ? ' active' : '' }}"
                                 href="{{ route('admin.firms.index') }}">
                                 <i class="nav-main-link-icon si si-cursor"></i>
