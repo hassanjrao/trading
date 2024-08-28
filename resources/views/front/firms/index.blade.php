@@ -74,7 +74,7 @@
                                 <div class="rating-section top_firm_rating">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="d-flex align-items-center new_top">
-                                            <p class="top_firm_title"><img src="{{ $firm->logo_url }}">
+                                            <p class="top_firm_title"><img style="width: 60px !important;" src="{{ $firm->logo_url }}">
                                                 <a href="{{ route('firms.show', $firm->id) }}"> {{ $firm->name }}</a>
                                             </p>
 
