@@ -46,15 +46,15 @@
                     </a>
                     {{-- </div> --}}
                 </div>
-                {{-- <div class="col-md-3  ">
-                    <form>
+                <div class="col-md-3  ">
+                    {{-- <form>
                         <div class="search">
                             <span class="fa fa-search"></span>
                             <input type="text" placeholder="Search 'Apex Trader Funding'">
 
                         </div>
-                    </form>
-                </div> --}}
+                    </form> --}}
+                </div>
                 <div class="col-md-6 col-12">
                     <div class="navbar">
 
