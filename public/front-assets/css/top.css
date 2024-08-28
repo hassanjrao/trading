@@ -32,6 +32,30 @@ p.top_firm_title {
     margin-top: -23px;
 }
 
+@media screen and (max-width: 1440px) {
+    .mb-0_1 {
+        top: 29px !important;
+        right: 30px !important;
+        left: auto;
+    }
+    p.top_firm_title {
+        display: flex;
+    }
+
+}
+
+@media screen and (max-width: 520px) {
+    .mb-0_1 {
+        top: 29px !important;
+        right: 30px !important;
+        left: auto;
+    }
+    p.top_firm_title {
+        display: flex;
+    }
+
+}
+
 @media screen and (max-width: 520px) {
     .mb-0_1 {
         top: 29px !important;
