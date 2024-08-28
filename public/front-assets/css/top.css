@@ -20,8 +20,8 @@ p.top_firm_title {
     position: absolute;
     width: 65px;
     height: 32px;
-    top: 31px;
-    left: 284px;
+    top: 2rem;
+    left: 31.2rem;
 }
 .bt_backs {
     background: #7A95F8;
@@ -41,7 +41,7 @@ p.top_firm_title {
     p.top_firm_title {
         display: flex;
     }
-     
+
 }
 @media only screen and (min-device-width: 520px) and (max-device-width: 768px) {
     .mb-0_1 {
