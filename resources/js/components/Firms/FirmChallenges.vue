@@ -297,7 +297,7 @@ export default {
   mounted() {
     console.log("FirmChallenge.vue mounted", this.firm);
 
-    if(this.firm){
+    if(this.firm && this.firm.firm_challenges && this.firm.firm_challenges.length > 0) {
         this.firmChallenges = this.firm.firm_challenges;
 
     }
