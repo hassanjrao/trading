@@ -238,12 +238,14 @@
                                     <div class="d-flex align-items-start">
                                         <h4 style="color: #5B5B5B;">Current Rating
                                             <br>
-                                            <span class="p_des">Based on <strong>198</strong> Reviews</span>
+                                            <span class="p_des">Based on <strong>{{ $fireReviews->count() }}</strong> Reviews</span>
                                         </h4>
 
                                         <div class="ml-2 ratess">
                                             <div class="bt_back"></div>
-                                            <h4 class="mb-0">4.3</h4>
+                                            <h4 class="mb-0">
+                                                {{ $avgRating['overall'] }}
+                                            </h4>
                                         </div>
                                     </div>
 
@@ -252,37 +254,43 @@
                                     <div class="d-flex align-items-center mb-2">
                                         <span class="progress_title">5 Stars</span>
                                         <div class="rating-bar  flex-grow-1">
-                                            <div class="rating-bar-fill" style="width: 70%;"></div>
+                                            <div class="rating-bar-fill {{ $avgRating['five_stars_avg']=='100' ? 'full-rating':'' }}" style="width: {{ $avgRating['five_stars_avg'].'%' }};">
+                                            </div>
                                         </div>
-                                        <span class="progress_titles"><strong>70</strong> Reviews</span>
+
+                                        <span class="progress_titles"><strong>{{ $avgRating['five_stars'] }}</strong> Reviews</span>
                                     </div>
                                     <div class="d-flex align-items-center mb-2">
                                         <span class="progress_title">4 Stars</span>
                                         <div class="rating-bar  flex-grow-1">
-                                            <div class="rating-bar-fill" style="width: 50%;"></div>
+                                            <div class="rating-bar-fill {{ $avgRating['four_stars_avg']=='100' ? 'full-rating':'' }}" style="width: {{ $avgRating['four_stars_avg'].'%' }};">
+                                            </div>
                                         </div>
-                                        <span class="progress_titles"><strong>50</strong> Reviews</span>
+                                        <span class="progress_titles"><strong>{{ $avgRating['four_stars'] }}</strong> Reviews</span>
                                     </div>
                                     <div class="d-flex align-items-center mb-2">
                                         <span class="progress_title">3 Stars</span>
                                         <div class="rating-bar  flex-grow-1">
-                                            <div class="rating-bar-fill" style="width: 30%;"></div>
+                                            <div class="rating-bar-fill {{ $avgRating['three_stars_avg']=='100' ? 'full-rating':'' }}" style="width: {{ $avgRating['three_stars_avg'].'%' }};">
+                                            </div>
                                         </div>
-                                        <span class="progress_titles"><strong>30</strong> Reviews</span>
+                                        <span class="progress_titles"><strong>{{ $avgRating['three_stars'] }}</strong> Reviews</span>
                                     </div>
                                     <div class="d-flex align-items-center mb-2">
                                         <span class="progress_title">2 Stars</span>
                                         <div class="rating-bar  flex-grow-1">
-                                            <div class="rating-bar-fill" style="width: 10%;"></div>
+                                            <div class="rating-bar-fill {{ $avgRating['two_stars_avg']=='100' ? 'full-rating':'' }}" style="width: {{ $avgRating['two_stars_avg'].'%' }};">
+                                            </div>
                                         </div>
-                                        <span class="progress_titles"><strong>10</strong> Reviews</span>
+                                        <span class="progress_titles"><strong>{{ $avgRating['two_stars'] }}</strong> Reviews</span>
                                     </div>
                                     <div class="d-flex align-items-center mb-2">
                                         <span class="progress_title">1 Star</span>
                                         <div class="rating-bar  flex-grow-1">
-                                            <div class="rating-bar-fill" style="width: 5%;"></div>
+                                            <div class="rating-bar-fill {{ $avgRating['one_star_avg']=='100' ? 'full-rating':'' }}" style="width: {{ $avgRating['one_star_avg'].'%' }};">
+                                            </div>
                                         </div>
-                                        <span class="progress_titles"><strong>05</strong> Reviews</span>
+                                        <span class="progress_titles"><strong>{{ $avgRating['one_star'] }} </strong> Reviews</span>
                                     </div>
                                 </div>
                             </div>
@@ -422,17 +430,17 @@
                                                 <div class="col-md-2">
                                                     <div class="sect sec_height">
                                                         <p class="sect_p">Main Benifit</p>
-                                                        <p class="rat_text"> This is really a great firm, I loved every
-                                                            part of
-                                                            it.</p>
+                                                        <p class="rat_text">
+                                                            {{ $review->main_advantages }}
+                                                        </p>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <div class="sect sec_height">
                                                         <p class="sect_p">Main Drawbacks</p>
-                                                        <p class="rat_text"> This is really a great firm, I loved every
-                                                            part of
-                                                            it.</p>
+                                                        <p class="rat_text">
+                                                            {{ $review->main_disadvantages }}
+                                                        </p>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">

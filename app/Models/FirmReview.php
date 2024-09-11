@@ -50,4 +50,5 @@ class FirmReview extends Model
             'general'=>round($ratingGeneralPerc),
         ];
     }
+
 }

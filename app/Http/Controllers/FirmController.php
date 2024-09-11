@@ -62,6 +62,7 @@ class FirmController extends Controller
     {
         $firm = Firm::findorfail($id);
 
+
         $firmChallenges = $firm->firmChallenges()
         ->with(['step','accountSize','firmChallengeDetails'])
         ->latest()->get();
@@ -70,7 +71,9 @@ class FirmController extends Controller
         ->with(['accountSize','user','step'])
         ->get();
 
-        return view('front.firms.show', compact('firm','firmChallenges','fireReviews'));
+        $avgRating=$firm->calculateAverageRatings();
+
+        return view('front.firms.show', compact('firm','firmChallenges','fireReviews','avgRating'));
     }
 
     /**
