@@ -143,8 +143,9 @@
             <br class="none" />
             <div class="row">
               <div class="col-md-6">
-                <select class="form-control review_form_input" style="height: 47px" v-model="selectedAccountSize">
+                <select class="form-control review_form_input" style="height: 47px" v-model="selectedAccountSize" @change="accountSizeSelected">
                   <!-- select first index -->
+                  <option value="">Account Size</option>
                   <option
                     v-for="(accountSize, index) in accountSizes"
                     :key="accountSize.id"
@@ -157,11 +158,13 @@
               </div>
               <div class="col-md-6">
                 <select class="form-control review_form_input" style="height: 47px" v-model="selectedStep">
+                <option value="">Step</option>
                   <option
                     v-for="(step, index) in steps"
                     :key="step.id"
                     :value="step.id"
                     :selected="index === 0"
+                    :label="step.name"
                   >
                     {{ step.step }}
                   </option>
@@ -396,6 +399,7 @@
                   type="button"
                   id="submit_form"
                   class="btn btn-primary frmbtn r_button"
+                  :disabled="loading"
                   @click="submitReview()"
                 >
                   Submit
@@ -604,16 +608,18 @@
             </div>
           </div>
         </form>
-        <div class="toggleDiv success_message" id="successMessage">
+        <div class="" id="" v-if="step==7">
           <h2 class="page_title pt-4 text-center text-white">Submission Confirmed</h2>
           <div
-            class="data mt-4"
+            class="data mt-4 text-center"
             style="background-color: #fbf5f3; border-radius: 20px; padding: 20px"
           >
             <p style="display: flex; align-items: center; justify-content: center">
-              <img class="img_data" style="width: 50px" src="firm.logo_url" />
+              <img class="img_data"  :src="selectedFirm.logo_url"/>
               <span class="p_name">
-                <b>Phoenix Trader Funding</b>
+                <b>
+                {{ selectedFirm.name }}
+                </b>
               </span>
             </p>
             <br />
@@ -622,6 +628,8 @@
               <br /><br />We'll be analyzing it and if everything's in order, it'll be
               added to our site.
             </p>
+
+            <a href="/" class="btn btn-primary frmbtn">Back to website</a>
           </div>
         </div>
       </div>
@@ -632,6 +640,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   props: {
     accountSizes: {
@@ -639,10 +649,10 @@ export default {
       required: true,
     },
 
-    steps: {
-      type: Array,
-      required: true,
-    },
+    // steps: {
+    //   type: Array,
+    //   required: true,
+    // },
 
     user: {
       type: Object,
@@ -657,7 +667,9 @@ export default {
   data() {
     return {
       search: "",
+      loading: false,
       firms: [],
+      steps:[],
       selectedFirm: null,
       step: 1,
       reviewError: false,
@@ -668,8 +680,8 @@ export default {
       mainAdvantages: null,
       mainDrawbacks: null,
       termsCondtions: null,
-      selectedAccountSize: null,
-      selectedStep: null,
+      selectedAccountSize: '',
+      selectedStep: '',
       ratings: [
         {
           key: "dashboard",
@@ -729,6 +741,8 @@ export default {
 
       console.log("formData", formData);
 
+        this.loading = true;
+
       axios
         .post("/review-report/store", formData, {
           headers: {
@@ -737,10 +751,31 @@ export default {
         })
         .then((response) => {
           console.log(response.data);
-          this.step++;
+          this.step=7;
         })
         .catch((error) => {
           console.log(error);
+        }).finally(() => {
+          this.loading = false;
+        });
+    },
+
+    accountSizeSelected(){
+        if(!this.selectedAccountSize){
+            return;
+        }
+
+        this.steps=[];
+
+        axios.get('/review-report/get-steps', {
+            params: {
+                account_size_id: this.selectedAccountSize,
+                firm_id: this.selectedFirm.id
+            }
+        }).then((response) => {
+            this.steps = response.data.steps;
+        }).catch((error) => {
+            console.log(error);
         });
     },
 

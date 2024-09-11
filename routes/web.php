@@ -52,6 +52,7 @@ Route::middleware(['auth'])->group(function(){
 
     Route::post('firms/submit-vote', [FirmController::class, 'submitVote'])->name('firms.submit-vote');
 
+    Route::get('review-report/get-steps', [ReviewReportController::class, 'getSteps'])->name('review-report.get-steps');
     Route::post('review-report/store', [ReviewReportController::class, 'store'])->name('review-report.store');
     Route::resource('review-report', ReviewReportController::class);
 

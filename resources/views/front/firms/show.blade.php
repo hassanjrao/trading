@@ -5,6 +5,12 @@
 @section('styles')
 
     <link rel="stylesheet" href="{{ asset('front-assets/css/profile.css') }}">
+
+    <style>
+        .full-rating{
+            border-radius: 24px;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -312,146 +318,159 @@
                 <div class="row">
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
-                        <div class="review_tab r_tab_user">
 
-                            <div class="rating-section">
-                                <div class="mb-4 d-flex justify-content-between align-items-center">
-                                    <div class="d-flex align-items-center">
-                                        <img src="../assets/images/Sans titre 2.png" style="width: 46px; ">
-                                        <h4 class="names">BASHIR
-                                            <br>
-                                            <span class="p_des">United Kingdom</span>
-                                        </h4>
+                        @foreach ($fireReviews as $review)
+                            <div class="review_tab r_tab_user mb-4">
 
-                                        <div class="date_show">
+                                <div class="rating-section">
+                                    <div class="mb-4 d-flex justify-content-between align-items-center">
+                                        <div class="d-flex align-items-center">
+                                            <img src="{{ $review->user->profile_picture_url }}" style="width: 46px; ">
+                                            <h4 class="names">
+                                                {{ $review->user->name }}
+                                                <br>
+                                                {{-- <span class="p_des">
+                                                    {{ $review->user->country->name }}
+                                                </span> --}}
+                                            </h4>
 
-                                            <span><i class="fa fa-calendar"> </i> Submitted on June 10, 2024 </span>
+                                            <div class="date_show">
 
+                                                <span><i class="fa fa-calendar"> </i> Submitted on {{ $review->created_at }} </span>
+
+                                            </div>
                                         </div>
+
                                     </div>
+                                    <div class="row  ">
+                                        <div class="col-md-3 col-sec-1">
+                                            <div class="sect">
+                                                <p class="sect_p">Account Size</p>
+                                                <p class="act"><b class="acct_val">{{ $review->accountSize->size }}</b></p>
+                                            </div>
+                                            <div class="sect">
+                                                <p class="sect_p">Steps</p>
+                                                <p class="act"><b class="acct_val">{{ $review->step->name }}</b></p>
+                                            </div>
+                                            <div class="sect">
+                                                <p class="sect_p">Account Size</p>
+                                                <p class="act"><b class="acct_val">5K</b></p>
+                                            </div>
+                                            <div class="sect">
+                                                <p class="sect_p">Account Size</p>
+                                                <p class="act"><b class="acct_val">5K</b></p>
+                                            </div>
+                                            <div class="sect">
+                                                <p class="sect_p">Account Size</p>
+                                                <p class="act"><b class="acct_val">5K</b></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="sect r_col_1">
+                                                <p class="sect_p">Review</p>
+                                                <textarea id="textarea" class="styled-textarea">{{ $review->review }}</textarea>
 
-                                </div>
-                                <div class="row  ">
-                                    <div class="col-md-3 col-sec-1">
-                                        <div class="sect">
-                                            <p class="sect_p">Account Size</p>
-                                            <p class="act"><b class="acct_val">5K</b></p>
-                                        </div>
-                                        <div class="sect">
-                                            <p class="sect_p">Account Size</p>
-                                            <p class="act"><b class="acct_val">5K</b></p>
-                                        </div>
-                                        <div class="sect">
-                                            <p class="sect_p">Account Size</p>
-                                            <p class="act"><b class="acct_val">5K</b></p>
-                                        </div>
-                                        <div class="sect">
-                                            <p class="sect_p">Account Size</p>
-                                            <p class="act"><b class="acct_val">5K</b></p>
-                                        </div>
-                                        <div class="sect">
-                                            <p class="sect_p">Account Size</p>
-                                            <p class="act"><b class="acct_val">5K</b></p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-9">
-                                        <div class="sect r_col_1">
-                                            <p class="sect_p">Review</p>
-                                            <textarea id="textarea" class="styled-textarea"
-                                                placeholder="This is really a great firm, I loved every part of it except the support team which was kind of slow and unresponsive. Nevertheless I got paid out in an impressive amount of time and thumb up for that"></textarea>
-
-                                        </div>
-                                        <div class="row reviews mt-2">
-                                            <div class="col-md-5">
-                                                <div class="sect ">
-                                                    <p class="sect_p">Rating</p>
-                                                    <div class="review-stats ">
-                                                        <div class="d-flex align-items-center mb-2">
-                                                            <span class="progress_title">Dashboard</span>
-                                                            <div class="rating-bar  flex-grow-1">
-                                                                <div class="rating-bar-fill" style="width: 50%;"></div>
+                                            </div>
+                                            <div class="row reviews mt-2">
+                                                <div class="col-md-5">
+                                                    <div class="sect ">
+                                                        <p class="sect_p">Rating</p>
+                                                        <div class="review-stats ">
+                                                            <div class="d-flex align-items-center mb-2">
+                                                                <span class="progress_title">Dashboard</span>
+                                                                <div class="rating-bar  flex-grow-1">
+                                                                    <div class="rating-bar-fill {{ $review->ratingPercentages()['dashboard']=='100' ? 'full-rating':'' }}" style="width: {{ $review->ratingPercentages()['dashboard'].'%' }};">
+                                                                    </div>
+                                                                </div>
+                                                                <span class="progress_titles">{{ $review->rating_dashboard }} Stars</span>
                                                             </div>
-                                                            <span class="progress_titles">3 Stars</span>
-                                                        </div>
-                                                        <div class="d-flex align-items-center mb-2">
-                                                            <span class="progress_title">Support Team</span>
-                                                            <div class="rating-bar  flex-grow-1">
-                                                                <div class="rating-bar-fill" style="width: 70%;"></div>
+                                                            <div class="d-flex align-items-center mb-2">
+                                                                <span class="progress_title">Support Team</span>
+                                                                <div class="rating-bar  flex-grow-1">
+                                                                    <div class="rating-bar-fill {{ $review->ratingPercentages()['support_team']=='100' ? 'full-rating':'' }}" style="width: {{ $review->ratingPercentages()['support_team'].'%' }};">
+                                                                    </div>
+                                                                </div>
+                                                                <span class="progress_titles">{{ $review->rating_support_team }} Stars</span>
                                                             </div>
-                                                            <span class="progress_titles">4 Stars</span>
-                                                        </div>
-                                                        <div class="d-flex align-items-center mb-2">
-                                                            <span class="progress_title">Payout Process</span>
-                                                            <div class="rating-bar  flex-grow-1">
-                                                                <div class="rating-bar-fill"
-                                                                    style="width: 100%; border-radius: 24px;"></div>
+                                                            <div class="d-flex align-items-center mb-2">
+                                                                <span class="progress_title">Payout Process</span>
+                                                                <div class="rating-bar  flex-grow-1">
+                                                                    <div class="rating-bar-fill {{ $review->ratingPercentages()['payout_process']=='100' ? 'full-rating':'' }}" style="width: {{ $review->ratingPercentages()['payout_process'].'%' }};">
+                                                                    </div>
+                                                                </div>
+                                                                <span class="progress_titles">{{ $review->rating_payout_process }} Stars</span>
                                                             </div>
-                                                            <span class="progress_titles">5 Stars</span>
-                                                        </div>
-                                                        <div class="d-flex align-items-center mb-2">
-                                                            <span class="progress_title">Rules</span>
-                                                            <div class="rating-bar  flex-grow-1">
-                                                                <div class="rating-bar-fill"
-                                                                    style="width: 100%; border-radius: 24px;"></div>
+                                                            <div class="d-flex align-items-center mb-2">
+                                                                <span class="progress_title">Rules</span>
+                                                                <div class="rating-bar  flex-grow-1">
+                                                                    <div class="rating-bar-fill {{ $review->ratingPercentages()['rules']=='100' ? 'full-rating':'' }}" style="width: {{ $review->ratingPercentages()['rules'].'%' }};">
+                                                                    </div>
+                                                                </div>
+                                                                <span class="progress_titles">{{ $review->rating_rules }} Stars</span>
                                                             </div>
-                                                            <span class="progress_titles">5 Stars</span>
-                                                        </div>
-                                                        <div class="d-flex align-items-center mb-2">
-                                                            <span class="progress_title">General Rating</span>
-                                                            <div class="rating-bar  flex-grow-1">
-                                                                <div class="rating-bar-fill" style="width: 70%;"></div>
+                                                            <div class="d-flex align-items-center mb-2">
+                                                                <span class="progress_title">General Rating</span>
+                                                                <div class="rating-bar  flex-grow-1">
+                                                                    <div class="rating-bar-fill {{ $review->ratingPercentages()['general']=='100' ? 'full-rating':'' }}" style="width: {{ $review->ratingPercentages()['general'].'%' }};">
+                                                                    </div>
+                                                                </div>
+                                                                <span class="progress_titles">{{ $review->rating_general }} Stars</span>
                                                             </div>
-                                                            <span class="progress_titles">4 Stars</span>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="sect sec_height">
-                                                    <p class="sect_p">Main Benifit</p>
-                                                    <p class="rat_text"> This is really a great firm, I loved every part of
-                                                        it.</p>
+                                                <div class="col-md-2">
+                                                    <div class="sect sec_height">
+                                                        <p class="sect_p">Main Benifit</p>
+                                                        <p class="rat_text"> This is really a great firm, I loved every
+                                                            part of
+                                                            it.</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="sect sec_height">
-                                                    <p class="sect_p">Main Drawbacks</p>
-                                                    <p class="rat_text"> This is really a great firm, I loved every part of
-                                                        it.</p>
+                                                <div class="col-md-2">
+                                                    <div class="sect sec_height">
+                                                        <p class="sect_p">Main Drawbacks</p>
+                                                        <p class="rat_text"> This is really a great firm, I loved every
+                                                            part of
+                                                            it.</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="sect half_sec" style="    margin-bottom: 10px;">
-                                                    <p class="sect_p " style="width: 100%;">Did you find this review
-                                                        useful ?</p>
-                                                    <p class="sect_p"> <i class="fa fa-thumbs-o-up"
-                                                            aria-hidden="true"></i> <i class="fa fa-thumbs-o-down"
-                                                            aria-hidden="true"></i> 15 out of 18 found it useful</p>
-                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="sect half_sec" style="    margin-bottom: 10px;">
+                                                        <p class="sect_p " style="width: 100%;">Did you find this review
+                                                            useful ?</p>
+                                                        <p class="sect_p"> <i class="fa fa-thumbs-o-up"
+                                                                aria-hidden="true"></i> <i class="fa fa-thumbs-o-down"
+                                                                aria-hidden="true"></i> 15 out of 18 found it useful</p>
+                                                    </div>
 
-                                                <div class="sect half_sec">
+                                                    <div class="sect half_sec">
 
-                                                    <p class="sect_p"> <button id="toggleButton">Certificates / Payouts <b
-                                                                class="acct_val">2</b> <i class="fa fa-chevron-right"
-                                                                aria-hidden="true"></i></button></p>
+                                                        <p class="sect_p"> <button id="toggleButton">Certificates /
+                                                                Payouts <b class="acct_val">2</b> <i
+                                                                    class="fa fa-chevron-right"
+                                                                    aria-hidden="true"></i></button></p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                    </div>
-                                </div>
-                                <div class="row mt-3">
-                                    <div class="col-md-12">
-                                        <div id="toggleDiv" class="sect payout_img">
-                                            <img src="../assets/images/bas2 1.png">
-                                            <img src="../assets/images/bas2 1.png">
                                         </div>
                                     </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-12">
+                                            <div id="toggleDiv" class="sect payout_img">
+                                                <img src="../assets/images/bas2 1.png">
+                                                <img src="../assets/images/bas2 1.png">
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
+                                <br><br>
 
                             </div>
-                            <br><br>
-                        </div>
+                        @endforeach
+
                     </div>
                     <div class="col-md-1">
 

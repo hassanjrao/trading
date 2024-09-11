@@ -66,7 +66,11 @@ class FirmController extends Controller
         ->with(['step','accountSize','firmChallengeDetails'])
         ->latest()->get();
 
-        return view('front.firms.show', compact('firm','firmChallenges'));
+        $fireReviews=$firm->firmReviews()->latest()
+        ->with(['accountSize','user','step'])
+        ->get();
+
+        return view('front.firms.show', compact('firm','firmChallenges','fireReviews'));
     }
 
     /**
