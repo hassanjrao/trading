@@ -31,7 +31,7 @@ ul#myTab_p li.nav-item>a.nav-link {
 }
 .profile_challenge .review_tab {
     padding: 10px;
-   
+
 }
 .profile_challenge .row {
     justify-content: space-between;
@@ -87,7 +87,7 @@ p.orginal {
     border-radius: 0px !important;
     padding: 0px;
     margin-top: 0px;
-   
+
     min-height: 400px;
 }
 img.about_img {
@@ -128,11 +128,11 @@ h4.mb-0 {
     position: absolute;
     width: 65px;
     height: 32px;
-    top: 24px;
-    left: 206px;
+    top: 37px;
+    left: 215px;
 }
 .bt_back {
-    
+
     background: #7A95F8;
     height: 35px;
     margin-left: 5px;
@@ -212,7 +212,7 @@ h4.names>span {
     background: #DFDFDF;
     padding: 10px;
     border-radius: 16px;
-  
+
     width: 100%;
 }
 .sect .sect_p {
@@ -227,7 +227,7 @@ b.acct_val {
     background: linear-gradient(to right, #7A95F8 8%, #6453CA 92%);
     border-radius: 20px;
     color: #fff;
-   
+
 }
 .act{
     margin-bottom: 2px;
@@ -282,7 +282,7 @@ div#toggleDiv>img {
 }
 @media screen and (max-width: 520px) {
     .half_sec {
-       
+
         display: block !important;
     }
     .benefits-drawbacks.mb-3.review_tab {
@@ -310,7 +310,7 @@ div#toggleDiv>img {
     .sect.half_sec{
         /* margin-top: 15px; */
     }
-     
+
 }
 @media screen and (min-width: 1240px) {
 .sect.r_col_1 {

@@ -365,7 +365,7 @@ button.back>i {
 
   /* Add a checkmark */
   input[type="checkbox"]:checked + .checkbox-label:after {
-    content: "âœ“"; /* Checkmark symbol */
+    content: '\2713'; /* Checkmark symbol */
     color: #fff; /* Checkmark color */
     font-size: 16px;
     position: absolute;

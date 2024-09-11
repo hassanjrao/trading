@@ -380,7 +380,7 @@
 
                                             </div>
                                             <div class="row reviews mt-2">
-                                                <div class="col-md-5">
+                                                <div class="col-lg-5">
                                                     <div class="sect ">
                                                         <p class="sect_p">Rating</p>
                                                         <div class="review-stats ">
@@ -427,7 +427,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-2">
+                                                <div class="col-lg-2">
                                                     <div class="sect sec_height">
                                                         <p class="sect_p">Main Benifit</p>
                                                         <p class="rat_text">
@@ -435,7 +435,7 @@
                                                         </p>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-2">
+                                                <div class="col-lg-2">
                                                     <div class="sect sec_height">
                                                         <p class="sect_p">Main Drawbacks</p>
                                                         <p class="rat_text">
@@ -443,7 +443,7 @@
                                                         </p>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3">
+                                                <div class="col-lg-3">
                                                     <div class="sect half_sec" style="    margin-bottom: 10px;">
                                                         <p class="sect_p " style="width: 100%;">Did you find this review
                                                             useful ?</p>

@@ -20,7 +20,13 @@ class UserProfileController extends Controller
 
         $firmChallenges = PropFirmChallenge::all();
 
-        return view('front.profile.index', compact('tradingExperiences', 'firmChallenges'));
+        $reviews=auth()->user()->firmReviews()->latest()
+        ->with(['accountSize','user','step','firm'])
+        ->get();
+
+
+
+        return view('front.profile.index', compact('tradingExperiences', 'firmChallenges','reviews'));
     }
 
     /**
