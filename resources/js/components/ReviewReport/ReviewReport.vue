@@ -34,7 +34,7 @@
                     class="search-button"
                     type="button"
                     v-if="selectedFirm"
-                    @click="step = 2"
+                    @click="nextStep"
                   >
                     <img
                       src="https://img.icons8.com/ios-glyphs/30/ffffff/arrow.png"
@@ -75,9 +75,28 @@
             </p>
 
             <div class="step_form_btn r_r_btn d-flex">
-              <button type="button" class="btn btn-primary frmbtn active">No</button>
-              <button type="button" class="btn btn-primary frmbtn">Payout Denial</button>
-              <button type="button" class="btn btn-primary frmbtn">
+              <button
+                type="button"
+                class="btn btn-primary frmbtn"
+                @click="btnSelectedClicked('no')"
+                :class="{ active: btnSelected == 'no' ? true : false }"
+              >
+                No
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary frmbtn"
+                @click="btnSelectedClicked('payoutDenial')"
+                :class="{ active: btnSelected == 'payoutDenial' ? true : false }"
+              >
+                Payout Denial
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary frmbtn"
+                @click="btnSelectedClicked('unjustifiedBreach')"
+                :class="{ active: btnSelected == 'unjustifiedBreach' ? true : false }"
+              >
                 Unjustified Breach
               </button>
             </div>
@@ -96,7 +115,11 @@
                   <p
                     style="display: flex; align-items: center; justify-content: flex-end"
                   >
-                    <img class="img_data" style="width: 50px" :src="selectedFirm.logo_url"/>
+                    <img
+                      class="img_data"
+                      style="width: 50px"
+                      :src="selectedFirm.logo_url"
+                    />
                     <span class="p_name">
                       <b>
                         {{ selectedFirm.name }}
@@ -143,7 +166,12 @@
             <br class="none" />
             <div class="row">
               <div class="col-md-6">
-                <select class="form-control review_form_input" style="height: 47px" v-model="selectedAccountSize" @change="accountSizeSelected">
+                <select
+                  class="form-control review_form_input"
+                  style="height: 47px"
+                  v-model="selectedAccountSize"
+                  @change="accountSizeSelected"
+                >
                   <!-- select first index -->
                   <option value="">Account Size</option>
                   <option
@@ -157,8 +185,12 @@
                 </select>
               </div>
               <div class="col-md-6">
-                <select class="form-control review_form_input" style="height: 47px" v-model="selectedStep">
-                <option value="">Step</option>
+                <select
+                  class="form-control review_form_input"
+                  style="height: 47px"
+                  v-model="selectedStep"
+                >
+                  <option value="">Step</option>
                   <option
                     v-for="(step, index) in steps"
                     :key="step.id"
@@ -207,7 +239,11 @@
                   <p
                     style="display: flex; align-items: center; justify-content: flex-end"
                   >
-                    <img class="img_data" style="width: 50px" :src="selectedFirm.logo_url" />
+                    <img
+                      class="img_data"
+                      style="width: 50px"
+                      :src="selectedFirm.logo_url"
+                    />
                     <span class="p_name">
                       <b>{{ selectedFirm.name }}</b>
                     </span>
@@ -320,7 +356,11 @@
                   <p
                     style="display: flex; align-items: center; justify-content: flex-end"
                   >
-                    <img class="img_data" style="width: 50px" :src="selectedFirm.logo_url" />
+                    <img
+                      class="img_data"
+                      style="width: 50px"
+                      :src="selectedFirm.logo_url"
+                    />
                     <span class="p_name">
                       <b>
                         {{ selectedFirm.name }}
@@ -407,6 +447,7 @@
               </div>
             </div>
           </div>
+
           <div class="review_tabs" id="step5" v-if="step == 5">
             <div class="row">
               <div class="col-md-4">
@@ -421,9 +462,13 @@
                   <p
                     style="display: flex; align-items: center; justify-content: flex-end"
                   >
-                    <img class="img_data" style="width: 50px" src="firm.logo_url" />
+                    <img
+                      class="img_data"
+                      style="width: 50px"
+                      :src="selectedFirm.logo_url"
+                    />
                     <span class="p_name">
-                      <b>Phoenix Trader Funding</b>
+                      <b>{{ selectedFirm.name }}</b>
                     </span>
                   </p>
                 </div>
@@ -433,12 +478,17 @@
               <div class="col-md-12">
                 <div class="Confirmation_container">
                   <input
-                    type="field"
+                    type="file"
                     class="confirmation-input"
-                    placeholder="Uploadf Funding Certificate form the firm "
+                    placeholder="Upload Funding Certificate form the firm (Required)"
+                    ref="fundingCertificateFile"
+                    @change="fundingCertificate = $refs.fundingCertificateFile.files[0]"
                   />
-                  <img src="assets/images/document 1.png" alt="document" />
+                  <img src="/front-assets/images/document 1.png" alt="document" />
                 </div>
+                <p class="text-danger pl-3" v-if="fundingCertificateError ? true : false">
+                  {{ fundingCertificateError }}
+                </p>
               </div>
             </div>
             <br />
@@ -448,13 +498,21 @@
                   class="form-control review_form_input pt-4"
                   rows="6"
                   placeholder="What is the firm’s reason for refusing payout?"
+                  v-model="refusingPayoutReason"
                 ></textarea>
+                <p
+                  class="text-danger pl-3"
+                  v-if="refusingPayoutReasonError ? true : false"
+                >
+                  {{ refusingPayoutReasonError }}
+                </p>
               </div>
               <div class="col-md-6">
                 <textarea
                   class="form-control review_form_input pt-4"
                   rows="6"
                   placeholder="Add more details (Falculative)"
+                  v-model="payoutMoreDetails"
                 ></textarea>
               </div>
             </div>
@@ -463,11 +521,13 @@
               <div class="col-md-12">
                 <div class="Confirmation_container">
                   <input
-                    type="text"
+                    type="file"
                     class="confirmation-input"
                     placeholder="Upload correspondence with the company (Falculative)"
+                    ref="correspondenceFile"
+                    @change="correspondence = $refs.correspondenceFile.files[0]"
                   />
-                  <img src="assets/images/document 1.png" alt="document" />
+                  <img src="/front-assets/images/document 1.png" alt="document" />
                 </div>
               </div>
             </div>
@@ -476,12 +536,15 @@
               <input
                 type="checkbox"
                 class="form-check-input"
-                id="terms_2"
-                name="terms_2"
+                id="terms"
+                v-model="termsCondtions"
               />
-              <label class="checkbox-label" for="terms_2"
-                >I accept the Terms And Condition</label
+              <label class="checkbox-label" for="terms"
+                >I accept the Terms of Service & Privacy Policy</label
               >
+              <p class="text-danger" v-if="termsCondtionsError ? true : false">
+                {{ termsCondtionsError }}
+              </p>
             </div>
             <br />
 
@@ -489,7 +552,7 @@
               <div class="col-md-6 text-right col-6">
                 <button
                   type="button"
-                  onclick="showStep(1)"
+                  @click="backStep()"
                   class="btn btn-primary r_button frmbtn_back"
                 >
                   Back
@@ -497,10 +560,10 @@
               </div>
               <div class="col-md-6 text-left col-6">
                 <button
-                  type="submit"
+                  type="button"
                   id="submit_form"
                   class="btn btn-primary frmbtn r_button"
-                  onclick="submitForm()"
+                  @click="submitPayoutDenial()"
                 >
                   Submit
                 </button>
@@ -508,7 +571,8 @@
             </div>
           </div>
 
-          <div class="review_tabs" id="step6" v-if="step == 6">
+
+          <div class="review_tabs" id="step5" v-if="step == 'unjustifiedBreach'">
             <div class="row">
               <div class="col-md-4">
                 <div class="p_data">
@@ -522,52 +586,75 @@
                   <p
                     style="display: flex; align-items: center; justify-content: flex-end"
                   >
-                    <img class="img_data" style="width: 50px" src="firm.logo_url" />
+                    <img
+                      class="img_data"
+                      style="width: 50px"
+                      :src="selectedFirm.logo_url"
+                    />
                     <span class="p_name">
-                      <b>Phoenix Trader Funding</b>
+                      <b>{{ selectedFirm.name }}</b>
                     </span>
                   </p>
                 </div>
               </div>
             </div>
-
             <div class="row">
               <div class="col-md-6">
                 <textarea
-                  class="form-control review_form_input pt-3"
-                  placeholder="What is the firm’s reason for refusing payout?"
+                  class="form-control review_form_input pt-4"
+                  rows="6"
+                  placeholder="What is the firm’s reason for breaching your account?"
+                  v-model="breachingReason"
                 ></textarea>
+                <p
+                  class="text-danger pl-3"
+                  v-if="breachingReasonError ? true : false"
+                >
+                  {{ breachingReasonError }}
+                </p>
               </div>
               <div class="col-md-6">
                 <textarea
-                  class="form-control review_form_input pt-3"
+                  class="form-control review_form_input pt-4"
+                  rows="6"
                   placeholder="Add more details (Falculative)"
+                  v-model="breachingMoreDetails"
                 ></textarea>
               </div>
             </div>
-            <br />
             <div class="row">
               <div class="col-md-12">
+                <label for="">Upload breach email from Firm (Required)</label>
+
                 <div class="Confirmation_container">
                   <input
-                    type="text"
+                    type="file"
                     class="confirmation-input"
-                    placeholder="Uploadf Funding Certificate form the firm "
+                    placeholder="Upload Funding Certificate form the firm (Required)"
+                    ref="breachEmailFile"
+                    @change="breachEmail = $refs.breachEmailFile.files[0]"
                   />
-                  <img src="assets/images/document 1.png" alt="document" />
+                  <img src="/front-assets/images/document 1.png" alt="document" />
                 </div>
+                <p class="text-danger pl-3" v-if="breachEmailError ? true : false">
+                  {{ breachEmailError }}
+                </p>
               </div>
             </div>
             <br />
             <div class="row">
               <div class="col-md-12">
+                <label for="">Upload correspondence with the company (Falculative)</label>
+
                 <div class="Confirmation_container">
                   <input
-                    type="text"
+                    type="file"
                     class="confirmation-input"
-                    placeholder="Upload correspondence with the company (Falculative)"
+                    placeholder=""
+                    ref="correspondenceFile"
+                    @change="correspondence = $refs.correspondenceFile.files[0]"
                   />
-                  <img src="assets/images/document 1.png" alt="document" />
+                  <img src="/front-assets/images/document 1.png" alt="document" />
                 </div>
               </div>
             </div>
@@ -576,12 +663,15 @@
               <input
                 type="checkbox"
                 class="form-check-input"
-                id="terms_3"
-                name="terms_3"
+                id="terms"
+                v-model="termsCondtions"
               />
-              <label class="checkbox-label" for="terms_3"
-                >I accept the Terms And Condition</label
+              <label class="checkbox-label" for="terms"
+                >I accept the Terms of Service & Privacy Policy</label
               >
+              <p class="text-danger" v-if="termsCondtionsError ? true : false">
+                {{ termsCondtionsError }}
+              </p>
             </div>
             <br />
 
@@ -589,7 +679,7 @@
               <div class="col-md-6 text-right col-6">
                 <button
                   type="button"
-                  onclick="showStep(1)"
+                  @click="backStep()"
                   class="btn btn-primary r_button frmbtn_back"
                 >
                   Back
@@ -597,36 +687,35 @@
               </div>
               <div class="col-md-6 text-left col-6">
                 <button
-                  type="submit"
+                  type="button"
                   id="submit_form"
                   class="btn btn-primary frmbtn r_button"
-                  onclick="submitForm()"
+                  @click="submitBreach()"
                 >
                   Submit
                 </button>
               </div>
             </div>
           </div>
+
         </form>
-        <div class="" id="" v-if="step==7">
+        <div class="" id="" v-if="step == 7">
           <h2 class="page_title pt-4 text-center text-white">Submission Confirmed</h2>
           <div
             class="data mt-4 text-center"
             style="background-color: #fbf5f3; border-radius: 20px; padding: 20px"
           >
             <p style="display: flex; align-items: center; justify-content: center">
-              <img class="img_data"  :src="selectedFirm.logo_url"/>
+              <img class="img_data" :src="selectedFirm.logo_url" />
               <span class="p_name">
                 <b>
-                {{ selectedFirm.name }}
+                  {{ selectedFirm.name }}
                 </b>
               </span>
             </p>
             <br />
             <p class="text-center" style="font-size: 16px; color: #828282">
-              Thank you for reviewing this firm, it will greatly help other users.
-              <br /><br />We'll be analyzing it and if everything's in order, it'll be
-              added to our site.
+                {{ confirmMsg }}
             </p>
 
             <a href="/" class="btn btn-primary frmbtn">Back to website</a>
@@ -640,7 +729,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   props: {
@@ -669,19 +758,33 @@ export default {
       search: "",
       loading: false,
       firms: [],
-      steps:[],
+      steps: [],
       selectedFirm: null,
+      btnSelected: "no",
       step: 1,
       reviewError: false,
       review: null,
+      refusingPayoutReason: null,
+      refusingPayoutReasonError: false,
+      payoutMoreDetails: null,
       orderConfirmationError: false,
       orderConfirmation: null,
+      correspondence: null,
+      correspondenceError: false,
+      fundingCertificate: null,
+      fundingCertificateError: false,
       termsCondtionsError: false,
+      breachEmail: null,
+        breachEmailError: false,
+        breachingReason: null,
+        breachingReasonError: false,
+        breachingMoreDetails: null,
       mainAdvantages: null,
       mainDrawbacks: null,
       termsCondtions: null,
-      selectedAccountSize: '',
-      selectedStep: '',
+      selectedAccountSize: "",
+      selectedStep: "",
+      confirmMsg: "",
       ratings: [
         {
           key: "dashboard",
@@ -714,6 +817,12 @@ export default {
   },
 
   methods: {
+    btnSelectedClicked(selected) {
+      this.btnSelected = selected;
+
+      console.log("btnSelected", this.btnSelected);
+    },
+
     submitReview() {
       if (!this.orderConfirmation) {
         this.orderConfirmationError = "Order Confirmation is required";
@@ -741,7 +850,7 @@ export default {
 
       console.log("formData", formData);
 
-        this.loading = true;
+      this.loading = true;
 
       axios
         .post("/review-report/store", formData, {
@@ -751,31 +860,144 @@ export default {
         })
         .then((response) => {
           console.log(response.data);
-          this.step=7;
+          this.step = 7;
+          this.confirmMsg=response.data.message;
         })
         .catch((error) => {
           console.log(error);
-        }).finally(() => {
+        })
+        .finally(() => {
           this.loading = false;
         });
     },
 
-    accountSizeSelected(){
-        if(!this.selectedAccountSize){
-            return;
-        }
+    submitPayoutDenial() {
+      if (!this.fundingCertificate) {
+        this.fundingCertificateError = "Funding Certificate is required";
+        return;
+      } else {
+        this.fundingCertificateError = false;
+      }
 
-        this.steps=[];
+      if (!this.refusingPayoutReason) {
+        this.refusingPayoutReasonError = "Refusing Payout Reason is required";
+        return;
+      } else {
+        this.refusingPayoutReasonError = false;
+      }
 
-        axios.get('/review-report/get-steps', {
-            params: {
-                account_size_id: this.selectedAccountSize,
-                firm_id: this.selectedFirm.id
-            }
-        }).then((response) => {
-            this.steps = response.data.steps;
-        }).catch((error) => {
-            console.log(error);
+      if (!this.termsCondtions) {
+        this.termsCondtionsError = "Please accept the terms and conditions";
+        return;
+      } else {
+        this.termsCondtionsError = false;
+      }
+
+      const formData = new FormData();
+      formData.append("firm_id", this.selectedFirm.id);
+      formData.append("funding_certificate", this.fundingCertificate);
+      formData.append("correspondence", this.correspondence);
+      formData.append("refusing_payout_reason", this.refusingPayoutReason);
+      formData.append("payout_more_details", this.payoutMoreDetails);
+
+      console.log("formData", formData);
+
+      this.loading = true;
+
+      axios
+        .post("/review-report/payout-denial", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          this.step = 7;
+          this.confirmMsg=response.data.message;
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          this.loading = false;
+        });
+    },
+
+
+    submitBreach() {
+
+        if (!this.breachingReason) {
+        this.breachingReasonError = "Breaching Reason is required";
+        return;
+      } else {
+        this.breachingReasonError = false;
+      }
+
+      if (!this.breachEmail) {
+        this.breachEmailError = "Breach Email is required";
+        return;
+      } else {
+        this.breachEmailError = false;
+      }
+
+
+
+      if (!this.termsCondtions) {
+        this.termsCondtionsError = "Please accept the terms and conditions";
+        return;
+      } else {
+        this.termsCondtionsError = false;
+      }
+
+      const formData = new FormData();
+      formData.append("firm_id", this.selectedFirm.id);
+      formData.append("correspondence", this.correspondence);
+        formData.append("breach_email", this.breachEmail);
+        formData.append("breaching_reason", this.breachingReason);
+        formData.append("breaching_more_details", this.breachingMoreDetails);
+
+      console.log("formData", formData);
+
+      this.loading = true;
+
+      axios
+        .post("/review-report/store-breaches", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          this.step = 7;
+          this.confirmMsg=response.data.message;
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          this.loading = false;
+        });
+    },
+
+    accountSizeSelected() {
+      if (!this.selectedAccountSize) {
+        return;
+      }
+
+      this.steps = [];
+
+      axios
+        .get("/review-report/get-steps", {
+          params: {
+            account_size_id: this.selectedAccountSize,
+            firm_id: this.selectedFirm.id,
+          },
+        })
+        .then((response) => {
+          this.steps = response.data.steps;
+        })
+        .catch((error) => {
+          console.log(error);
         });
     },
 
@@ -813,10 +1035,33 @@ export default {
           return;
         }
       }
+
+      console.log("btnSelected", this.btnSelected);
+
+      if (this.btnSelected == "payoutDenial") {
+        this.step = 5;
+        return;
+      }
+
+      if (this.btnSelected == "unjustifiedBreach") {
+        this.step = 'unjustifiedBreach';
+        return;
+      }
+
       this.step++;
     },
 
     backStep() {
+      if (this.btnSelected == "payoutDenial") {
+        this.step = 1;
+        return;
+      }
+
+      if(this.btnSelected == "unjustifiedBreach") {
+        this.step = 1;
+        return;
+      }
+
       this.step--;
     },
 

@@ -54,6 +54,10 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('review-report/get-steps', [ReviewReportController::class, 'getSteps'])->name('review-report.get-steps');
     Route::post('review-report/store', [ReviewReportController::class, 'store'])->name('review-report.store');
+    Route::post('review-report/payout-denial', [ReviewReportController::class, 'payoutDenial'])->name('review-report.payout-denial');
+    Route::post('review-report/store-breaches', [ReviewReportController::class, 'storeBreaches'])->name('review-report.store-breaches');
+
+
     Route::resource('review-report', ReviewReportController::class);
 
 });

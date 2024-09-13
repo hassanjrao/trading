@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\AccountSize;
+use App\Models\FirmBreach;
 use App\Models\FirmChallenge;
+use App\Models\FirmPayoutDenial;
 use App\Models\FirmReview;
 use App\Models\Step;
 use Illuminate\Http\Request;
@@ -76,7 +78,54 @@ class ReviewReportController extends Controller
         ]);
 
         return response()->json([
-            'message'=>'Review submitted successfully'
+            'message'=>"Thank you for reviewing this firm, it will greatly help other users. \n\n We'll be analyzing it and if everything's in order, it'll be added to our site"
+        ]);
+    }
+
+
+    public function payoutDenial(Request $request){
+
+        $request->validate([
+            'firm_id'=>'required|exists:firms,id',
+            'refusing_payout_reason'=>'required',
+            'payout_more_details'=>'nullable',
+            'funding_certificate'=>'required|file',
+            'correspondence'=>'nullable|file',
+        ]);
+
+        FirmPayoutDenial::create([
+            'firm_id'=>$request->firm_id,
+            'refusing_payout_reason'=>$request->refusing_payout_reason,
+            'payout_more_details'=>$request->payout_more_details,
+            'funding_certificate'=>$request->file('funding_certificate')->store('funding_certificates'),
+            'correspondence'=>$request->correspondence ?$request->file('correspondence')->store('correspondences') :null,
+        ]);
+
+        return response()->json([
+            'message'=>"Thank you for submitting your report, We'll analyze it and if it's confirmed, we'll let you know"
+        ]);
+    }
+
+    public function storeBreaches(Request $request){
+
+        $request->validate([
+            'firm_id'=>'required|exists:firms,id',
+            'breaching_reason'=>'required',
+            'breaching_more_details'=>'nullable',
+            'correspondence'=>'nullable|file',
+            'breach_email'=>'required|file',
+        ]);
+
+        FirmBreach::create([
+            'firm_id'=>$request->firm_id,
+            'reason'=>$request->breaching_reason,
+            'details'=>$request->breaching_more_details,
+            'correspondence'=>$request->correspondence ? $request->file('correspondence')->store('correspondences') : null,
+            'breach_email'=>$request->file('breach_email')->store('breach_emails'),
+        ]);
+
+        return response()->json([
+            'message'=>"Thank you for submitting your report, We'll analyze it and if it's confirmed, we'll let you know"
         ]);
     }
 

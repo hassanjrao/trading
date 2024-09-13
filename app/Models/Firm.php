@@ -96,6 +96,29 @@ class Firm extends Model
 
         $ratings=$this->firmReviews();
 
+        $totalRatings=$ratings->count();
+
+        if($totalRatings==0){
+            return [
+                'dashboard'=>0,
+                'support_team'=>0,
+                'payout_process'=>0,
+                'rules'=>0,
+                'general'=>0,
+                'overall'=>0,
+                'five_stars_avg'=>0,
+                'four_stars_avg'=>0,
+                'three_stars_avg'=>0,
+                'two_stars_avg'=>0,
+                'one_star_avg'=>0,
+                'five_stars'=>0,
+                'four_stars'=>0,
+                'three_stars'=>0,
+                'two_stars'=>0,
+                'one_star'=>0,
+            ];
+        }
+
         $totalRating=5;
 
         $ratingDashboard=$ratings->sum('rating_dashboard');
@@ -104,11 +127,11 @@ class Firm extends Model
         $ratingRules=$ratings->sum('rating_rules');
         $ratingGeneral=$ratings->sum('rating_general');
 
-        $avgRatingDashboard=$ratingDashboard/$ratings->count();
-        $avgRatingSupportTeam=$ratingSupportTeam/$ratings->count();
-        $avgRatingPayoutProcess=$ratingPayoutProcess/$ratings->count();
-        $avgRatingRules=$ratingRules/$ratings->count();
-        $avgRatingGeneral=$ratingGeneral/$ratings->count();
+        $avgRatingDashboard=$ratingDashboard/$totalRatings;
+        $avgRatingSupportTeam=$ratingSupportTeam/$totalRatings;
+        $avgRatingPayoutProcess=$ratingPayoutProcess/$totalRatings;
+        $avgRatingRules=$ratingRules/$totalRatings;
+        $avgRatingGeneral=$ratingGeneral/$totalRatings;
 
         $avgOverallRating=($avgRatingDashboard+$avgRatingSupportTeam+$avgRatingPayoutProcess+$avgRatingRules+$avgRatingGeneral)/$totalRating;
 
@@ -144,11 +167,11 @@ class Firm extends Model
             'rules'=>round($avgRatingRules,1),
             'general'=>round($avgRatingGeneral,1),
             'overall'=>round($avgOverallRating,1),
-            'five_stars_avg'=>$fiveStarsRatingCount/$ratings->count()*100,
-            'four_stars_avg'=>$fourStarsRatingCount/$ratings->count()*100,
-            'three_stars_avg'=>$threeStarsRatingCount/$ratings->count()*100,
-            'two_stars_avg'=>$twoStarsRatingCount/$ratings->count()*100,
-            'one_star_avg'=>$oneStarRatingCount/$ratings->count()*100,
+            'five_stars_avg'=>$fiveStarsRatingCount/$totalRatings*100,
+            'four_stars_avg'=>$fourStarsRatingCount/$totalRatings*100,
+            'three_stars_avg'=>$threeStarsRatingCount/$totalRatings*100,
+            'two_stars_avg'=>$twoStarsRatingCount/$totalRatings*100,
+            'one_star_avg'=>$oneStarRatingCount/$totalRatings*100,
 
             'five_stars'=>$fiveStarsRatingCount,
             'four_stars'=>$fourStarsRatingCount,
