@@ -28,6 +28,9 @@
         .about_img{
             width: 32px !important;
         }
+        a{
+            color: black;
+        }
     </style>
 
     @yield('styles')
