@@ -42,7 +42,7 @@
 }
 .popular-firms {
     color: #000;
-    text-align: center;
+    text-align: left;
     border-radius: 8px;
   }
   .firm-logo {
@@ -70,7 +70,7 @@
 
   .compare-button {
     margin-top: 20px;
-    padding: 6px 99px;
+    padding: 10px 99px;
     font-size: 18px;
     border: 2px solid white;
     border-radius: 8px;
@@ -106,7 +106,7 @@
     display: flex;
     align-items: center;
     background-color: #f8f9fa;
-    border-radius: 10px;
+    border-radius: 24px;
     padding: 10px;
 }
 .search-box input {

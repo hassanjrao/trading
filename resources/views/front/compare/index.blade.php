@@ -31,7 +31,8 @@
                     <div class="btn-group btn-group-toggle compare_tog" data-toggle="buttons">
                         @foreach ($assetTypes as $assetType)
                             <label
-                                class="btn custom-radio-label {{ request('asset_type') == $assetType->id ? 'active' : '' }}">
+
+                                class="btn custom-radio-label {{ request('asset_type') == $assetType->id ? 'active' : '' }}" id="assetType{{ $assetType->id }}">
                                 <input type="radio" name="asset_type" class="custom-radio-input" autocomplete="off"
                                     value="{{ $assetType->id }}"
                                     {{ request('asset_type') == $assetType->id ? 'checked' : '' }}>
@@ -120,23 +121,23 @@
                     <div class="section-title">Extra Filters</div>
                     <div class="btn-group btn-group-toggle compare_togs" data-toggle="buttons">
                         <label class="btn custom-radio-label">
-                            <input type="radio" name="extra-filters" class="custom-radio-input" autocomplete="off">
+                            <input type="radio" name="extra-filters1" class="custom-radio-input" autocomplete="off">
                             News
                             Trading Allowed
                         </label>
                         <label class="btn custom-radio-label">
-                            <input type="radio" name="extra-filters" class="custom-radio-input" autocomplete="off">
+                            <input type="radio" name="extra-filters2" class="custom-radio-input" autocomplete="off">
                             Only
                             White-Label Tech.
                         </label>
                         <label class="btn custom-radio-label">
-                            <input type="radio" name="extra-filters" class="custom-radio-input" autocomplete="off">
+                            <input type="radio" name="extra-filters3" class="custom-radio-input" autocomplete="off">
                             Only
                             Proprietary Tech.
                         </label>
                     </div>
 
-                    <div class="mt-4">
+                    <div class="mt-5">
                         <button class="btn btn-primary btn-block" type="submit"
                             style="background-color: #7A95F8; border: none;width: 30%;">Search</button>
                     </div>
@@ -198,8 +199,10 @@
                                             </a>
                                         </td>
                                         <td>
-                                            <p class="wsx">${{ $challenge->before_price }}</p>
-                                            ${{ $challenge->actual_price }}
+                                            <p class="wsx" style="font-size: 15px; margin-bottom: 0px">${{ $challenge->before_price }}</p>
+                                            <p class="orginal" style="font-size: 18px; margin-bottom: 1px">
+                                                {{ config('app.currency_symbol') . $challenge->actual_price }}
+                                            </p>
                                         </td>
                                         <td>{{ $challenge->accountSize->size }} ({{ $challenge->step->name }})</td>
                                         <td>
@@ -223,7 +226,7 @@
                                         </td>
                                         <td>
                                             {{ Carbon\Carbon::parse($challenge->firm->established)->format('M Y') }}
-                                            <br><img class="img_data img-fluid" style="width: 3rem !important"
+                                            <br><img class="img_data img-fluid" style="width: 3rem !important; margin:5px 0px;"
                                                 src="{{ $challenge->firm->country->flag_url }}"><br><span class="c_name">
                                                 {{ $challenge->firm->country->name }}
                                             </span>
@@ -288,6 +291,11 @@
 
         /* add flex-column-reverse class in a div which is after div with id=example_wrapper */
         $("#example_wrapper").next().addClass("d-flex flex-column-reverse");
+
+        function removeActive(id) {
+            console.log(id);
+           $('#'+id).siblings().removeClass('active');
+        }
 
     </script>
 @endpush

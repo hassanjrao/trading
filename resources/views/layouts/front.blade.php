@@ -31,6 +31,9 @@
         a{
             color: black;
         }
+        .btn-block, .frmbtn{
+            color: white !important;
+        }
     </style>
 
     @yield('styles')

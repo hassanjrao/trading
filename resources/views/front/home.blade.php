@@ -34,7 +34,7 @@
                     </div>
                 </div>
 
-                <p class="head_search mt-3">Popular Firms</p>
+                <p class="head_search mt-5">Popular Firms</p>
                 <div class="popular-firms">
 
                     @foreach ($firms as $firm)

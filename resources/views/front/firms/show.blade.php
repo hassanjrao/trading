@@ -1,6 +1,6 @@
 @extends('layouts.front')
 
-@section('page-title', 'Firm Name')
+@section('page-title', {{ $firm->name }})
 
 @section('styles')
 
@@ -9,6 +9,9 @@
     <style>
         .full-rating{
             border-radius: 24px;
+        }
+        div#p_table_wrapper{
+            margin-top: 0px !important;
         }
     </style>
 @endsection
@@ -62,18 +65,18 @@
 
                     </div>
                     <br>
-                    <ul class="nav nav-tabs justify-content-center" id="myTab_p" role="tablist">
+                    <ul class="nav nav-tabs justify-content-around" id="myTab_p" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="challenges-tab" data-toggle="tab" href="#challenges"
+                            <a class="nav-link active py-2 px-5" id="challenges-tab" data-toggle="tab" href="#challenges"
                                 role="tab" aria-controls="challenges" aria-selected="true">Challenges</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab"
+                            <a class="nav-link py-2 px-5" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab"
                                 aria-controls="reviews" aria-selected="false">Reviews</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" id="about-tab" data-toggle="tab" href="#about" role="tab"
+                            <a class="nav-link py-2 px-5" id="about-tab" data-toggle="tab" href="#about" role="tab"
                                 aria-controls="about" aria-selected="false">About</a>
                         </li>
                     </ul>
@@ -93,7 +96,7 @@
                                 <div class="col-md-3 ">
                                     <div class="chalng_tabs review_tab">
                                         <p class="p_text">Profit Split</p>
-                                        <p class="d_est1"><b>
+                                        <p class="d_est1" style="font-size: 40px"><b>
                                                 {{ $firm->profit_split }}
                                             </b></p>
                                     </div>
@@ -101,7 +104,7 @@
                                 <div class="col-md-3 ">
                                     <div class="chalng_tabs review_tab">
                                         <p class="p_text">Technology</p>
-                                        <p class="d_est1"><b>
+                                        <p class="d_est1" style="font-size: 25px"><b>
                                                 {{ $firm->technology->name }}
                                             </b></p>
                                     </div>
@@ -120,7 +123,7 @@
                                     <div class="col-md-3 ">
                                         <div class="chalng_tabs review_tab">
                                             <p class="p_text">Daily Drawdown</p>
-                                            <p class="d_est1"><b>
+                                            <p class="d_est1" style="font-size: 25px"><b>
                                                     {{ $firm->daily_drawdown }}
                                                 </b></p>
                                         </div>
@@ -129,7 +132,7 @@
                                 <div class="col-md-3 ">
                                     <div class="chalng_tabs review_tab">
                                         <p class="p_text">Payout Frequency</p>
-                                        <p class="d_est1 d-flex flex-column"><b>
+                                        <p class="d_est1 d-flex flex-column"><b style="font-size: 25px">
                                                 {{ $firm->payout_frequency }}
                                             </b>
                                             {{-- <br> --}}
@@ -143,8 +146,7 @@
                     </div>
                     <div class="col-md-1"></div>
                 </div>
-                <div class="row">
-                    <div class="col-md-1"></div>
+                <div class="row justify-content-center">
                     <div class="col-md-10 col-12">
                         <div class="table-responsive">
                             <table class="table table-bordered nowrap" id="p_table"
@@ -166,14 +168,14 @@
                                     @foreach ($firmChallenges as $challenge)
                                         <tr>
                                             <td>
-                                                <p class="wsx">
+                                                <p class="wsx" style="font-size: 15px; margin-bottom: 0px">
                                                     {{ config('app.currency_symbol') . $challenge->before_price }}
                                                 </p>
-                                                <p class="orginal">
+                                                <p class="orginal" style="font-size: 20px; margin-bottom: 1px">
                                                     {{ config('app.currency_symbol') . $challenge->actual_price }}
                                                 </p>
                                                 @if ($challenge->actual_price_note)
-                                                    <span>
+                                                    <span style="font-size: 10px">
                                                         {{ $challenge->actual_price_note }}
                                                     </span>
                                                 @endif
@@ -224,7 +226,6 @@
                             </table>
                         </div>
                     </div>
-                    <div class="col-md-1"></div>
                 </div>
             </div>
             <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
@@ -318,7 +319,7 @@
                             <h5>
                                 List of Reviews
                             </h5>
-                            <a href="#" class="btn btn-primary newbtn ml-2">+ Add Yours</a>
+                            <a href="{{ route('review-report.create') }}" class="btn btn-primary newbtn ml-2">+ Add Yours</a>
                         </div>
                         <br>
                     </div>
@@ -452,13 +453,13 @@
                                                                 aria-hidden="true"></i> 15 out of 18 found it useful</p>
                                                     </div>
 
-                                                    <div class="sect half_sec">
+                                                    {{-- <div class="sect half_sec">
 
                                                         <p class="sect_p"> <button id="toggleButton">Certificates /
                                                                 Payouts <b class="acct_val">2</b> <i
                                                                     class="fa fa-chevron-right"
                                                                     aria-hidden="true"></i></button></p>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                             </div>
 
@@ -506,12 +507,11 @@
                                 <div class="col-md-3 ">
                                     <div class="chalng_tabs review_tab">
                                         <p class="p_text">TrustPilot</p>
-                                        <p class="d_est1">
-                                        <div>
+                                        <p class="d_est1" style="font-size: 38px">
 
                                             <img src="{{ asset('front-assets/images/image 1.png') }}" class="about_img">
                                             <b>{{ $firm->about->trust_pilot }}</b>
-                                        </div>
+
                                         </p>
 
                                     </div>
@@ -639,6 +639,10 @@
         $(document).ready(function() {
             $("#p_table").DataTable({
                 aaSorting: [],
+                searching: false,
+                // paging: false,
+                info: false,
+                lengthChange: false,
                 // responsive: true,
 
                 columnDefs: [{
@@ -652,14 +656,18 @@
                 ]
             });
 
-            $(".dataTables_filter input")
-                .attr("placeholder", "Search here...")
-                .css({
-                    width: "300px",
-                    display: "inline-block"
-                });
+            // $(".dataTables_filter input")
+            //     .attr("placeholder", "Search here...")
+            //     .css({
+            //         width: "300px",
+            //         display: "inline-block"
+            //     });
 
             $('[data-toggle="tooltip"]').tooltip();
+
+
+        // delete the first div with row class inside #p_table_wrapper
+        $('#p_table_wrapper .row:first').remove();
         });
 
         document.getElementById('toggleButton').addEventListener('click', function() {
@@ -670,5 +678,6 @@
                 div.style.display = 'none';
             }
         });
+
     </script>
 @endpush
