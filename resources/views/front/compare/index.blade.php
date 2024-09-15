@@ -6,6 +6,11 @@
 
     <style>
 
+/* placeholder color */
+        input[type='search']::-webkit-input-placeholder {
+            color: #ccc !important;
+        }
+
     </style>
 
 @endsection
@@ -276,10 +281,11 @@
             });
 
             $(".dataTables_filter input")
-                .attr("placeholder", "Search for a company or chalange from the list")
+                .attr("placeholder", "Search for a company or challenge from the list")
                 .css({
                     width: "300px",
-                    display: "inline-block"
+                    display: "inline-block",
+                    color: "#6F6F6F !important"
                 });
 
             $('[data-toggle="tooltip"]').tooltip();
