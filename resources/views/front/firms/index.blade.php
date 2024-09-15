@@ -9,11 +9,40 @@
     <link rel="stylesheet" href="{{ asset('front-assets/css/top.css') }}">
     <link href="https://fonts.cdnfonts.com/css/metropolis-2" rel="stylesheet">
 
+    <style>
+        .review-rating-block {
+            margin-top: 25px;
+        }
+
+
+        .review-rating {
+            background: #6453C0;
+            border-radius: 45px;
+            color: white;
+            padding: 3px 17px;
+            z-index: 1;
+            position: relative;
+
+        }
+
+        .review-back {
+            background: #7A95F8;
+            border-radius: 45px;
+            color: white;
+            padding: 3px 17px;
+            height: 38px;
+            z-index: 0;
+            position: relative;
+            bottom: 48px;
+            right: 3px;
+        }
+    </style>
+
 @endsection
 
 @section('content')
 
-<br><br><br>
+    <br><br><br>
 
 
     <h2 class="page_title pt-4 text-center text-white">Top Firm</h2>
@@ -74,13 +103,15 @@
                                 <div class="rating-section top_firm_rating">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="d-flex align-items-center new_top">
-                                            <p class="top_firm_title"><img style="width: 60px !important;" src="{{ $firm->logo_url }}">
+                                            <p class="top_firm_title"><img style="width: 60px !important;"
+                                                    src="{{ $firm->logo_url }}">
                                                 <a href="{{ route('firms.show', $firm->id) }}"> {{ $firm->name }}</a>
                                             </p>
 
-                                            <div class="">
-                                                <div class="bt_backs"></div>
-                                                <h4 class="mb-0_1">4.3</h4>
+                                            <div class="review-rating-block">
+
+                                                <h4 class="review-rating">4.3</h4>
+                                                <div class="review-back"></div>
                                             </div>
                                         </div>
 
