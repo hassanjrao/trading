@@ -6,6 +6,12 @@
 
     <link href="https://fonts.cdnfonts.com/css/metropolis-2" rel="stylesheet">
 
+    <style>
+        .tab-content{
+            min-height: 0px;
+        }
+    </style>
+
 @endsection
 
 @section('content')
@@ -39,8 +45,17 @@
             @endforeach
         </ul>
         <div class="tab-content" id="myTabContent">
+
             <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
 
+
+                @if(count($firms) == 0)
+                <div class="row align-items-center">
+                    <div class="col-lg-12 text-center">
+                        <h3>No firm in this category has been voted by anyone yet</h3>
+                    </div>
+                </div>
+                @endif
                 @foreach ($firms as $firm)
                     <div class="row mb-3">
                         <div class="col-md-1 col-1">
@@ -63,7 +78,7 @@
                         <div class="col-md-3  col-3 border_line">
                             <div class="button_v">
                                 @auth
-                            
+
                                     <form action="{{ route('firms.submit-vote') }}" method="POST">
                                         @csrf
                                         <input type="hidden" name="firm_id" value="{{ $firm->id }}">
