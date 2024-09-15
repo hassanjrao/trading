@@ -1,6 +1,6 @@
 @extends('layouts.front')
 
-@section('page-title', {{ $firm->name }})
+@section('page-title', "{{ $firm->name }}")
 
 @section('styles')
 
