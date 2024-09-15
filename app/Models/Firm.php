@@ -106,6 +106,11 @@ class Firm extends Model
                 'rules'=>0,
                 'general'=>0,
                 'overall'=>0,
+                'dashboard_percent'=>0,
+                'support_team_percent'=>0,
+                'payout_process_percent'=>0,
+                'rules_percent'=>0,
+                'general_percent'=>0,
                 'five_stars_avg'=>0,
                 'four_stars_avg'=>0,
                 'three_stars_avg'=>0,
@@ -167,6 +172,11 @@ class Firm extends Model
             'rules'=>round($avgRatingRules,1),
             'general'=>round($avgRatingGeneral,1),
             'overall'=>round($avgOverallRating,1),
+            'dashboard_percent'=>round($avgRatingDashboard/$totalRating*100),
+            'support_team_percent'=>round($avgRatingSupportTeam/$totalRating*100),
+            'payout_process_percent'=>round($avgRatingPayoutProcess/$totalRating*100),
+            'rules_percent'=>round($avgRatingRules/$totalRating*100),
+            'general_percent'=>round($avgRatingGeneral/$totalRating*100),
             'five_stars_avg'=>$fiveStarsRatingCount/$totalRatings*100,
             'four_stars_avg'=>$fourStarsRatingCount/$totalRatings*100,
             'three_stars_avg'=>$threeStarsRatingCount/$totalRatings*100,
@@ -183,6 +193,26 @@ class Firm extends Model
 
 
 
+    }
+
+
+    public function ratingPercentages($rating){
+        $totalRating=5;
+
+        $ratingDashboardPerc=$this->rating_dashboard/$totalRating*100;
+        $ratingSupportTeamPerc=$this->rating_support_team/$totalRating*100;
+        $ratingPayoutProcessPerc=$this->rating_payout_process/$totalRating*100;
+        $ratingRulesPerc=$this->rating_rules/$totalRating*100;
+        $ratingGeneralPerc=$this->rating_general/$totalRating*100;
+
+        // round to 2 decimal places
+        return [
+            'dashboard'=>round($ratingDashboardPerc,2),
+            'support_team'=>round($ratingSupportTeamPerc),
+            'payout_process'=>round($ratingPayoutProcessPerc),
+            'rules'=>round($ratingRulesPerc),
+            'general'=>round($ratingGeneralPerc),
+        ];
     }
 
 }

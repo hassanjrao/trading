@@ -84,7 +84,7 @@
                 <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
 
                     <li class="nav-item rev_tab">
-                        <a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab"
+                        <a class="nav-link" id="review-tab" href="{{ route('review-report.create') }}" role="tab"
                             aria-controls="review" aria-selected="false"><b>+ Review/Report A Firm</b></a>
                     </li>
                 </ul>
@@ -120,39 +120,45 @@
                                         <div class="d-flex align-items-center mb-2">
                                             <span class="progress_title">Dashboard</span>
                                             <div class="rating-bar  flex-grow-1">
-                                                <div class="rating-bar-fill" style="width: 50%;"></div>
+                                                <div class="rating-bar-fill {{ $firm->calculateAverageRatings()['dashboard_percent']=='100' ? 'full-rating':'' }}" style="width: {{ $firm->calculateAverageRatings()['dashboard_percent'].'%' }};">
+                                                </div>
                                             </div>
-                                            <span class="progress_titles">3 Stars</span>
+                                            <span class="progress_titles">{{ $firm->calculateAverageRatings()['dashboard'] }} Stars</span>
                                         </div>
                                         <div class="d-flex align-items-center mb-2">
                                             <span class="progress_title">Support Team</span>
                                             <div class="rating-bar  flex-grow-1">
-                                                <div class="rating-bar-fill" style="width: 70%;"></div>
+                                                <div class="rating-bar-fill {{ $firm->calculateAverageRatings()['support_team_percent']=='100' ? 'full-rating':'' }}" style="width: {{ $firm->calculateAverageRatings()['support_team_percent'].'%' }};">
+                                                </div>
                                             </div>
-                                            <span class="progress_titles">4 Stars</span>
+                                            <span class="progress_titles">{{ $firm->calculateAverageRatings()['support_team'] }} Stars</span>
                                         </div>
                                         <div class="d-flex align-items-center mb-2">
                                             <span class="progress_title">Payout Process</span>
                                             <div class="rating-bar  flex-grow-1">
-                                                <div class="rating-bar-fill" style="width: 100%; border-radius: 24px;">
+                                                <div class="rating-bar-fill {{ $firm->calculateAverageRatings()['payout_process_percent']=='100' ? 'full-rating':'' }}" style="width: {{ $firm->calculateAverageRatings()['payout_process_percent'].'%' }};">
                                                 </div>
                                             </div>
-                                            <span class="progress_titles">5 Stars</span>
+                                            <span class="progress_titles">{{ $firm->calculateAverageRatings()['payout_process'] }} Stars</span>
+
                                         </div>
                                         <div class="d-flex align-items-center mb-2">
                                             <span class="progress_title">Rules</span>
                                             <div class="rating-bar  flex-grow-1">
-                                                <div class="rating-bar-fill" style="width: 100%; border-radius: 24px;">
+                                                <div class="rating-bar-fill {{ $firm->calculateAverageRatings()['rules_percent']=='100' ? 'full-rating':'' }}" style="width: {{ $firm->calculateAverageRatings()['rules_percent'].'%' }};">
                                                 </div>
                                             </div>
-                                            <span class="progress_titles">5 Stars</span>
+                                            <span class="progress_titles">{{ $firm->calculateAverageRatings()['rules'] }} Stars</span>
+
                                         </div>
                                         <div class="d-flex align-items-center mb-2">
                                             <span class="progress_title">General Rating</span>
                                             <div class="rating-bar  flex-grow-1">
-                                                <div class="rating-bar-fill" style="width: 70%;"></div>
+                                                <div class="rating-bar-fill {{ $firm->calculateAverageRatings()['general_percent']=='100' ? 'full-rating':'' }}" style="width: {{ $firm->calculateAverageRatings()['general_percent'].'%' }};">
+                                                </div>
                                             </div>
-                                            <span class="progress_titles">4 Stars</span>
+                                            <span class="progress_titles">{{ $firm->calculateAverageRatings()['general'] }} Stars</span>
+
                                         </div>
                                     </div>
                                 </div>
