@@ -78,6 +78,7 @@
               <button
                 type="button"
                 class="btn btn-primary frmbtn"
+                style="color: #7a95f8 "
                 @click="btnSelectedClicked('no')"
                 :class="{ active: btnSelected == 'no' ? true : false }"
               >
@@ -86,6 +87,7 @@
               <button
                 type="button"
                 class="btn btn-primary frmbtn"
+                style="color: #7a95f8 "
                 @click="btnSelectedClicked('payoutDenial')"
                 :class="{ active: btnSelected == 'payoutDenial' ? true : false }"
               >
@@ -94,6 +96,7 @@
               <button
                 type="button"
                 class="btn btn-primary frmbtn"
+                style="color: #7a95f8 "
                 @click="btnSelectedClicked('unjustifiedBreach')"
                 :class="{ active: btnSelected == 'unjustifiedBreach' ? true : false }"
               >
@@ -218,6 +221,7 @@
                 <button
                   type="button"
                   @click="nextStep()"
+                  style="color: white !important;"
                   class="btn btn-primary frmbtn r_button"
                 >
                   Next
@@ -335,6 +339,7 @@
                 <button
                   type="button"
                   @click="nextStep()"
+                  style="color: white !important;"
                   class="btn btn-primary frmbtn r_button"
                 >
                   Next
@@ -440,6 +445,7 @@
                   id="submit_form"
                   class="btn btn-primary frmbtn r_button"
                   :disabled="loading"
+                  style="color: white !important;"
                   @click="submitReview()"
                 >
                   Submit
@@ -564,6 +570,8 @@
                   id="submit_form"
                   class="btn btn-primary frmbtn r_button"
                   @click="submitPayoutDenial()"
+                  style="color: white !important;"
+
                 >
                   Submit
                 </button>
@@ -691,6 +699,8 @@
                   id="submit_form"
                   class="btn btn-primary frmbtn r_button"
                   @click="submitBreach()"
+                  style="color: white !important;"
+                  
                 >
                   Submit
                 </button>

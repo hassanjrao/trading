@@ -12,6 +12,9 @@
             background: #7a95f8 !important;
             color: #FBF5F3 !important;
         }
+        .frmbtn{
+            color: #7a95f8 !important;
+        }
     </style>
 
 @endsection
