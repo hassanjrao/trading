@@ -347,7 +347,7 @@
               <div class="col-md-4">
                 <div class="p_data">
                   <div class="data_r">
-                    <p class="revie_title">Step 4 : Conformation</p>
+                    <p class="revie_title">Step 4 : Confirmation</p>
                   </div>
                 </div>
               </div>

@@ -24,7 +24,7 @@
             <div class="col-md-11">
                 <p class="text-white" style="font: 14px;">
                     <img alt="User Pic" src="{{ auth()->user()->profile_picture_url }}" class="profile-image1 img-fluid"
-                        style="width: 100px; height: 100px; border-radius: 50%;" id="profileImage">
+                        style="width: 66px; height: 66px; border-radius: 50%;" id="profileImage">
                     {{ auth()->user()->name }}
                 </p>
             </div>
@@ -133,7 +133,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 text-right">
                                         <br>
                                         <button type="submit" class="btn btn-primary frmbtn pr-5 pl-5">Save</button>
                                     </div>
@@ -199,7 +199,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 text-right">
                                         <br>
                                         <button type="submit" class="btn btn-primary frmbtn pr-5 pl-5">Save</button>
                                     </div>
@@ -377,7 +377,7 @@
                                                                         useful</p>
                                                                 </div>
 
-                                                                <div class="sect half_sec">
+                                                                {{-- <div class="sect half_sec">
 
                                                                     <p class="sect_p"> <button
                                                                             id="toggleButton">Certificates
@@ -385,7 +385,7 @@
                                                                             Payouts <b class="acct_val">2</b> <i
                                                                                 class="fa fa-chevron-right"
                                                                                 aria-hidden="true"></i></button></p>
-                                                                </div>
+                                                                </div> --}}
                                                             </div>
                                                         </div>
 
@@ -441,9 +441,9 @@
 
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 text-right">
 
-                                        <button type="submit" class=" btn btn-primary frmbtn pr-5 pl-5">Save</button>
+                                        <button type="submit" class=" btn btn-primary frmbtn pr-5 pl-5">Submit</button>
                                     </div>
                                 </div>
                             </form>
