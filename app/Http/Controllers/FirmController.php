@@ -29,7 +29,7 @@ class FirmController extends Controller
         $firms = Firm::when($type, function ($query) use ($type) {
             return $query->where('asset_type_id', $type);
         })
-        ->whereHas('firmReviews')
+        // ->whereHas('firmReviews')
         ->latest()->get();
 
         return view('front.firms.index', compact('firms', 'assetTypes'));
