@@ -26,6 +26,9 @@ Vue.component('review-report', require('./components/ReviewReport/ReviewReport.v
 
 Vue.component('add-edit-firm', require('./components/Firms/AddEditFirm.vue').default);
 
+// Vue.component('compare', require('./components/Compare.vue').default);
+
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

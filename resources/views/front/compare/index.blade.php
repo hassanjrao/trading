@@ -37,8 +37,8 @@
                         @foreach ($assetTypes as $assetType)
                             <label
 
-                                class="btn custom-radio-label {{ request('asset_type') == $assetType->id ? 'active' : '' }}" id="assetType{{ $assetType->id }}">
-                                <input type="radio" name="asset_type" class="custom-radio-input" autocomplete="off"
+                                class="btn custom-radio-label {{ request('asset_type') == $assetType->id ? 'active' : '' }}" id="assetType{{ $assetType->id }}" onclick="btnClicked(this)">
+                                <input type="radio" name="asset_type" class="custom-radio-input"
                                     value="{{ $assetType->id }}"
                                     {{ request('asset_type') == $assetType->id ? 'checked' : '' }}>
                                 {{ $assetType->name }}
@@ -298,9 +298,21 @@
         /* add flex-column-reverse class in a div which is after div with id=example_wrapper */
         $("#example_wrapper").next().addClass("d-flex flex-column-reverse");
 
-        function removeActive(id) {
-            console.log(id);
-           $('#'+id).siblings().removeClass('active');
+        function btnClicked(e) {
+            // if the element is already active, then remove the active class
+            console.log(e.classList,e.classList.contains("active"));
+            if (e.classList.contains("active")) {
+                console.log("already active");
+                e.classList.remove("active");
+                console.log(e.classList);
+            } else {
+                // if the element is not active, then remove the active class from all elements
+                // and add the active class to the clicked element
+                document.querySelectorAll(".custom-radio-label").forEach((el) => {
+                    el.classList.remove("active");
+                });
+                e.classList.add("active");
+            }
         }
 
     </script>

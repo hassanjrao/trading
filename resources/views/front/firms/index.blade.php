@@ -84,7 +84,7 @@
                 <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
 
                     <li class="nav-item rev_tab">
-                        <a class="nav-link" id="review-tab" href="{{ route('review-report.create') }}" role="tab"
+                        <a class="nav-link" id="review-tab" href="{{ route('review-report.index') }}" role="tab"
                             aria-controls="review" aria-selected="false"><b>+ Review/Report A Firm</b></a>
                     </li>
                 </ul>

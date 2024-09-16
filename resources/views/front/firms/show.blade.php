@@ -323,7 +323,7 @@
                             <h5>
                                 List of Reviews
                             </h5>
-                            <a href="{{ route('review-report.create') }}" class="btn btn-primary newbtn ml-2">+ Add Yours</a>
+                            <a href="{{ route('review-report.index') }}" class="btn btn-primary newbtn ml-2">+ Add Yours</a>
                         </div>
                         <br>
                     </div>
