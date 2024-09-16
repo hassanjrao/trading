@@ -700,7 +700,7 @@
                   class="btn btn-primary frmbtn r_button"
                   @click="submitBreach()"
                   style="color: white !important;"
-                  
+
                 >
                   Submit
                 </button>
@@ -728,7 +728,7 @@
                 {{ confirmMsg }}
             </p>
 
-            <a href="/" class="btn btn-primary frmbtn">Back to website</a>
+            <a href="/" style="color: white !important;" class="btn btn-primary frmbtn">Back to website</a>
           </div>
         </div>
       </div>

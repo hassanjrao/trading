@@ -70,11 +70,11 @@ class ReviewReportController extends Controller
             'order_confirmation_path'=>$request->file('order_confirmation')->store('order_confirmations'),
             'main_advantages'=>$request->main_advantages,
             'main_disadvantages'=>$request->main_drawbacks,
-            'rating_dashboard'=>$ratings->dashboard,
-            'rating_support_team'=>$ratings->support_team,
-            'rating_payout_process'=>$ratings->payout_process,
-            'rating_rules'=>$ratings->rules,
-            'rating_general'=>$ratings->general_rating,
+            'rating_dashboard'=>$ratings->dashboard ?? 0,
+            'rating_support_team'=>$ratings->support_team ?? 0,
+            'rating_payout_process'=>$ratings->payout_process ?? 0,
+            'rating_rules'=>$ratings->rules ?? 0,
+            'rating_general'=>$ratings->general_rating ?? 0,
         ]);
 
         return response()->json([

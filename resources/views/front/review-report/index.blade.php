@@ -15,6 +15,9 @@
         .frmbtn{
             color: #7a95f8 !important;
         }
+        .img_data{
+            margin-right: 10px;
+        }
     </style>
 
 @endsection
