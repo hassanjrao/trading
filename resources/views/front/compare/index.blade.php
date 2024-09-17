@@ -191,9 +191,11 @@
 
     @if ($firmChallenges->count() <= 0)
         <div class="container-fluid">
-            <h2>
-                No results found
-            </h2>
+            <div class="tab-content" id="myTabContent">
+                <h2 class="text-center">
+                    No results found
+                </h2>
+            </div>
         </div>
     @else
         <div class="container-fluid">
