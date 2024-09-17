@@ -152,6 +152,7 @@ class AdminFirmNewController extends Controller
             'linkedin_url' => 'required',
             'trust_pilot' => 'required',
             'trustpilot_url' => 'required',
+            'commission_strucuture_link'=>'nullable',
             'payment_methods' => 'required|array',
             'payment_methods.*' => 'required|exists:payment_methods,id',
             'payout_methods' => 'required|array',
@@ -178,6 +179,7 @@ class AdminFirmNewController extends Controller
                 'linkedin_url' => $request->linkedin_url,
                 'trustpilot_url' => $request->trustpilot_url,
                 'description' => $request->description,
+                'commission_strucuture_link' => $request->commission_strucuture_link,
             ]
         );
 

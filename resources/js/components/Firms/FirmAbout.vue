@@ -97,6 +97,14 @@
               ></v-autocomplete>
             </v-col>
 
+            <v-col cols="12" sm="6" md="6">
+              <v-text-field
+                ref="commission_strucuture_link"
+                v-model="firmAbout.commission_strucuture_link"
+                label="Commission Structure Link"
+              ></v-text-field>
+            </v-col>
+
             <v-col cols="12" sm="12" md="12">
               <v-textarea
                 ref="description"
@@ -203,6 +211,7 @@ export default {
         linkedin_url: "",
         trust_pilot: "",
         trustpilot_url: "",
+        commission_strucuture_link: "",
         payment_methods: null,
         payout_methods: null,
         platforms: null,
