@@ -76,8 +76,9 @@
                     <div class="section-title">Asset Type</div>
                     <div class="d-flex justify-content-start" data-toggle="buttons">
                         @foreach ($assetTypes as $assetType)
-                            <button type="button" class="checkBtn w-10rem {{ in_array($assetType->id,$selectedAssetTypes) ? 'active' : '' }}"
-                            id="assetType-{{ $assetType->id }}"
+                            <button type="button"
+                                class="checkBtn w-10rem {{ in_array($assetType->id, $selectedAssetTypes) ? 'active' : '' }}"
+                                id="assetType-{{ $assetType->id }}"
                                 onclick="filterClicked('assetType',{{ $assetType->id }})">
                                 {{ $assetType->name }}
                             </button>
@@ -87,9 +88,9 @@
                     <div class="section-title">Account Size</div>
                     <div class="d-flex justify-content-start" data-toggle="buttons">
                         @foreach ($top7AccountSizes as $accountSize)
-                            <button type="button" class="checkBtn w-10rem {{ in_array($accountSize->id,$selectedAccountSizes) ? 'active' : '' }}"
-                            id="accountSize-{{ $accountSize->id }}"
-
+                            <button type="button"
+                                class="checkBtn w-10rem {{ in_array($accountSize->id, $selectedAccountSizes) ? 'active' : '' }}"
+                                id="accountSize-{{ $accountSize->id }}"
                                 onclick="filterClicked('accountSize',{{ $accountSize->id }})">
                                 {{ $accountSize->size }}
                             </button>
@@ -152,9 +153,9 @@
                     <div class="d-flex justify-content-start" data-toggle="buttons">
 
                         @foreach ($steps as $step)
-                            <button type="button" class="checkBtn w-10rem {{ in_array($step->id,$selectedSteps) ? 'active' : '' }}"
-                            id="step-{{ $step->id }}"
-                                onclick="filterClicked('step',{{ $step->id }})">
+                            <button type="button"
+                                class="checkBtn w-10rem {{ in_array($step->id, $selectedSteps) ? 'active' : '' }}"
+                                id="step-{{ $step->id }}" onclick="filterClicked('step',{{ $step->id }})">
                                 {{ $step->name }}
                             </button>
                         @endforeach
@@ -164,8 +165,9 @@
                     <div class="d-flex justify-content-start" data-toggle="buttons">
 
                         @foreach ($technologies as $technology)
-                            <button type="button" class="checkBtn w-10rem {{ in_array($technology->id,$selectedTechnologies) ? 'active' : '' }}"
-                            id="technology-{{ $technology->id }}"
+                            <button type="button"
+                                class="checkBtn w-10rem {{ in_array($technology->id, $selectedTechnologies) ? 'active' : '' }}"
+                                id="technology-{{ $technology->id }}"
                                 onclick="filterClicked('technology',{{ $technology->id }})">
                                 {{ $technology->name }}
                             </button>
@@ -187,7 +189,13 @@
 
     </div>
 
-    @if ($firmChallenges->count() > 0)
+    @if ($firmChallenges->count() <= 0)
+        <div class="container-fluid">
+            <h2>
+                No results found
+            </h2>
+        </div>
+    @else
         <div class="container-fluid">
             <div class="search-container">
                 <div class="input-group">
