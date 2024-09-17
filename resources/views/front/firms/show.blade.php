@@ -1,7 +1,7 @@
 @extends('layouts.front')
 
 @php
-    $firmName= $firm->name;
+    $firmName = $firm->name;
 @endphp
 
 @section('page-title', $firmName)
@@ -11,10 +11,11 @@
     <link rel="stylesheet" href="{{ asset('front-assets/css/profile.css') }}">
 
     <style>
-        .full-rating{
+        .full-rating {
             border-radius: 24px;
         }
-        div#p_table_wrapper{
+
+        div#p_table_wrapper {
             margin-top: 0px !important;
         }
     </style>
@@ -243,7 +244,8 @@
                                     <div class="d-flex align-items-start">
                                         <h4 style="color: #5B5B5B;">Current Rating
                                             <br>
-                                            <span class="p_des">Based on <strong>{{ $fireReviews->count() }}</strong> Reviews</span>
+                                            <span class="p_des">Based on <strong>{{ $fireReviews->count() }}</strong>
+                                                Reviews</span>
                                         </h4>
 
                                         <div class="ml-2 ratess">
@@ -259,43 +261,53 @@
                                     <div class="d-flex align-items-center mb-2">
                                         <span class="progress_title">5 Stars</span>
                                         <div class="rating-bar  flex-grow-1">
-                                            <div class="rating-bar-fill {{ $avgRating['five_stars_avg']=='100' ? 'full-rating':'' }}" style="width: {{ $avgRating['five_stars_avg'].'%' }};">
+                                            <div class="rating-bar-fill {{ $avgRating['five_stars_avg'] == '100' ? 'full-rating' : '' }}"
+                                                style="width: {{ $avgRating['five_stars_avg'] . '%' }};">
                                             </div>
                                         </div>
 
-                                        <span class="progress_titles"><strong>{{ $avgRating['five_stars'] }}</strong> Reviews</span>
+                                        <span class="progress_titles"><strong>{{ $avgRating['five_stars'] }}</strong>
+                                            Reviews</span>
                                     </div>
                                     <div class="d-flex align-items-center mb-2">
                                         <span class="progress_title">4 Stars</span>
                                         <div class="rating-bar  flex-grow-1">
-                                            <div class="rating-bar-fill {{ $avgRating['four_stars_avg']=='100' ? 'full-rating':'' }}" style="width: {{ $avgRating['four_stars_avg'].'%' }};">
+                                            <div class="rating-bar-fill {{ $avgRating['four_stars_avg'] == '100' ? 'full-rating' : '' }}"
+                                                style="width: {{ $avgRating['four_stars_avg'] . '%' }};">
                                             </div>
                                         </div>
-                                        <span class="progress_titles"><strong>{{ $avgRating['four_stars'] }}</strong> Reviews</span>
+                                        <span class="progress_titles"><strong>{{ $avgRating['four_stars'] }}</strong>
+                                            Reviews</span>
                                     </div>
                                     <div class="d-flex align-items-center mb-2">
                                         <span class="progress_title">3 Stars</span>
                                         <div class="rating-bar  flex-grow-1">
-                                            <div class="rating-bar-fill {{ $avgRating['three_stars_avg']=='100' ? 'full-rating':'' }}" style="width: {{ $avgRating['three_stars_avg'].'%' }};">
+                                            <div class="rating-bar-fill {{ $avgRating['three_stars_avg'] == '100' ? 'full-rating' : '' }}"
+                                                style="width: {{ $avgRating['three_stars_avg'] . '%' }};">
                                             </div>
                                         </div>
-                                        <span class="progress_titles"><strong>{{ $avgRating['three_stars'] }}</strong> Reviews</span>
+                                        <span class="progress_titles"><strong>{{ $avgRating['three_stars'] }}</strong>
+                                            Reviews</span>
                                     </div>
                                     <div class="d-flex align-items-center mb-2">
                                         <span class="progress_title">2 Stars</span>
                                         <div class="rating-bar  flex-grow-1">
-                                            <div class="rating-bar-fill {{ $avgRating['two_stars_avg']=='100' ? 'full-rating':'' }}" style="width: {{ $avgRating['two_stars_avg'].'%' }};">
+                                            <div class="rating-bar-fill {{ $avgRating['two_stars_avg'] == '100' ? 'full-rating' : '' }}"
+                                                style="width: {{ $avgRating['two_stars_avg'] . '%' }};">
                                             </div>
                                         </div>
-                                        <span class="progress_titles"><strong>{{ $avgRating['two_stars'] }}</strong> Reviews</span>
+                                        <span class="progress_titles"><strong>{{ $avgRating['two_stars'] }}</strong>
+                                            Reviews</span>
                                     </div>
                                     <div class="d-flex align-items-center mb-2">
                                         <span class="progress_title">1 Star</span>
                                         <div class="rating-bar  flex-grow-1">
-                                            <div class="rating-bar-fill {{ $avgRating['one_star_avg']=='100' ? 'full-rating':'' }}" style="width: {{ $avgRating['one_star_avg'].'%' }};">
+                                            <div class="rating-bar-fill {{ $avgRating['one_star_avg'] == '100' ? 'full-rating' : '' }}"
+                                                style="width: {{ $avgRating['one_star_avg'] . '%' }};">
                                             </div>
                                         </div>
-                                        <span class="progress_titles"><strong>{{ $avgRating['one_star'] }} </strong> Reviews</span>
+                                        <span class="progress_titles"><strong>{{ $avgRating['one_star'] }} </strong>
+                                            Reviews</span>
                                     </div>
                                 </div>
                             </div>
@@ -323,7 +335,8 @@
                             <h5>
                                 List of Reviews
                             </h5>
-                            <a href="{{ route('review-report.index') }}" class="btn btn-primary newbtn ml-2">+ Add Yours</a>
+                            <a href="{{ route('review-report.index') }}" class="btn btn-primary newbtn ml-2">+ Add
+                                Yours</a>
                         </div>
                         <br>
                     </div>
@@ -349,7 +362,8 @@
 
                                             <div class="date_show">
 
-                                                <span><i class="fa fa-calendar"> </i> Submitted on {{ $review->created_at }} </span>
+                                                <span><i class="fa fa-calendar"> </i> Submitted on
+                                                    {{ $review->created_at }} </span>
 
                                             </div>
                                         </div>
@@ -359,7 +373,8 @@
                                         <div class="col-md-3 col-sec-1">
                                             <div class="sect">
                                                 <p class="sect_p">Account Size</p>
-                                                <p class="act"><b class="acct_val">{{ $review->accountSize->size }}</b></p>
+                                                <p class="act"><b
+                                                        class="acct_val">{{ $review->accountSize->size }}</b></p>
                                             </div>
                                             <div class="sect">
                                                 <p class="sect_p">Steps</p>
@@ -392,42 +407,56 @@
                                                             <div class="d-flex align-items-center mb-2">
                                                                 <span class="progress_title">Dashboard</span>
                                                                 <div class="rating-bar  flex-grow-1">
-                                                                    <div class="rating-bar-fill {{ $review->ratingPercentages()['dashboard']=='100' ? 'full-rating':'' }}" style="width: {{ $review->ratingPercentages()['dashboard'].'%' }};">
+                                                                    <div class="rating-bar-fill {{ $review->ratingPercentages()['dashboard'] == '100' ? 'full-rating' : '' }}"
+                                                                        style="width: {{ $review->ratingPercentages()['dashboard'] . '%' }};">
                                                                     </div>
                                                                 </div>
-                                                                <span class="progress_titles">{{ $review->rating_dashboard }} Stars</span>
+                                                                <span
+                                                                    class="progress_titles">{{ $review->rating_dashboard }}
+                                                                    Stars</span>
                                                             </div>
                                                             <div class="d-flex align-items-center mb-2">
                                                                 <span class="progress_title">Support Team</span>
                                                                 <div class="rating-bar  flex-grow-1">
-                                                                    <div class="rating-bar-fill {{ $review->ratingPercentages()['support_team']=='100' ? 'full-rating':'' }}" style="width: {{ $review->ratingPercentages()['support_team'].'%' }};">
+                                                                    <div class="rating-bar-fill {{ $review->ratingPercentages()['support_team'] == '100' ? 'full-rating' : '' }}"
+                                                                        style="width: {{ $review->ratingPercentages()['support_team'] . '%' }};">
                                                                     </div>
                                                                 </div>
-                                                                <span class="progress_titles">{{ $review->rating_support_team }} Stars</span>
+                                                                <span
+                                                                    class="progress_titles">{{ $review->rating_support_team }}
+                                                                    Stars</span>
                                                             </div>
                                                             <div class="d-flex align-items-center mb-2">
                                                                 <span class="progress_title">Payout Process</span>
                                                                 <div class="rating-bar  flex-grow-1">
-                                                                    <div class="rating-bar-fill {{ $review->ratingPercentages()['payout_process']=='100' ? 'full-rating':'' }}" style="width: {{ $review->ratingPercentages()['payout_process'].'%' }};">
+                                                                    <div class="rating-bar-fill {{ $review->ratingPercentages()['payout_process'] == '100' ? 'full-rating' : '' }}"
+                                                                        style="width: {{ $review->ratingPercentages()['payout_process'] . '%' }};">
                                                                     </div>
                                                                 </div>
-                                                                <span class="progress_titles">{{ $review->rating_payout_process }} Stars</span>
+                                                                <span
+                                                                    class="progress_titles">{{ $review->rating_payout_process }}
+                                                                    Stars</span>
                                                             </div>
                                                             <div class="d-flex align-items-center mb-2">
                                                                 <span class="progress_title">Rules</span>
                                                                 <div class="rating-bar  flex-grow-1">
-                                                                    <div class="rating-bar-fill {{ $review->ratingPercentages()['rules']=='100' ? 'full-rating':'' }}" style="width: {{ $review->ratingPercentages()['rules'].'%' }};">
+                                                                    <div class="rating-bar-fill {{ $review->ratingPercentages()['rules'] == '100' ? 'full-rating' : '' }}"
+                                                                        style="width: {{ $review->ratingPercentages()['rules'] . '%' }};">
                                                                     </div>
                                                                 </div>
-                                                                <span class="progress_titles">{{ $review->rating_rules }} Stars</span>
+                                                                <span class="progress_titles">{{ $review->rating_rules }}
+                                                                    Stars</span>
                                                             </div>
                                                             <div class="d-flex align-items-center mb-2">
                                                                 <span class="progress_title">General Rating</span>
                                                                 <div class="rating-bar  flex-grow-1">
-                                                                    <div class="rating-bar-fill {{ $review->ratingPercentages()['general']=='100' ? 'full-rating':'' }}" style="width: {{ $review->ratingPercentages()['general'].'%' }};">
+                                                                    <div class="rating-bar-fill {{ $review->ratingPercentages()['general'] == '100' ? 'full-rating' : '' }}"
+                                                                        style="width: {{ $review->ratingPercentages()['general'] . '%' }};">
                                                                     </div>
                                                                 </div>
-                                                                <span class="progress_titles">{{ $review->rating_general }} Stars</span>
+                                                                <span
+                                                                    class="progress_titles">{{ $review->rating_general }}
+                                                                    Stars</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -502,10 +531,15 @@
                                 <div class="col-md-3 ">
                                     <div class="chalng_tabs review_tab">
                                         <p class="p_text">Chief Executive Officer</p>
-                                        <p class="d_est1"><img src="{{ asset('front-assets/images/unnamed 1.png') }}"
-                                                class="about_img"><b>
-                                                {{ $firm->about->chief_executive_officer }}
-                                            </b></p>
+                                        <p class="d_est1">
+
+                                            <a href="{{ $firm->about->linkedin_url }}" target="_blank">
+                                                <img src="{{ asset('front-assets/images/unnamed 1.png') }}"
+                                                    class="about_img"><b>
+                                            </a>
+                                            {{ $firm->about->chief_executive_officer }}
+                                            </b>
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="col-md-3 ">
@@ -513,7 +547,10 @@
                                         <p class="p_text">TrustPilot</p>
                                         <p class="d_est1" style="font-size: 38px">
 
-                                            <img src="{{ asset('front-assets/images/image 1.png') }}" class="about_img">
+                                            <a href="{{ $firm->about->trustpilot_url }}" target="_blank">
+                                                <img src="{{ asset('front-assets/images/image 1.png') }}"
+                                                    class="about_img">
+                                            </a>
                                             <b>{{ $firm->about->trust_pilot }}</b>
 
                                         </p>
@@ -670,8 +707,8 @@
             $('[data-toggle="tooltip"]').tooltip();
 
 
-        // delete the first div with row class inside #p_table_wrapper
-        $('#p_table_wrapper .row:first').remove();
+            // delete the first div with row class inside #p_table_wrapper
+            $('#p_table_wrapper .row:first').remove();
         });
 
         document.getElementById('toggleButton').addEventListener('click', function() {
@@ -682,6 +719,5 @@
                 div.style.display = 'none';
             }
         });
-
     </script>
 @endpush

@@ -145,7 +145,9 @@ class AdminFirmNewController extends Controller
         $request->validate([
             'firm_id' => 'required|exists:firms,id',
             'chief_executive_officer' => 'required',
+            'linkedin_url' => 'required',
             'trust_pilot' => 'required',
+            'trustpilot_url' => 'required',
             'payment_methods' => 'required|array',
             'payment_methods.*' => 'required|exists:payment_methods,id',
             'payout_methods' => 'required|array',
@@ -166,6 +168,8 @@ class AdminFirmNewController extends Controller
                 'firm_id' => $request->firm_id,
                 'chief_executive_officer' => $request->chief_executive_officer,
                 'trust_pilot' => $request->trust_pilot,
+                'linkedin_url' => $request->linkedin_url,
+                'trustpilot_url' => $request->trustpilot_url,
                 'description' => $request->description,
             ]
         );

@@ -20,13 +20,29 @@
                 :rules="[(v) => !!v || 'CEO is required']"
               ></v-text-field>
             </v-col>
+            <v-col cols="12" sm="6" md="4">
+              <v-text-field
+                ref="linkedin_url"
+                v-model="firmAbout.linkedin_url"
+                label="Linkedin URL"
+                :rules="[(v) => !!v || 'Linkedin URL is required']"
+              ></v-text-field>
+            </v-col>
 
             <v-col cols="12" sm="3" md="2">
               <v-text-field
                 ref="trust_pilot"
                 v-model="firmAbout.trust_pilot"
                 label="Trust Pilot"
-                :rules="[(v) => !!v || 'Trust Pilot is required']"
+                :rules="[(v) => !!v || 'Trust Pilot Score is required']"
+              ></v-text-field>
+            </v-col>
+            <v-col cols="12" sm="3" md="2">
+              <v-text-field
+                ref="trustpilot_url"
+                v-model="firmAbout.trustpilot_url"
+                label="Trust Pilot URL"
+                :rules="[(v) => !!v || 'Trust Pilot URL is required']"
               ></v-text-field>
             </v-col>
 
@@ -123,7 +139,9 @@ export default {
     return {
       firmAbout: {
         chief_executive_officer: "",
+        linkedin_url: "",
         trust_pilot: "",
+        trustpilot_url: "",
         payment_methods: null,
         payout_methods: null,
         platforms: null,
