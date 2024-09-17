@@ -190,7 +190,7 @@
     </div>
 
     @if ($firmChallenges->count() <= 0)
-        <div class="container-fluid">
+        <div class="container">
             <div class="tab-content" id="myTabContent">
                 <h2 class="text-center">
                     No results found
