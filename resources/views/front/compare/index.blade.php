@@ -4,13 +4,54 @@
 
 @section('styles')
 
-    <style>
 
-/* placeholder color */
+    <style>
+        /* placeholder color */
         input[type='search']::-webkit-input-placeholder {
             color: #ccc !important;
         }
 
+
+        .checkBtn {
+            /* width: 8rem; */
+            color: #7489e1 !important;
+            transition: background-color 0.3s, color 0.3s;
+            border: 4px solid transparent;
+            background: linear-gradient(to right, #FBF5F3, #FBF5F3), linear-gradient(to right, #7a95f8, #6453ca);
+            background-clip: padding-box, border-box;
+            background-origin: padding-box, border-box;
+            cursor: pointer;
+            font-family: 'Metropolis', sans-serif;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            vertical-align: middle;
+            text-align: center;
+            white-space: nowrap;
+            display: inline-block;
+            border-radius: 8px;
+            margin-right: 10px;
+        }
+
+        .w-10rem {
+            width: 10rem;
+        }
+
+        .checkBtn.active {
+            background: linear-gradient(100deg, #7A95F8 0%, #6453CA 100%);
+            color: #FBF5F3 !important;
+            border: none;
+            padding: .65rem .75rem;
+        }
+
+        .checkBtn.deactive {
+            color: #7a95f8 !important;
+            transition: background-color 0.3s, color 0.3s !important;
+            border: 4px solid transparent !important;
+            background: linear-gradient(to right, #FBF5F3, #FBF5F3), linear-gradient(to right, #7a95f8, #6453ca) !important;
+            background-clip: padding-box, border-box !important;
+            background-origin: padding-box, border-box !important;
+        }
     </style>
 
 @endsection
@@ -29,36 +70,32 @@
     <div class="container  mt-2 pt-2 ">
 
         <div class="tab-content" id="myTabContent">
-            <form action="{{ route('compare.index') }}" method="GET">
+            <form action="{{ route('compare.index') }}" method="GET" id="filterForm">
                 <input type="hidden" name="search" value="true">
                 <div class="container">
                     <div class="section-title">Asset Type</div>
-                    <div class="btn-group btn-group-toggle compare_tog" data-toggle="buttons">
+                    <div class="d-flex justify-content-start" data-toggle="buttons">
                         @foreach ($assetTypes as $assetType)
-                            <label
-
-                                class="btn custom-radio-label {{ request('asset_type') == $assetType->id ? 'active' : '' }}" id="assetType{{ $assetType->id }}" onclick="btnClicked(this)">
-                                <input type="radio" name="asset_type" class="custom-radio-input"
-                                    value="{{ $assetType->id }}"
-                                    {{ request('asset_type') == $assetType->id ? 'checked' : '' }}>
+                            <button type="button" class="checkBtn w-10rem {{ in_array($assetType->id,$selectedAssetTypes) ? 'active' : '' }}"
+                            id="assetType-{{ $assetType->id }}"
+                                onclick="filterClicked('assetType',{{ $assetType->id }})">
                                 {{ $assetType->name }}
-                            </label>
+                            </button>
                         @endforeach
                     </div>
 
                     <div class="section-title">Account Size</div>
-                    <div class="btn-group btn-group-toggle compare_tog" data-toggle="buttons">
+                    <div class="d-flex justify-content-start" data-toggle="buttons">
                         @foreach ($top7AccountSizes as $accountSize)
-                            <label
-                                class="btn custom-radio-label {{ request('account_size') == $accountSize->id ? 'active' : '' }}">
-                                <input type="radio" name="account_size" class="custom-radio-input" autocomplete="off"
-                                    value="{{ $accountSize->id }}"
-                                    {{ request('account_size') == $accountSize->id ? 'checked' : '' }}>
+                            <button type="button" class="checkBtn w-10rem {{ in_array($accountSize->id,$selectedAccountSizes) ? 'active' : '' }}"
+                            id="accountSize-{{ $accountSize->id }}"
+
+                                onclick="filterClicked('accountSize',{{ $accountSize->id }})">
                                 {{ $accountSize->size }}
-                            </label>
+                            </button>
                         @endforeach
                     </div>
-                    @if ($otherAccountSizes->count() > 0)
+                    {{-- @if ($otherAccountSizes->count() > 0)
                         <div class="section-title">See More </div>
                         <div class="btn-group btn-group-toggle d-flex flex-wrap mt-3" data-toggle="buttons">
                             <label class="btn custom-radio-label">
@@ -109,37 +146,30 @@
                                 <input type="radio" name="account-size" class="custom-radio-input" autocomplete="off"> 2M
                             </label>
                         </div>
-                    @endif
+                    @endif --}}
 
                     <div class="section-title">Steps</div>
-                    <div class="btn-group btn-group-toggle compare_tog" data-toggle="buttons">
+                    <div class="d-flex justify-content-start" data-toggle="buttons">
 
                         @foreach ($steps as $step)
-                            <label class="btn custom-radio-label {{ request('step') == $step->id ? 'active' : '' }}">
-                                <input type="radio" name="step" class="custom-radio-input" autocomplete="off"
-                                    value="{{ $step->id }}" {{ request('step') == $step->id ? 'checked' : '' }}>
+                            <button type="button" class="checkBtn w-10rem {{ in_array($step->id,$selectedSteps) ? 'active' : '' }}"
+                            id="step-{{ $step->id }}"
+                                onclick="filterClicked('step',{{ $step->id }})">
                                 {{ $step->name }}
-                            </label>
+                            </button>
                         @endforeach
                     </div>
 
                     <div class="section-title">Extra Filters</div>
-                    <div class="btn-group btn-group-toggle compare_togs" data-toggle="buttons">
-                        <label class="btn custom-radio-label">
-                            <input type="radio" name="extra-filters1" class="custom-radio-input" autocomplete="off">
-                            News
-                            Trading Allowed
-                        </label>
-                        <label class="btn custom-radio-label">
-                            <input type="radio" name="extra-filters2" class="custom-radio-input" autocomplete="off">
-                            Only
-                            White-Label Tech.
-                        </label>
-                        <label class="btn custom-radio-label">
-                            <input type="radio" name="extra-filters3" class="custom-radio-input" autocomplete="off">
-                            Only
-                            Proprietary Tech.
-                        </label>
+                    <div class="d-flex justify-content-start" data-toggle="buttons">
+
+                        @foreach ($technologies as $technology)
+                            <button type="button" class="checkBtn w-10rem {{ in_array($technology->id,$selectedTechnologies) ? 'active' : '' }}"
+                            id="technology-{{ $technology->id }}"
+                                onclick="filterClicked('technology',{{ $technology->id }})">
+                                {{ $technology->name }}
+                            </button>
+                        @endforeach
                     </div>
 
                     <div class="mt-5">
@@ -204,7 +234,8 @@
                                             </a>
                                         </td>
                                         <td>
-                                            <p class="wsx" style="font-size: 15px; margin-bottom: 0px">${{ $challenge->before_price }}</p>
+                                            <p class="wsx" style="font-size: 15px; margin-bottom: 0px">
+                                                ${{ $challenge->before_price }}</p>
                                             <p class="orginal" style="font-size: 18px; margin-bottom: 1px">
                                                 {{ config('app.currency_symbol') . $challenge->actual_price }}
                                             </p>
@@ -231,7 +262,8 @@
                                         </td>
                                         <td>
                                             {{ Carbon\Carbon::parse($challenge->firm->established)->format('M Y') }}
-                                            <br><img class="img_data img-fluid" style="width: 3rem !important; margin:5px 0px;"
+                                            <br><img class="img_data img-fluid"
+                                                style="width: 3rem !important; margin:5px 0px;"
                                                 src="{{ $challenge->firm->country->flag_url }}"><br><span class="c_name">
                                                 {{ $challenge->firm->country->name }}
                                             </span>
@@ -262,6 +294,43 @@
 
 @push('scripts')
     <script>
+        var assetTypes = [];
+        var accountSizes = [];
+        var steps = [];
+        var technologies = [];
+
+        // get assetTypes from url string
+        var urlParams = new URLSearchParams(window.location.search);
+        var assetTypesParam = urlParams.get('asset_types');
+        var accountSizesParam = urlParams.get('account_sizes');
+        var stepsParam = urlParams.get('steps');
+        var technologiesParam = urlParams.get('technologies');
+
+        if (assetTypesParam) {
+            assetTypes = assetTypesParam.split(',').map(function(item) {
+                return parseInt(item, 10);
+            });
+        }
+
+        if (accountSizesParam) {
+            accountSizes = accountSizesParam.split(',').map(function(item) {
+                return parseInt(item, 10);
+            });
+        }
+
+        if (stepsParam) {
+            steps = stepsParam.split(',').map(function(item) {
+                return parseInt(item, 10);
+            });
+        }
+
+        if (technologiesParam) {
+            technologies = technologiesParam.split(',').map(function(item) {
+                return parseInt(item, 10);
+            });
+        }
+
+
         $(document).ready(function() {
             $("#example").DataTable({
                 aaSorting: [],
@@ -298,22 +367,127 @@
         /* add flex-column-reverse class in a div which is after div with id=example_wrapper */
         $("#example_wrapper").next().addClass("d-flex flex-column-reverse");
 
-        function btnClicked(e) {
-            // if the element is already active, then remove the active class
-            console.log(e.classList,e.classList.contains("active"));
-            if (e.classList.contains("active")) {
-                console.log("already active");
-                e.classList.remove("active");
-                console.log(e.classList);
-            } else {
-                // if the element is not active, then remove the active class from all elements
-                // and add the active class to the clicked element
-                document.querySelectorAll(".custom-radio-label").forEach((el) => {
-                    el.classList.remove("active");
-                });
-                e.classList.add("active");
+        function filterClicked(type, id) {
+            if (type == 'assetType') {
+
+                // if exists remove active class and remove from array
+                if (assetTypes.includes(id)) {
+                    $('#assetType-' + id).removeClass('active');
+                    // add deactive class
+                    $('#assetType-' + id).addClass('deactive');
+
+                    assetTypes = assetTypes.filter(function(value, index, arr) {
+                        return value != id;
+                    });
+
+                    console.log('assetTypes', assetTypes);
+                    return;
+                }
+
+                $('#assetType-' + id).removeClass('deactive');
+                $('#assetType-' + id).addClass('active');
+
+
+                assetTypes.push(id);
+
+                console.log('assetTypes', assetTypes);
+
             }
+
+            if (type == 'accountSize') {
+
+                // if exists remove active class and remove from array
+                if (accountSizes.includes(id)) {
+                    $('#accountSize-' + id).removeClass('active');
+                    // add deactive class
+                    $('#accountSize-' + id).addClass('deactive');
+
+                    accountSizes = accountSizes.filter(function(value, index, arr) {
+                        return value != id;
+                    });
+
+                    console.log('accountSizes', accountSizes);
+                    return;
+                }
+
+                $('#accountSize-' + id).removeClass('deactive');
+                $('#accountSize-' + id).addClass('active');
+
+                accountSizes.push(id);
+            }
+
+            if (type == 'step') {
+
+                // if exists remove active class and remove from array
+                if (steps.includes(id)) {
+                    $('#step-' + id).removeClass('active');
+                    // add deactive class
+                    $('#step-' + id).addClass('deactive');
+
+                    steps = steps.filter(function(value, index, arr) {
+                        return value != id;
+                    });
+
+                    console.log('steps', steps);
+                    return;
+                }
+
+                $('#step-' + id).removeClass('deactive');
+                $('#step-' + id).addClass('active');
+
+                steps.push(id);
+            }
+
+            if (type == 'technology') {
+
+                // if exists remove active class and remove from array
+                if (technologies.includes(id)) {
+                    $('#technology-' + id).removeClass('active');
+                    // add deactive class
+                    $('#technology-' + id).addClass('deactive');
+
+                    technologies = technologies.filter(function(value, index, arr) {
+                        return value != id;
+                    });
+
+                    console.log('technologies', technologies);
+                    return;
+                }
+
+                $('#technology-' + id).removeClass('deactive');
+                $('#technology-' + id).addClass('active');
+
+                technologies.push(id);
+            }
+
+            // console.log('accountSizes', accountSizes);
+            // console.log('steps', steps);
         }
 
+        document.getElementById('filterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            let queryString = '?';
+
+            if (assetTypes.length > 0) {
+                queryString += 'asset_types=' + assetTypes.join(',') + '&';
+            }
+
+            if (accountSizes.length > 0) {
+                queryString += 'account_sizes=' + accountSizes.join(',') + '&';
+            }
+
+            if (steps.length > 0) {
+                queryString += 'steps=' + steps.join(',') + '&';
+            }
+
+            if (technologies.length > 0) {
+                queryString += 'technologies=' + technologies.join(',') + '&';
+            }
+
+            console.log('queryString', queryString);
+
+            window.location.href = '{{ route('compare.index') }}' + queryString;
+        });
     </script>
 @endpush

@@ -7,6 +7,7 @@ use App\Models\AssetType;
 use App\Models\Firm;
 use App\Models\FirmChallenge;
 use App\Models\Step;
+use App\Models\Technology;
 use Illuminate\Http\Request;
 
 class CompareController extends Controller
@@ -14,19 +15,23 @@ class CompareController extends Controller
     public function index(Request $request)
     {
         $request->validate([
-            'asset_type' => 'nullable',
-            'account_size' => 'nullable',
-            'step' => 'nullable',
+            'asset_types' => 'nullable',
+            'account_sizes' => 'nullable',
+            'steps' => 'nullable',
             'search' => 'nullable',
+            'technologies' => 'nullable',
         ]);
 
-        $assetType = $request->asset_type;
-        $accountSize = $request->account_size;
-        $step = $request->step;
+        $selectedAssetTypes = $request->asset_types ? explode(',', $request->asset_types) : [];
+        $selectedAccountSizes = $request->account_sizes ? explode(',', $request->account_sizes) : [];
+        $selectedSteps = $request->steps ? explode(',', $request->steps) : [];
+        $selectedTechnologies = $request->technologies ? explode(',', $request->technologies) : [];
 
         $assetTypes = AssetType::all();
 
         $top7AccountSizes = AccountSize::limit(7)->get();
+
+        $technologies=Technology::all();
 
 
         $otherAccountSizes = AccountSize::whereNotIn('id', $top7AccountSizes->pluck('id'))->get();
@@ -36,25 +41,28 @@ class CompareController extends Controller
         $firms = collect();
 
 
-        if ($request->search) {
-            $firmChallenges = FirmChallenge::whereHas('firm', function ($query) use ($assetType, $accountSize, $step) {
-                $query->when($assetType, function ($query) use ($assetType) {
-                    $query->where('asset_type_id', $assetType);
+        $firmChallenges = FirmChallenge::whereHas('firm', function ($query) use ($selectedAssetTypes) {
+            $query->when($selectedAssetTypes, function ($query) use ($selectedAssetTypes) {
+                $query->whereIn('asset_type_id', $selectedAssetTypes);
+            });
+        })
+            ->when($selectedAccountSizes, function ($query) use ($selectedAccountSizes) {
+                $query->whereIn('account_size_id', $selectedAccountSizes);
+            })
+            ->when($selectedSteps, function ($query) use ($selectedSteps) {
+                $query->whereIn('step_id', $selectedSteps);
+            })
+            ->when($selectedTechnologies, function ($query) use ($selectedTechnologies) {
+                $query->whereHas('firm', function ($query) use ($selectedTechnologies) {
+                    $query->whereIn('technology_id', $selectedTechnologies);
                 });
             })
-                ->when($accountSize, function ($query) use ($accountSize) {
-                    $query->where('account_size_id', $accountSize);
-                })
-                ->when($step, function ($query) use ($step) {
-                    $query->where('step_id', $step);
-                })
-                ->with(['firm', 'accountSize', 'step', 'firmChallengeDetails', 'firm.technology','firm.country'])
-                ->get();
-        } else {
-            $firmChallenges = collect();
-        }
+            ->with(['firm', 'accountSize', 'step', 'firmChallengeDetails', 'firm.technology', 'firm.country'])
+            ->latest()
+            ->get();
 
 
-        return view('front.compare.index', compact('assetTypes', 'top7AccountSizes', 'otherAccountSizes', 'steps', 'firmChallenges'));
+
+        return view('front.compare.index', compact('assetTypes', 'top7AccountSizes', 'otherAccountSizes', 'steps', 'firmChallenges', 'selectedAssetTypes', 'selectedAccountSizes', 'selectedSteps','technologies','selectedTechnologies'));
     }
 }
