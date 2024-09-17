@@ -78,7 +78,7 @@
               <button
                 type="button"
                 class="btn btn-primary frmbtn"
-                style="color: #7a95f8 "
+                style="color: #7a95f8"
                 @click="btnSelectedClicked('no')"
                 :class="{ active: btnSelected == 'no' ? true : false }"
               >
@@ -87,7 +87,7 @@
               <button
                 type="button"
                 class="btn btn-primary frmbtn"
-                style="color: #7a95f8 "
+                style="color: #7a95f8"
                 @click="btnSelectedClicked('payoutDenial')"
                 :class="{ active: btnSelected == 'payoutDenial' ? true : false }"
               >
@@ -96,7 +96,7 @@
               <button
                 type="button"
                 class="btn btn-primary frmbtn"
-                style="color: #7a95f8 "
+                style="color: #7a95f8"
                 @click="btnSelectedClicked('unjustifiedBreach')"
                 :class="{ active: btnSelected == 'unjustifiedBreach' ? true : false }"
               >
@@ -221,7 +221,7 @@
                 <button
                   type="button"
                   @click="nextStep()"
-                  style="color: white !important;"
+                  style="color: white !important"
                   class="btn btn-primary frmbtn r_button"
                 >
                   Next
@@ -339,7 +339,7 @@
                 <button
                   type="button"
                   @click="nextStep()"
-                  style="color: white !important;"
+                  style="color: white !important"
                   class="btn btn-primary frmbtn r_button"
                 >
                   Next
@@ -377,11 +377,14 @@
             </div>
             <div class="row">
               <div class="col-md-12">
+                <label for=""
+                    >Order Confirmation (Required)</label
+                  >
                 <div class="Confirmation_container">
                   <input
                     type="file"
                     class="confirmation-input"
-                    placeholder="Order Confirmation (Required)"
+                    placeholder=""
                     ref="orderConfirmationFile"
                     @change="orderConfirmation = $refs.orderConfirmationFile.files[0]"
                   />
@@ -445,7 +448,7 @@
                   id="submit_form"
                   class="btn btn-primary frmbtn r_button"
                   :disabled="loading"
-                  style="color: white !important;"
+                  style="color: white !important"
                   @click="submitReview()"
                 >
                   Submit
@@ -482,11 +485,16 @@
             </div>
             <div class="row">
               <div class="col-md-12">
+                <label for=""
+                    >Upload Funding Certificate form the firm (Required)</label
+                  >
                 <div class="Confirmation_container">
+
+
                   <input
                     type="file"
                     class="confirmation-input"
-                    placeholder="Upload Funding Certificate form the firm (Required)"
+                    placeholder=""
                     ref="fundingCertificateFile"
                     @change="fundingCertificate = $refs.fundingCertificateFile.files[0]"
                   />
@@ -525,11 +533,14 @@
             <br />
             <div class="row">
               <div class="col-md-12">
+                <label for=""
+                    >Upload correspondence with the company (Falculative)</label
+                  >
                 <div class="Confirmation_container">
                   <input
                     type="file"
                     class="confirmation-input"
-                    placeholder="Upload correspondence with the company (Falculative)"
+                    placeholder=""
                     ref="correspondenceFile"
                     @change="correspondence = $refs.correspondenceFile.files[0]"
                   />
@@ -570,15 +581,13 @@
                   id="submit_form"
                   class="btn btn-primary frmbtn r_button"
                   @click="submitPayoutDenial()"
-                  style="color: white !important;"
-
+                  style="color: white !important"
                 >
                   Submit
                 </button>
               </div>
             </div>
           </div>
-
 
           <div class="review_tabs" id="step5" v-if="step == 'unjustifiedBreach'">
             <div class="row">
@@ -614,10 +623,7 @@
                   placeholder="What is the firm’s reason for breaching your account?"
                   v-model="breachingReason"
                 ></textarea>
-                <p
-                  class="text-danger pl-3"
-                  v-if="breachingReasonError ? true : false"
-                >
+                <p class="text-danger pl-3" v-if="breachingReasonError ? true : false">
                   {{ breachingReasonError }}
                 </p>
               </div>
@@ -699,15 +705,13 @@
                   id="submit_form"
                   class="btn btn-primary frmbtn r_button"
                   @click="submitBreach()"
-                  style="color: white !important;"
-
+                  style="color: white !important"
                 >
                   Submit
                 </button>
               </div>
             </div>
           </div>
-
         </form>
         <div class="" id="" v-if="step == 7">
           <h2 class="page_title pt-4 text-center text-white">Submission Confirmed</h2>
@@ -725,10 +729,12 @@
             </p>
             <br />
             <p class="text-center" style="font-size: 16px; color: #828282">
-                {{ confirmMsg }}
+              {{ confirmMsg }}
             </p>
 
-            <a href="/" style="color: white !important;" class="btn btn-primary frmbtn">Back to website</a>
+            <a href="/" style="color: white !important" class="btn btn-primary frmbtn"
+              >Back to website</a
+            >
           </div>
         </div>
       </div>
@@ -785,10 +791,10 @@ export default {
       fundingCertificateError: false,
       termsCondtionsError: false,
       breachEmail: null,
-        breachEmailError: false,
-        breachingReason: null,
-        breachingReasonError: false,
-        breachingMoreDetails: null,
+      breachEmailError: false,
+      breachingReason: null,
+      breachingReasonError: false,
+      breachingMoreDetails: null,
       mainAdvantages: null,
       mainDrawbacks: null,
       termsCondtions: null,
@@ -871,7 +877,7 @@ export default {
         .then((response) => {
           console.log(response.data);
           this.step = 7;
-          this.confirmMsg=response.data.message;
+          this.confirmMsg = response.data.message;
         })
         .catch((error) => {
           console.log(error);
@@ -923,7 +929,7 @@ export default {
         .then((response) => {
           console.log(response.data);
           this.step = 7;
-          this.confirmMsg=response.data.message;
+          this.confirmMsg = response.data.message;
         })
         .catch((error) => {
           console.log(error);
@@ -933,10 +939,8 @@ export default {
         });
     },
 
-
     submitBreach() {
-
-        if (!this.breachingReason) {
+      if (!this.breachingReason) {
         this.breachingReasonError = "Breaching Reason is required";
         return;
       } else {
@@ -950,8 +954,6 @@ export default {
         this.breachEmailError = false;
       }
 
-
-
       if (!this.termsCondtions) {
         this.termsCondtionsError = "Please accept the terms and conditions";
         return;
@@ -962,9 +964,9 @@ export default {
       const formData = new FormData();
       formData.append("firm_id", this.selectedFirm.id);
       formData.append("correspondence", this.correspondence);
-        formData.append("breach_email", this.breachEmail);
-        formData.append("breaching_reason", this.breachingReason);
-        formData.append("breaching_more_details", this.breachingMoreDetails);
+      formData.append("breach_email", this.breachEmail);
+      formData.append("breaching_reason", this.breachingReason);
+      formData.append("breaching_more_details", this.breachingMoreDetails);
 
       console.log("formData", formData);
 
@@ -979,7 +981,7 @@ export default {
         .then((response) => {
           console.log(response.data);
           this.step = 7;
-          this.confirmMsg=response.data.message;
+          this.confirmMsg = response.data.message;
         })
         .catch((error) => {
           console.log(error);
@@ -1054,7 +1056,7 @@ export default {
       }
 
       if (this.btnSelected == "unjustifiedBreach") {
-        this.step = 'unjustifiedBreach';
+        this.step = "unjustifiedBreach";
         return;
       }
 
@@ -1067,7 +1069,7 @@ export default {
         return;
       }
 
-      if(this.btnSelected == "unjustifiedBreach") {
+      if (this.btnSelected == "unjustifiedBreach") {
         this.step = 1;
         return;
       }
