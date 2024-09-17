@@ -102,6 +102,8 @@ class AdminFirmNewController extends Controller
             'country' => 'required|exists:countries,id',
             'logo' => 'nullable|image',
             'profit_split'=> 'required',
+            'main_benefits' => 'required',
+            'main_drawbacks' => 'required',
         ]);
 
         $firmData = [
@@ -116,6 +118,8 @@ class AdminFirmNewController extends Controller
             'daily_drawdown' => $request->daily_drawdown,
             'country_id' => $request->country,
             'profit_split' => $request->profit_split,
+            'main_benefits' => $request->main_benefits,
+            'main_drawbacks' => $request->main_drawbacks,
         ];
 
 

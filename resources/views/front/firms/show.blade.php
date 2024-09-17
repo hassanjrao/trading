@@ -318,12 +318,16 @@
                         <div class="benefits-drawbacks mb-3 review_tab">
                             <h5 class="head_5">Main Benefits</h5>
                             <p class="p_des">(from user reviews)</p>
-                            <p class="text_review">The website is really made and the payouts are fast.</p>
+                            <p class="text_review">
+                                {{ $firm->main_benefits }}
+                            </p>
                         </div>
                         <div class="benefits-drawbacks review_tab">
                             <h5 class="head_5">Main Drawbacks</h5>
                             <p class="p_des">(from user reviews)</p>
-                            <p class="text_review">Lack of Support</p>
+                            <p class="text_review">
+                                {{ $firm->main_drawbacks }}
+                            </p>
                         </div>
                     </div>
                 </div>

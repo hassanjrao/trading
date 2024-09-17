@@ -142,6 +142,22 @@
               ></v-text-field>
             </v-col>
 
+            <v-col cols="12" sm="6" md="6">
+              <v-text-field
+                ref="main_benefits"
+                v-model="firm.main_benefits"
+                label="Main Benefits"
+              ></v-text-field>
+            </v-col>
+
+            <v-col cols="12" sm="6" md="6">
+              <v-text-field
+                ref="main_drawbacks"
+                v-model="firm.main_drawbacks"
+                label="Main Drawbacks"
+              ></v-text-field>
+            </v-col>
+
             <v-col cols="12" sm="6" md="4">
               <!-- show image if firm has firm.logo_url -->
 
@@ -219,6 +235,8 @@ export default {
         profit_split: null,
         daily_drawdown: null,
         country_id: null,
+        main_benefits: null,
+        main_drawbacks: null,
       },
     };
   },
@@ -251,6 +269,8 @@ export default {
       formData.append("daily_drawdown", this.firm.daily_drawdown);
       formData.append("country", this.firm.country_id);
         formData.append("profit_split", this.firm.profit_split);
+        formData.append("main_benefits", this.firm.main_benefits);
+        formData.append("main_drawbacks", this.firm.main_drawbacks);
 
       if(this.firm.logo) {
         console.log("logo", this.firm.logo);
