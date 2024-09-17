@@ -50,6 +50,7 @@ Route::middleware(['auth'])->group(function(){
     Route::post('profile/update-password', [UserProfileController::class, 'updatePassword'])->name('profile.update-password');
     Route::resource('profile', UserProfileController::class);
 
+
     Route::post('firms/submit-vote', [FirmController::class, 'submitVote'])->name('firms.submit-vote');
 
     Route::get('review-report/get-steps', [ReviewReportController::class, 'getSteps'])->name('review-report.get-steps');
@@ -71,6 +72,7 @@ Route::get('firms/{firmChallenge}/summary', [FirmController::class, 'summary'])-
 Route::get('firms/most-voted', [FirmController::class, 'mostVoted'])->name('firms.most-voted');
 Route::post('firms/request', [FirmController::class, 'request'])->name('firms.request');
 Route::get('firms/search', [FirmController::class, 'search'])->name('firms.search');
+
 Route::resource('firms', FirmController::class);
 
 
@@ -100,6 +102,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','role:admin'])->group
     Route::resource('platforms', AdminPlatformController::class);
 
 
+
+    Route::get('firms/requests', [AdminFirmNewController::class, 'requests'])->name('firms.requests');
     Route::post('firms/create-firm', [AdminFirmNewController::class, 'createFirm'])->name('firms.create-firm');
     Route::post('firms/submit-about', [AdminFirmNewController::class, 'submitAbout'])->name('firms.submit-about');
     Route::post('firms/submit-challenges', [AdminFirmNewController::class, 'submitChallenges'])->name('firms.submit-challenges');

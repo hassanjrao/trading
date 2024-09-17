@@ -7,6 +7,7 @@ use App\Models\AssetType;
 use App\Models\Country;
 use App\Models\Firm;
 use App\Models\FirmAbout;
+use App\Models\FirmRequest;
 use App\Models\PaymentMethod;
 use App\Models\PayoutMethod;
 use App\Models\Platform;
@@ -184,6 +185,14 @@ class AdminFirmNewController extends Controller
                 'firmAbout' => $firmAbout
             ]
         ]);
+
+    }
+
+    public function requests(Request $request){
+
+        $firmRequests=FirmRequest::latest()->get();
+
+        return view('admin.firms.requests',compact('firmRequests'));
 
     }
 
