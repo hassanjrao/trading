@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class MakeChangesInFirmCommissionStructuresTable extends Migration
@@ -13,13 +14,15 @@ class MakeChangesInFirmCommissionStructuresTable extends Migration
      */
     public function up()
     {
+        // truncate table
+        // DB::table('firm_commission_structures')->truncate();
         Schema::table('firm_commission_structures', function (Blueprint $table) {
 
-            $table->dropColumn([
-                'image_path','name','points'
-            ]);
+            // $table->dropColumn([
+            //     'image_path','name','points'
+            // ]);
 
-            $table->foreignId('commission_structure_id')->constrained('commission_structures')->onDelete('cascade');
+            // $table->foreignId('commission_structure_id')->constrained('commission_structures')->onDelete('cascade');
 
         });
     }
