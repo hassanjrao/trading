@@ -87,10 +87,6 @@
                                     <td>{{ $firm->updated_at }}</td>
 
                                     <td>
-                                        <a href="{{ route('admin.firms.challenges', $firm) }}" class="btn btn-sm btn-primary"
-                                            data-toggle="tooltip" title="Challenges">
-                                            <i class="fa fa-tasks"></i>
-                                        </a>
                                         <a href="{{ route('admin.firms.edit', $firm->id) }}" class="btn btn-sm btn-primary"
                                             data-toggle="tooltip" title="Edit">
                                             <i class="fa fa-pencil-alt"></i>
