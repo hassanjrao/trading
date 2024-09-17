@@ -191,7 +191,7 @@
 
     @if ($firmChallenges->count() <= 0)
         <div class="container">
-            <div class="tab-content" id="myTabContent">
+            <div class="tab-content" id="myTabContent" style="min-height: 0px">
                 <h2 class="text-center">
                     No results found
                 </h2>
