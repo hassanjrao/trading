@@ -626,17 +626,11 @@
                                             <b>See thier <a href="{{ $firm->commission_strucuture_link }} "
                                                     target="__blank">full</a> article</b>
                                         @else
-                                            @foreach ($firm->commissionStructures as $commission)
+                                            @foreach ($firmCommissionStructures as $firmCommissionStructure)
                                                 <p class="d_est1_about">
-                                                    <img src="{{ $commission->image_url }}" class="about_img">
-                                                    <b>{{ $commission->name }}</b>
-                                                    @if ($commission->points)
-                                                        @foreach ($commission->points as $point)
-                                                            <li>
-                                                                {{ $point }}
-                                                            </li>
-                                                        @endforeach
-                                                    @endif
+                                                    <img src="{{ $firmCommissionStructure->commissionStructure->image_url }}" class="about_img">
+                                                    <b>{{ $firmCommissionStructure->commissionStructure->name }}: </b>
+                                                    <b>{{ $firmCommissionStructure->note }}</b>
                                                 </p>
                                             @endforeach
                                         @endif

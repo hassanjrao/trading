@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminAccountSizeController;
 use App\Http\Controllers\AdminAssetTypeController;
+use App\Http\Controllers\AdminCommissionStructureController;
 use App\Http\Controllers\AdminCountryController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminFirmController;
@@ -100,6 +101,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','role:admin'])->group
 
 
     Route::resource('platforms', AdminPlatformController::class);
+
+    Route::resource('commission-structure', AdminCommissionStructureController::class);
 
 
 

@@ -72,9 +72,14 @@ class FirmController extends Controller
         ->with(['accountSize','user','step'])
         ->get();
 
+        $firmCommissionStructures=$firm->commissionStructures()
+        ->with(['commissionStructure'])
+        ->get();
+
+
         $avgRating=$firm->calculateAverageRatings();
 
-        return view('front.firms.show', compact('firm','firmChallenges','fireReviews','avgRating'));
+        return view('front.firms.show', compact('firm','firmChallenges','fireReviews','avgRating','firmCommissionStructures'));
     }
 
     /**

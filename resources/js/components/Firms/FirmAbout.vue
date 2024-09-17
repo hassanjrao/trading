@@ -106,6 +106,60 @@
               ></v-textarea>
             </v-col>
           </v-row>
+
+          <v-row>
+            <v-col cols="12" sm="12" md="12">
+              <!-- add icon -->
+              <v-btn color="primary" @click="addCommissionStructure">
+                <i class="mdi mdi-plus"></i>
+              </v-btn>
+              <v-simple-table>
+                <template v-slot:default>
+                  <thead>
+                    <tr>
+                      <th class="text-left">Comission Structure</th>
+                      <th class="text-left">Note</th>
+                      <th class="text-left">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr
+                      v-for="(commission, index) in allFirmComssionStructures"
+                      :key="cmStKey + index"
+                    >
+                      <td>
+                        <v-autocomplete
+                          v-model="commission.commission_structure_id"
+                          label="Commission Structure"
+                          :rules="[
+                            (v) => !!v || 'Please select at least one payment method',
+                          ]"
+                          :items="commissionStructures"
+                          item-text="name"
+                          item-value="id"
+                          chips
+                        ></v-autocomplete>
+                      </td>
+                      <td>
+                        <v-text-field
+                          ref="note"
+                          v-model="commission.note"
+                          label="Note"
+                          :rules="[(v) => !!v || 'Note is required']"
+                        ></v-text-field>
+                      </td>
+
+                      <td>
+                        <v-btn color="primary" @click="removeCommissionStructure(index)">
+                          <i class="mdi mdi-delete"></i>
+                        </v-btn>
+                      </td>
+                    </tr>
+                  </tbody>
+                </template>
+              </v-simple-table>
+            </v-col>
+          </v-row>
         </v-container>
       </v-form>
     </v-card-text>
@@ -133,10 +187,17 @@ export default {
       type: Array,
       required: true,
     },
+
+    commissionStructures: {
+      type: Array,
+      required: true,
+    },
   },
 
   data() {
     return {
+      allFirmComssionStructures: [],
+      cmStKey: "cmStKey",
       firmAbout: {
         chief_executive_officer: "",
         linkedin_url: "",
@@ -146,6 +207,7 @@ export default {
         payout_methods: null,
         platforms: null,
         description: "",
+        commission_structures: [],
       },
       valid: false,
       loading: false,
@@ -153,6 +215,22 @@ export default {
   },
 
   methods: {
+    addCommissionStructure() {
+      //  add at first
+
+      this.allFirmComssionStructures.unshift({
+        commission_structure_id: null,
+        note: "",
+      });
+      //   change key
+      this.cmStKey = Math.random().toString(36).substring(7);
+      console.log("addCommissionStructure=>", this.allFirmComssionStructures);
+    },
+
+    removeCommissionStructure(index) {
+      this.allFirmComssionStructures.splice(index, 1);
+    },
+
     submitFirmAbout() {
       if (!this.$refs.firmInfoForm.validate()) {
         return;
@@ -160,11 +238,11 @@ export default {
 
       this.loading = true;
 
-
       axios
         .post("/admin/firms/submit-about", {
-            ...this.firmAbout,
-            firm_id: this.firm.id,
+          ...this.firmAbout,
+          firm_id: this.firm.id,
+          commission_structures: this.allFirmComssionStructures,
         })
         .then((response) => {
           this.loading = false;
@@ -181,11 +259,12 @@ export default {
 
   mounted() {
     console.log("FirmAbout.vue mounted=>paymentMethods", this.paymentMethods, this.firm);
-    if(this.firm && this.firm.about) {
-      this.firmAbout =this.firm.about;
-      this.firmAbout.payment_methods=this.firm.payment_methods.map((item) => item.id);
-        this.firmAbout.payout_methods=this.firm.payout_methods.map((item) => item.id);
-        this.firmAbout.platforms=this.firm.platforms.map((item) => item.id);
+    if (this.firm && this.firm.about) {
+      this.firmAbout = this.firm.about;
+      this.firmAbout.payment_methods = this.firm.payment_methods.map((item) => item.id);
+      this.firmAbout.payout_methods = this.firm.payout_methods.map((item) => item.id);
+      this.firmAbout.platforms = this.firm.platforms.map((item) => item.id);
+      this.allFirmComssionStructures = this.firm.commission_structures;
     }
   },
   created() {

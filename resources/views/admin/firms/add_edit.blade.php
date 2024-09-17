@@ -32,6 +32,7 @@
         :payment-methods="{{ $paymentMethods }}"
         :payout-methods="{{ $payoutMethods }}"
         :platforms="{{ $platforms }}"
+        :commission-structures="{{ $commissionStructures }}"
         />
         @else
         <add-edit-firm
@@ -43,6 +44,7 @@
         :payment-methods="{{ $paymentMethods }}"
         :payout-methods="{{ $payoutMethods }}"
         :platforms="{{ $platforms }}"
+        :commission-structures="{{ $commissionStructures }}"
         />
         @endif
     </div>

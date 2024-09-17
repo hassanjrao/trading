@@ -31,6 +31,7 @@
               :payoutMethods="payoutMethods"
               :platforms="platforms"
               :firm="firm"
+              :commission-structures="commissionStructures"
             />
           </v-card-text>
 
@@ -97,6 +98,10 @@ export default {
       required: true,
     },
     platforms: {
+      type: Array,
+      required: true,
+    },
+    commissionStructures: {
       type: Array,
       required: true,
     },

@@ -231,6 +231,14 @@
                         </li>
 
                         <li class="nav-main-item">
+                            <a class="nav-main-link{{ request()->is('admin/commission-structure*') ? ' active' : '' }}"
+                                href="{{ route('admin.commission-structure.index') }}">
+                                <i class="nav-main-link-icon si si-cursor"></i>
+                                <span class="nav-main-link-name">Commission Structures</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-main-item">
                             <a class="nav-main-link{{ request()->is('admin/firms/requests*') ? ' active' : '' }}"
                                 href="{{ route('admin.firms.requests') }}">
                                 <i class="nav-main-link-icon si si-cursor"></i>

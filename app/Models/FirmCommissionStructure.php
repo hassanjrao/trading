@@ -29,4 +29,9 @@ class FirmCommissionStructure extends Model
     {
         return $this->belongsTo(Firm::class);
     }
+
+    public function commissionStructure()
+    {
+        return $this->belongsTo(CommissionStructure::class);
+    }
 }
