@@ -28,7 +28,7 @@
     <br><br>
 
     <div id="mapVue">
-        <review-report :account-sizes='{{ $accountSizes }}' :steps='{{ $steps }}' :user='{{ auth()->user() }}'>
+        <review-report :account-sizes='{{ $accountSizes }}' :steps='{{ $steps }}' :user='{{ auth()->user() }}' :place-holder-text="{{ json_encode($placeHolderText) }}">
 
         </review-report>
     </div>

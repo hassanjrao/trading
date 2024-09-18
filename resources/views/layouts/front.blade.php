@@ -34,6 +34,11 @@
         .btn-block, .frmbtn{
             color: white !important;
         }
+
+        a:hover{
+            color: black;
+            text-decoration: none
+        }
     </style>
 
     @yield('styles')

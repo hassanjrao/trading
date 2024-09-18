@@ -25,7 +25,7 @@
                     type="text"
                     style="background: transparent"
                     class="search-input"
-                    placeholder='Try searching "My Funded FX"'
+                    :placeholder='placeHolderText'
                     v-model="search"
                     @keyup="searchFirm"
                   />
@@ -751,6 +751,11 @@ export default {
   props: {
     accountSizes: {
       type: Array,
+      required: true,
+    },
+
+    placeHolderText: {
+      type: String,
       required: true,
     },
 

@@ -16,7 +16,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $firms=Firm::take(6)->latest()->get();
-        return view('front.home', compact('firms'));
+        // get 6 firms in random order
+        $firms=Firm::inRandomOrder()->limit(6)->get();
+
+        // get random firm
+        $randomFirm=Firm::inRandomOrder()->first();
+        $placeHolderText="Try Searching '".$randomFirm->name."'";
+
+        return view('front.home', compact('firms','placeHolderText'));
     }
 }

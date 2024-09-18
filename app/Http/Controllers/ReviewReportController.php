@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AccountSize;
+use App\Models\Firm;
 use App\Models\FirmBreach;
 use App\Models\FirmChallenge;
 use App\Models\FirmPayoutDenial;
@@ -24,7 +25,13 @@ class ReviewReportController extends Controller
 
         $documentIconUrl=asset('front-assets/images/document 1.png');
 
-        return view('front.review-report.index',compact('accountSizes','steps','documentIconUrl'));
+
+        // get random firm
+        $randomFirm=Firm::inRandomOrder()->first();
+        $placeHolderText="Try Searching '".$randomFirm->name."'";
+
+
+        return view('front.review-report.index',compact('accountSizes','steps','documentIconUrl','placeHolderText'));
     }
 
     /**
