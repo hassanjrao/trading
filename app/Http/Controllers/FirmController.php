@@ -7,6 +7,7 @@ use App\Models\Firm;
 use App\Models\FirmChallenge;
 use App\Models\FirmRequest;
 use App\Models\FirmReview;
+use App\Models\FirmUserVote;
 use App\Models\Step;
 use Illuminate\Http\Request;
 
@@ -189,7 +190,12 @@ class FirmController extends Controller
             ->orderBy('user_votes_count', 'desc')
             ->get();
 
-        return view('front.firms.most-voted', compact('firms', 'assetTypes'));
+            $userVotedFirm=null;
+            if(auth()->check()){
+                $userVotedFirm = FirmUserVote::where('user_id', auth()->id())->first();
+            }
+
+        return view('front.firms.most-voted', compact('firms', 'assetTypes','userVotedFirm'));
     }
 
 
@@ -212,9 +218,17 @@ class FirmController extends Controller
             'firm_id' => 'required|exists:firms,id'
         ]);
 
+
+        FirmUserVote::where('user_id', auth()->id())->delete();
+
         $firm = Firm::find($request->firm_id);
 
-        $firm->userVotes()->attach(auth()->id());
+
+
+        FirmUserVote::create([
+            'user_id' => auth()->id(),
+            'firm_id' => $firm->id
+        ]);
 
         return redirect()->route('firms.most-voted', ['type' => $request->type])->withToastSuccess('Vote submitted successfully');
     }

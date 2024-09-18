@@ -92,6 +92,7 @@ class Firm extends Model
     }
 
 
+
     public function calculateAverageRatings(){
 
         $ratings=$this->firmReviews();

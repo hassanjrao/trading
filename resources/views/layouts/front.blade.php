@@ -36,7 +36,7 @@
         }
 
         a:hover{
-            color: black;
+            color: none;
             text-decoration: none
         }
     </style>

@@ -79,12 +79,21 @@
                             <div class="button_v">
                                 @auth
 
+                                {{-- if the user has already voted show already voted here --}}
+
+                                    @if ($userVotedFirm && $userVotedFirm->firm_id==$firm->id)
+                                    <button class="btn btn-sm btn-primary"><b> Voted</b></button>
+
+                                    @else
+
                                     <form action="{{ route('firms.submit-vote') }}" method="POST">
                                         @csrf
                                         <input type="hidden" name="firm_id" value="{{ $firm->id }}">
                                         <input type="hidden" name="type" value="{{ $tab }}">
                                         <button class="btn btn-primary"><b>Vote</b></button>
                                     </form>
+
+                                    @endif
                                 @endauth
                                 @guest
 

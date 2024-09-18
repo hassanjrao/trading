@@ -72,9 +72,9 @@ class User extends Authenticatable
 
 
 
-    public function firmVotes()
+    public function firmVote()
     {
-        return $this->belongsToMany(Firm::class, 'firm_votes');
+        return $this->hasOne(FirmUserVote::class, 'user_id');
     }
 
     public function firmReviews()
