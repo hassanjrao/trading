@@ -245,10 +245,16 @@
                                         </td>
                                         <td>
                                             <p class="wsx" style="font-size: 15px; margin-bottom: 0px">
-                                                ${{ $challenge->before_price }}</p>
-                                            <p class="orginal" style="font-size: 18px; margin-bottom: 1px">
+                                                {{ config('app.currency_symbol') . $challenge->before_price }}
+                                            </p>
+                                            <p class="orginal" style="font-size: 20px; margin-bottom: 1px">
                                                 {{ config('app.currency_symbol') . $challenge->actual_price }}
                                             </p>
+                                            @if ($challenge->actual_price_note)
+                                                <span style="font-size: 10px">
+                                                    {{ $challenge->actual_price_note }}
+                                                </span>
+                                            @endif
                                         </td>
                                         <td>{{ $challenge->accountSize->size }} ({{ $challenge->step->name }})</td>
                                         <td>
