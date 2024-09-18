@@ -199,6 +199,14 @@
                         </li>
 
                         <li class="nav-main-item">
+                            <a class="nav-main-link{{ request()->is('admin/technologies') ? ' active' : '' }}"
+                                href="{{ route('admin.technologies.index') }}">
+                                <i class="nav-main-link-icon si si-cursor"></i>
+                                <span class="nav-main-link-name">Technologies</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-main-item">
                             <a class="nav-main-link{{ request()->is('admin/countries') ? ' active' : '' }}"
                                 href="{{ route('admin.countries.index') }}">
                                 <i class="nav-main-link-icon si si-cursor"></i>

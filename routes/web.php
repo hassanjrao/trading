@@ -102,6 +102,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','role:admin'])->group
 
     Route::resource('platforms', AdminPlatformController::class);
 
+
+    Route::resource('technologies', AdminTechnologyController::class);
+
     Route::resource('commission-structure', AdminCommissionStructureController::class);
 
 
