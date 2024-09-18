@@ -69,6 +69,8 @@ Route::middleware(['auth'])->group(function(){
 
 Route::get('compare', [CompareController::class, 'index'])->name('compare.index');
 
+
+Route::get('firms/review-useful/{reviewId}/{isUseful}', [FirmController::class, 'reviewUseFul'])->name('firms.review-useful');
 Route::get('firms/{firmChallenge}/summary', [FirmController::class, 'summary'])->name('firms.summary');
 Route::get('firms/most-voted', [FirmController::class, 'mostVoted'])->name('firms.most-voted');
 Route::post('firms/request', [FirmController::class, 'request'])->name('firms.request');

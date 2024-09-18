@@ -485,9 +485,15 @@
                                                     <div class="sect half_sec" style="    margin-bottom: 10px;">
                                                         <p class="sect_p " style="width: 100%;">Did you find this review
                                                             useful ?</p>
-                                                        <p class="sect_p"> <i class="fa fa-thumbs-o-up"
-                                                                aria-hidden="true"></i> <i class="fa fa-thumbs-o-down"
-                                                                aria-hidden="true"></i> 15 out of 18 found it useful</p>
+                                                        <p class="sect_p">
+                                                            <a href="{{ route('firms.review-useful',['reviewId'=>$review->id,'isUseful'=>true]) }}">
+                                                                <i class="fa fa-thumbs-o-up"aria-hidden="true"></i>
+                                                            </a>
+                                                            <a href="{{ route('firms.review-useful',['reviewId'=>$review->id,'isUseful'=>'no']) }}">
+                                                                <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
+                                                            </a>
+                                                            {{ $totalFirmReviewUsefulCount }} out of {{ $totalFirmReviewCount }} found it useful
+                                                        </p>
                                                     </div>
 
                                                     {{-- <div class="sect half_sec">
@@ -632,7 +638,8 @@
                                         @else
                                             @foreach ($firmCommissionStructures as $firmCommissionStructure)
                                                 <p class="d_est1_about">
-                                                    <img src="{{ $firmCommissionStructure->commissionStructure->image_url }}" class="about_img">
+                                                    <img src="{{ $firmCommissionStructure->commissionStructure->image_url }}"
+                                                        class="about_img">
                                                     <b>{{ $firmCommissionStructure->commissionStructure->name }}: </b>
                                                     <b>{{ $firmCommissionStructure->note }}</b>
                                                 </p>

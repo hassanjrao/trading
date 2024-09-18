@@ -6,6 +6,7 @@ use App\Models\AssetType;
 use App\Models\Firm;
 use App\Models\FirmChallenge;
 use App\Models\FirmRequest;
+use App\Models\FirmReview;
 use App\Models\Step;
 use Illuminate\Http\Request;
 
@@ -79,7 +80,12 @@ class FirmController extends Controller
 
         $avgRating=$firm->calculateAverageRatings();
 
-        return view('front.firms.show', compact('firm','firmChallenges','fireReviews','avgRating','firmCommissionStructures'));
+        $totalFirmReviewUsefulCount=$firm->firmReviews->sum('review_useful_count');
+        $totalFirmReviewNotUsefulCount=$firm->firmReviews->sum('review_not_useful_count');
+
+        $totalFirmReviewCount=$totalFirmReviewUsefulCount+$totalFirmReviewNotUsefulCount;
+
+        return view('front.firms.show', compact('firm','firmChallenges','fireReviews','avgRating','firmCommissionStructures','totalFirmReviewUsefulCount','totalFirmReviewNotUsefulCount','totalFirmReviewCount'));
     }
 
     /**
@@ -114,6 +120,20 @@ class FirmController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function reviewUseFul($firmReviewId, $isUseFul){
+
+        $firmReview=FirmReview::findorfail($firmReviewId);
+
+        if($isUseFul==1){
+            $firmReview->increment('review_useful_count');
+        }else{
+            $firmReview->increment('review_not_useful_count');
+        }
+
+        return back()->withToastSuccess('Review marked successfully');
+
     }
 
 
