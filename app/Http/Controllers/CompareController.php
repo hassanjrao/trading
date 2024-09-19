@@ -65,4 +65,35 @@ class CompareController extends Controller
 
         return view('front.compare.index', compact('assetTypes', 'top7AccountSizes', 'otherAccountSizes', 'steps', 'firmChallenges', 'selectedAssetTypes', 'selectedAccountSizes', 'selectedSteps','technologies','selectedTechnologies'));
     }
+
+
+    public function getAccountSizes(Request $request)
+    {
+
+        $request->validate([
+            'step'=>'required|exists:steps,id',
+            'firm_id'=>'required|exists:firms,id',
+        ]);
+
+        // get steps for the selected account size from firm challenge
+
+        $firmChallenges=FirmChallenge::where('firm_id',$request->firm_id)
+        ->where('step_id',$request->step)
+        ->get();
+
+        $accountSizes=[];
+
+        foreach ($firmChallenges as $firmChallenge)
+        {
+            $accountSizes[]=$firmChallenge->accountSize;
+        }
+
+        // remove duplicate accountSizes
+        $accountSizes=array_unique($accountSizes);
+
+
+        return response()->json([
+            'accountSizes'=>$accountSizes
+        ]);
+    }
 }

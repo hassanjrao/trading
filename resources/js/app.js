@@ -26,7 +26,7 @@ Vue.component('review-report', require('./components/ReviewReport/ReviewReport.v
 
 Vue.component('add-edit-firm', require('./components/Firms/AddEditFirm.vue').default);
 
-// Vue.component('compare', require('./components/Compare.vue').default);
+Vue.component('summary-choose-another', require('./components/SummaryChooseAnother.vue').default);
 
 
 /**

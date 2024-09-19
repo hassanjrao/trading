@@ -68,6 +68,8 @@ Route::middleware(['auth'])->group(function(){
 
 
 Route::get('compare', [CompareController::class, 'index'])->name('compare.index');
+Route::get('get-account-sizes', [CompareController::class, 'getAccountSizes'])->name('review-report.get-account-sizes');
+
 
 
 Route::get('firms/review-useful/{reviewId}/{isUseful}', [FirmController::class, 'reviewUseFul'])->name('firms.review-useful');
