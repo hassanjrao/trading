@@ -14,6 +14,9 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    {{-- fav icon --}}
+    <link rel="icon" href="{{ asset('media/fav.png') }}" type="image/gif" sizes="16x16">
+
     <title>
         @yield('page-title') - {{ config('app.name') }}
     </title>
