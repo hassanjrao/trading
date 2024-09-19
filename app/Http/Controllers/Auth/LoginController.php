@@ -45,7 +45,12 @@ class LoginController extends Controller
         if ($user->hasRole('admin')) {
             return redirect()->route('admin.dashboard.index');
         } else {
-            return redirect()->route('profile.index');
+            // if the previous page was requested by the user and it redirects to login page, then redirect to that page after login
+            if ($request->session()->has('url.intended')) {
+                return redirect()->intended();
+            } else {
+                return redirect()->route('profile.index');
+            }
         }
     }
 }
