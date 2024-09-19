@@ -97,6 +97,10 @@
                 <div class="row">
 
                     @foreach ($firms as $firm)
+                        @php
+
+                            $avgRating = $firm->calculateAverageRatings();
+                        @endphp
                         <div class="col-md-4 col-12 mb-3">
                             <div class="review_tab">
 
@@ -110,7 +114,7 @@
 
                                             <div class="review-rating-block">
 
-                                                <h4 class="review-rating">4.3</h4>
+                                                <h4 class="review-rating">{{ $avgRating['overall'] }}</h4>
                                                 <div class="review-back"></div>
                                             </div>
                                         </div>
@@ -120,44 +124,57 @@
                                         <div class="d-flex align-items-center mb-2">
                                             <span class="progress_title">Dashboard</span>
                                             <div class="rating-bar  flex-grow-1">
-                                                <div class="rating-bar-fill {{ $firm->calculateAverageRatings()['dashboard_percent']=='100' ? 'full-rating':'' }}" style="width: {{ $firm->calculateAverageRatings()['dashboard_percent'].'%' }};">
+                                                <div class="rating-bar-fill {{ $avgRating['dashboard_percent'] == '100' ? 'full-rating' : '' }}"
+                                                    style="width: {{ $avgRating['dashboard_percent'] . '%' }};">
                                                 </div>
                                             </div>
-                                            <span class="progress_titles">{{ $firm->calculateAverageRatings()['dashboard'] }} Stars</span>
+                                            <span
+                                                class="progress_titles">{{ $avgRating['dashboard'] }}
+                                                Stars</span>
                                         </div>
                                         <div class="d-flex align-items-center mb-2">
                                             <span class="progress_title">Support Team</span>
                                             <div class="rating-bar  flex-grow-1">
-                                                <div class="rating-bar-fill {{ $firm->calculateAverageRatings()['support_team_percent']=='100' ? 'full-rating':'' }}" style="width: {{ $firm->calculateAverageRatings()['support_team_percent'].'%' }};">
+                                                <div class="rating-bar-fill {{ $avgRating['support_team_percent'] == '100' ? 'full-rating' : '' }}"
+                                                    style="width: {{ $avgRating['support_team_percent'] . '%' }};">
                                                 </div>
                                             </div>
-                                            <span class="progress_titles">{{ $firm->calculateAverageRatings()['support_team'] }} Stars</span>
+                                            <span
+                                                class="progress_titles">{{ $avgRating['support_team'] }}
+                                                Stars</span>
                                         </div>
                                         <div class="d-flex align-items-center mb-2">
                                             <span class="progress_title">Payout Process</span>
                                             <div class="rating-bar  flex-grow-1">
-                                                <div class="rating-bar-fill {{ $firm->calculateAverageRatings()['payout_process_percent']=='100' ? 'full-rating':'' }}" style="width: {{ $firm->calculateAverageRatings()['payout_process_percent'].'%' }};">
+                                                <div class="rating-bar-fill {{ $avgRating['payout_process_percent'] == '100' ? 'full-rating' : '' }}"
+                                                    style="width: {{ $avgRating['payout_process_percent'] . '%' }};">
                                                 </div>
                                             </div>
-                                            <span class="progress_titles">{{ $firm->calculateAverageRatings()['payout_process'] }} Stars</span>
+                                            <span
+                                                class="progress_titles">{{ $avgRating['payout_process'] }}
+                                                Stars</span>
 
                                         </div>
                                         <div class="d-flex align-items-center mb-2">
                                             <span class="progress_title">Rules</span>
                                             <div class="rating-bar  flex-grow-1">
-                                                <div class="rating-bar-fill {{ $firm->calculateAverageRatings()['rules_percent']=='100' ? 'full-rating':'' }}" style="width: {{ $firm->calculateAverageRatings()['rules_percent'].'%' }};">
+                                                <div class="rating-bar-fill {{ $avgRating['rules_percent'] == '100' ? 'full-rating' : '' }}"
+                                                    style="width: {{ $avgRating['rules_percent'] . '%' }};">
                                                 </div>
                                             </div>
-                                            <span class="progress_titles">{{ $firm->calculateAverageRatings()['rules'] }} Stars</span>
+                                            <span class="progress_titles">{{ $avgRating['rules'] }}
+                                                Stars</span>
 
                                         </div>
                                         <div class="d-flex align-items-center mb-2">
                                             <span class="progress_title">General Rating</span>
                                             <div class="rating-bar  flex-grow-1">
-                                                <div class="rating-bar-fill {{ $firm->calculateAverageRatings()['general_percent']=='100' ? 'full-rating':'' }}" style="width: {{ $firm->calculateAverageRatings()['general_percent'].'%' }};">
+                                                <div class="rating-bar-fill {{ $avgRating['general_percent'] == '100' ? 'full-rating' : '' }}"
+                                                    style="width: {{ $avgRating['general_percent'] . '%' }};">
                                                 </div>
                                             </div>
-                                            <span class="progress_titles">{{ $firm->calculateAverageRatings()['general'] }} Stars</span>
+                                            <span class="progress_titles">{{ $avgRating['general'] }}
+                                                Stars</span>
 
                                         </div>
                                     </div>
