@@ -158,6 +158,16 @@
               ></v-text-field>
             </v-col>
 
+            <v-col cols="12" sm="6" md="6">
+              <v-text-field
+                ref="checkout_link"
+                v-model="firm.checkout_link"
+                label="Checkout Link"
+                :rules="[(v) => !!v || 'Checkout Link is required']"
+              ></v-text-field>
+            </v-col>
+
+
             <v-col cols="12" sm="6" md="4">
               <!-- show image if firm has firm.logo_url -->
 
@@ -237,6 +247,7 @@ export default {
         country_id: null,
         main_benefits: null,
         main_drawbacks: null,
+        checkout_link: null,
       },
     };
   },
@@ -271,6 +282,7 @@ export default {
         formData.append("profit_split", this.firm.profit_split);
         formData.append("main_benefits", this.firm.main_benefits);
         formData.append("main_drawbacks", this.firm.main_drawbacks);
+        formData.append("checkout_link", this.firm.checkout_link);
 
       if(this.firm.logo) {
         console.log("logo", this.firm.logo);

@@ -104,6 +104,7 @@ class AdminFirmNewController extends Controller
             'profit_split'=> 'required',
             'main_benefits' => 'required',
             'main_drawbacks' => 'required',
+            'checkout_link'=>'required',
         ]);
 
         $firmData = [
@@ -120,6 +121,7 @@ class AdminFirmNewController extends Controller
             'profit_split' => $request->profit_split,
             'main_benefits' => $request->main_benefits,
             'main_drawbacks' => $request->main_drawbacks,
+            'checkout_link' => $request->checkout_link,
         ];
 
 
@@ -139,7 +141,7 @@ class AdminFirmNewController extends Controller
         }
 
         return response()->json([
-            'message' => 'Firm created successfully',
+            'message' => 'Submitted successfully',
             'data' => [
                 'firm' => $firm
             ]
