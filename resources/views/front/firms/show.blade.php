@@ -646,7 +646,7 @@
 
                                             </div>
                                             <div class="col-lg-6">
-                                                @foreach ($firmPlatformsFirst as $platform)
+                                                @foreach ($firmPlatformsSecond as $platform)
                                                     <p class="d_est1_about">
                                                         <img src="{{ $platform->logo_url }}" class="about_img">
                                                         <b>{{ $platform->name }} <span
