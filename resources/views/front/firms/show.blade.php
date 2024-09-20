@@ -10,6 +10,17 @@
 
     <link rel="stylesheet" href="{{ asset('front-assets/css/profile.css') }}">
 
+    @php
+        $profitSplitFontSize= '40px !important';
+
+
+        if(strlen($firm->profit_split) > 10){
+            $profitSplitFontSize = '20px !important';
+        }
+
+
+    @endphp
+
     <style>
         .full-rating {
             border-radius: 24px;
@@ -17,6 +28,10 @@
 
         div#p_table_wrapper {
             margin-top: 0px !important;
+        }
+
+        .profit-split-font-size {
+            font-size: {{ $profitSplitFontSize }};
         }
     </style>
 @endsection
@@ -101,7 +116,7 @@
                                 <div class="col-md-3 ">
                                     <div class="chalng_tabs review_tab">
                                         <p class="p_text">Profit Split</p>
-                                        <p class="d_est1" style="font-size: 40px"><b>
+                                        <p class="d_est1 profit-split-font-size"><b>
                                                 {{ $firm->profit_split }}
                                             </b></p>
                                     </div>
