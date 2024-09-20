@@ -319,6 +319,8 @@ export default {
       this.firm.asset_type_id = this.createdFirm.asset_type ? this.createdFirm.asset_type.id : null;
         this.firm.technology_id = this.createdFirm.technology.id ? this.createdFirm.technology.id : null;
         this.firm.country_id = this.createdFirm.country.id ? this.createdFirm.country.id : null;
+        this.firm.direct_path_to_live_funded=this.createdFirm.direct_path_to_live_funded == 1 ? true : false;
+
     }
   },
 };
