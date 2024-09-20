@@ -52,7 +52,7 @@ class AdminFirmNewController extends Controller
         $firmID = null;
 
 
-        return view('admin.firms.add_edit', compact('firm', 'assetTypes', 'technologies', 'steps', 'accountSizes', 'countries', 'firmID', 'paymentMethods', 'payoutMethods', 'platforms','commissionStructures'));
+        return view('admin.firms.add_edit', compact('firm', 'assetTypes', 'technologies', 'steps', 'accountSizes', 'countries', 'firmID', 'paymentMethods', 'payoutMethods', 'platforms', 'commissionStructures'));
     }
 
 
@@ -102,10 +102,10 @@ class AdminFirmNewController extends Controller
             'daily_drawdown' => 'required',
             'country' => 'required|exists:countries,id',
             'logo' => 'nullable|image',
-            'profit_split'=> 'required',
+            'profit_split' => 'required',
             'main_benefits' => 'required',
             'main_drawbacks' => 'required',
-            'checkout_link'=>'required',
+            'checkout_link' => 'required',
         ]);
 
         $firmData = [
@@ -123,7 +123,7 @@ class AdminFirmNewController extends Controller
             'main_benefits' => $request->main_benefits,
             'main_drawbacks' => $request->main_drawbacks,
             'checkout_link' => $request->checkout_link,
-            'slug' =>Str::slug($request->name)
+            'slug' => Str::slug($request->name)
         ];
 
 
@@ -160,7 +160,7 @@ class AdminFirmNewController extends Controller
             'linkedin_url' => 'required',
             'trust_pilot' => 'required',
             'trustpilot_url' => 'required',
-            'commission_strucuture_link'=>'nullable',
+            'commission_strucuture_link' => 'nullable',
             'payment_methods' => 'required|array',
             'payment_methods.*' => 'required|exists:payment_methods,id',
             'payout_methods' => 'required|array',
@@ -168,12 +168,12 @@ class AdminFirmNewController extends Controller
             'platforms' => 'required|array',
             'platforms.*' => 'required|exists:platforms,id',
             'description' => 'required',
-            'commission_structures' => 'required|array',
+            'commission_structures' => 'nullable|array',
             'commission_structures.*.commission_structure_id' => 'required|exists:commission_structures,id',
             'commission_structures.*.note' => 'nullable',
         ]);
 
-        $firm= Firm::find($request->firm_id);
+        $firm = Firm::find($request->firm_id);
 
 
         $firmAbout =   FirmAbout::updateOrCreate(
@@ -195,12 +195,14 @@ class AdminFirmNewController extends Controller
         $firm->payoutMethods()->sync($request->payout_methods);
         $firm->platforms()->sync($request->platforms);
 
-        $firm->commissionStructures()->delete();
-        foreach ($request->commission_structures as $commissionStructure) {
-            $firm->commissionStructures()->create([
-                'commission_structure_id' => $commissionStructure['commission_structure_id'],
-                'note' => $commissionStructure['note'],
-            ]);
+        if ($request->commission_structures && count($request->commission_structures) > 0) {
+            $firm->commissionStructures()->delete();
+            foreach ($request->commission_structures as $commissionStructure) {
+                $firm->commissionStructures()->create([
+                    'commission_structure_id' => $commissionStructure['commission_structure_id'],
+                    'note' => $commissionStructure['note'],
+                ]);
+            }
         }
 
         return response()->json([
@@ -209,19 +211,19 @@ class AdminFirmNewController extends Controller
                 'firmAbout' => $firmAbout
             ]
         ]);
-
     }
 
-    public function requests(Request $request){
+    public function requests(Request $request)
+    {
 
-        $firmRequests=FirmRequest::latest()->get();
+        $firmRequests = FirmRequest::latest()->get();
 
-        return view('admin.firms.requests',compact('firmRequests'));
-
+        return view('admin.firms.requests', compact('firmRequests'));
     }
 
 
-    public function submitChallenges(Request $request){
+    public function submitChallenges(Request $request)
+    {
         $request->validate([
             'firm_id' => 'required|exists:firms,id',
             'firm_challenges' => 'required|array',
@@ -272,7 +274,6 @@ class AdminFirmNewController extends Controller
         return response()->json([
             'message' => 'Firm challenges updated successfully'
         ]);
-
     }
 
 
@@ -291,7 +292,7 @@ class AdminFirmNewController extends Controller
             'firmChallenges.firmChallengeDetails',
             'firmChallenges.step',
             'commissionStructures'
-            ])
+        ])
             ->findorfail($id);
 
         $assetTypes = AssetType::latest()->get();
@@ -311,7 +312,7 @@ class AdminFirmNewController extends Controller
 
         return view(
             'admin.firms.add_edit',
-            compact('firmID', 'firm', 'assetTypes', 'technologies', 'steps', 'accountSizes', 'countries', 'paymentMethods', 'payoutMethods', 'platforms','commissionStructures')
+            compact('firmID', 'firm', 'assetTypes', 'technologies', 'steps', 'accountSizes', 'countries', 'paymentMethods', 'payoutMethods', 'platforms', 'commissionStructures')
         );
     }
 
