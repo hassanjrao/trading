@@ -55,7 +55,7 @@
                             <p class="p_text">Established</p>
                             <p class="d_est">
                                 <b>
-                                    {{ Carbon\Carbon::parse($firm->established)->format('M Y') }}
+                                    {{ Carbon\Carbon::parse($firm->established_date)->format('M Y') }}
                                 </b>
                             </p>
                         </div>
