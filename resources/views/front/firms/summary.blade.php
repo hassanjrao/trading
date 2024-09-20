@@ -20,7 +20,7 @@
                     <h5 class="p_name_1">
                         <b>{{ $firm->name }}</b>
                     </h5>
-                    <a href="{{ $firm->url }}" class="p_des" style="font-size: 12px">{{ $firm->url }}</a><br>
+                    <a href="{{ $firm->checkout_link }}" class="p_des" style="font-size: 12px">{{ $firm->url }}</a><br>
                     <img class="img_data img-fluid" style="width: 3rem !important" src="{{ $firm->country->flag_url }}">
                 </div>
 

@@ -58,7 +58,7 @@
                                                 {{ $firm->name }}
                                             </b> <img class="img_data img-fluid" style="width: 2rem !important"
                                                 src="{{ $firm->country->flag_url }}"> <br>
-                                            <a href="{{ $firm->url }}" target="__blank"
+                                            <a href="{{ $firm->checkout_link }}" target="__blank"
                                                 class="p_des">{{ $firm->url }}
                                             </a>
                                         </span>
