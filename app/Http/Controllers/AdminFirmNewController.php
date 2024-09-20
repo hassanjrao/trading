@@ -108,6 +108,10 @@ class AdminFirmNewController extends Controller
             'checkout_link' => 'required',
         ]);
 
+        $slug=$request->name;
+        // remove spaces
+        $slug = str_replace(' ', '', $slug);
+
         $firmData = [
             'name' => $request->name,
             'url' => $request->url,
@@ -123,7 +127,7 @@ class AdminFirmNewController extends Controller
             'main_benefits' => $request->main_benefits,
             'main_drawbacks' => $request->main_drawbacks,
             'checkout_link' => $request->checkout_link,
-            'slug' => Str::slug($request->name)
+            'slug' => $slug
         ];
 
 
