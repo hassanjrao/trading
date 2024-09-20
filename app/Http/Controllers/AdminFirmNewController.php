@@ -15,6 +15,7 @@ use App\Models\Platform;
 use App\Models\Step;
 use App\Models\Technology;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class AdminFirmNewController extends Controller
 {
@@ -122,6 +123,7 @@ class AdminFirmNewController extends Controller
             'main_benefits' => $request->main_benefits,
             'main_drawbacks' => $request->main_drawbacks,
             'checkout_link' => $request->checkout_link,
+            'slug' =>Str::slug($request->name)
         ];
 
 

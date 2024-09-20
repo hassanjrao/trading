@@ -109,7 +109,7 @@
                                         <div class="d-flex align-items-center new_top">
                                             <p class="top_firm_title"><img style="width: 60px !important;"
                                                     src="{{ $firm->logo_url }}">
-                                                <a href="{{ route('firms.show', $firm->id) }}"> {{ $firm->name }}</a>
+                                                <a href="{{ route('firms.show-slug', $firm->slug) }}"> {{ $firm->name }}</a>
                                             </p>
 
                                             <div class="review-rating-block">

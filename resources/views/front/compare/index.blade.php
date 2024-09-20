@@ -235,7 +235,7 @@
                                 @foreach ($firmChallenges as $challenge)
                                     <tr>
                                         <td>
-                                            <a href="{{ route('firms.show', $challenge->firm->id) }}">
+                                            <a href="{{ route('firms.show-slug', $challenge->firm->slug) }}">
                                                 <img class="img_data" src="{{ $challenge->firm->logo_url }}">
                                                 <p class="text_name">
 

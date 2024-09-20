@@ -90,6 +90,38 @@ class FirmController extends Controller
         return view('front.firms.show', compact('firm','firmChallenges','fireReviews','avgRating','firmCommissionStructures','totalFirmReviewUsefulCount','totalFirmReviewNotUsefulCount','totalFirmReviewCount'));
     }
 
+    public function showWithSlug($slug)
+    {
+        $firm = Firm::where('slug', $slug)->first();
+
+        if(!$firm){
+            return abort(404);
+        }
+
+
+        $firmChallenges = $firm->firmChallenges()
+        ->with(['step','accountSize','firmChallengeDetails'])
+        ->latest()->get();
+
+        $fireReviews=$firm->firmReviews()->latest()
+        ->with(['accountSize','user','step'])
+        ->get();
+
+        $firmCommissionStructures=$firm->commissionStructures()
+        ->with(['commissionStructure'])
+        ->get();
+
+
+        $avgRating=$firm->calculateAverageRatings();
+
+        $totalFirmReviewUsefulCount=$firm->firmReviews->sum('review_useful_count');
+        $totalFirmReviewNotUsefulCount=$firm->firmReviews->sum('review_not_useful_count');
+
+        $totalFirmReviewCount=$totalFirmReviewUsefulCount+$totalFirmReviewNotUsefulCount;
+
+        return view('front.firms.show', compact('firm','firmChallenges','fireReviews','avgRating','firmCommissionStructures','totalFirmReviewUsefulCount','totalFirmReviewNotUsefulCount','totalFirmReviewCount'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

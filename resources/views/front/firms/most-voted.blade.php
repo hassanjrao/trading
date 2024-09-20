@@ -70,7 +70,7 @@
                                 <p>
                                     <img class="img_data" src="{{ $firm->logo_url }}">
                                     <b>
-                                        <a href="{{ route('firms.show', $firm->id) }}">{{ $firm->name }}</a>
+                                        <a href="{{ route('firms.show-slug', $firm->slug) }}">{{ $firm->name }}</a>
                                     </b>
                                 </p>
                             </div>

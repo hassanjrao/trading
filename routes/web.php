@@ -78,6 +78,7 @@ Route::get('firms/most-voted', [FirmController::class, 'mostVoted'])->name('firm
 Route::post('firms/request', [FirmController::class, 'request'])->name('firms.request');
 Route::get('firms/search', [FirmController::class, 'search'])->name('firms.search');
 
+Route::get('firms/{slug}', [FirmController::class, 'showWithSlug'])->name('firms.show-slug');
 Route::resource('firms', FirmController::class);
 
 

@@ -41,7 +41,7 @@
                         <div class="firm-logo">
                             <img src="{{ $firm->logo_url }}" alt="Topstep">
                             <div>
-                                <a href="{{ route('firms.show', $firm->id) }}">{{ $firm->name }}</a>
+                                <a href="{{ route('firms.show-slug', ['slug'=>$firm->slug]) }}">{{ $firm->name }}</a>
                             </div>
                         </div>
                     @endforeach
@@ -121,7 +121,7 @@
                             result.classList.add('result');
 
                             let anchor = document.createElement('a');
-                            anchor.href = '/firms/' + firm.id;
+                            anchor.href = '/firms/' + firm.slug;
 
                             let img = document.createElement('img');
                             img.src = firm.logo_url;
