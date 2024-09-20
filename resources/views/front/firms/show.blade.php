@@ -11,13 +11,11 @@
     <link rel="stylesheet" href="{{ asset('front-assets/css/profile.css') }}">
 
     @php
-        $profitSplitFontSize= '40px !important';
+        $profitSplitFontSize = '40px !important';
 
-
-        if(strlen($firm->profit_split) > 10){
+        if (strlen($firm->profit_split) > 10) {
             $profitSplitFontSize = '20px !important';
         }
-
 
     @endphp
 
@@ -501,13 +499,16 @@
                                                         <p class="sect_p " style="width: 100%;">Did you find this review
                                                             useful ?</p>
                                                         <p class="sect_p">
-                                                            <a href="{{ route('firms.review-useful',['reviewId'=>$review->id,'isUseful'=>true]) }}">
+                                                            <a
+                                                                href="{{ route('firms.review-useful', ['reviewId' => $review->id, 'isUseful' => true]) }}">
                                                                 <i class="fa fa-thumbs-o-up"aria-hidden="true"></i>
                                                             </a>
-                                                            <a href="{{ route('firms.review-useful',['reviewId'=>$review->id,'isUseful'=>'no']) }}">
+                                                            <a
+                                                                href="{{ route('firms.review-useful', ['reviewId' => $review->id, 'isUseful' => 'no']) }}">
                                                                 <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
                                                             </a>
-                                                            {{ $totalFirmReviewUsefulCount }} out of {{ $totalFirmReviewCount }} found it useful
+                                                            {{ $totalFirmReviewUsefulCount }} out of
+                                                            {{ $totalFirmReviewCount }} found it useful
                                                         </p>
                                                     </div>
 
@@ -632,15 +633,33 @@
                                     <div class="chalng_tabs review_tab p-4 ">
                                         <p class="p_text_about">Platform</p>
 
-                                        @foreach ($firm->platforms as $platform)
-                                            <p class="d_est1_about">
-                                                <img src="{{ $platform->logo_url }}" class="about_img">
-                                                <b>{{ $platform->name }} <span
-                                                        style="font-size:smaller">{{ $platform->note ? '(' . $platform->note . ')' : '' }}
-                                                    </span></b>
-                                            </p>
-                                        @endforeach
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                @foreach ($firmPlatformsFirst as $platform)
+                                                    <p class="d_est1_about">
+                                                        <img src="{{ $platform->logo_url }}" class="about_img">
+                                                        <b>{{ $platform->name }} <span
+                                                                style="font-size:smaller">{{ $platform->note ? '(' . $platform->note . ')' : '' }}
+                                                            </span></b>
+                                                    </p>
+                                                @endforeach
+
+                                            </div>
+                                            <div class="col-lg-6">
+                                                @foreach ($firmPlatformsFirst as $platform)
+                                                    <p class="d_est1_about">
+                                                        <img src="{{ $platform->logo_url }}" class="about_img">
+                                                        <b>{{ $platform->name }} <span
+                                                                style="font-size:smaller">{{ $platform->note ? '(' . $platform->note . ')' : '' }}
+                                                            </span></b>
+                                                    </p>
+                                                @endforeach
+
+                                            </div>
+                                        </div>
+
                                     </div>
+
                                 </div>
 
                                 <div class="col-md-6">

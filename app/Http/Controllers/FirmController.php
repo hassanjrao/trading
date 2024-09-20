@@ -119,7 +119,16 @@ class FirmController extends Controller
 
         $totalFirmReviewCount=$totalFirmReviewUsefulCount+$totalFirmReviewNotUsefulCount;
 
-        return view('front.firms.show', compact('firm','firmChallenges','fireReviews','avgRating','firmCommissionStructures','totalFirmReviewUsefulCount','totalFirmReviewNotUsefulCount','totalFirmReviewCount'));
+        $firmPlatforms=$firm->platforms()->get();
+
+        $halfFirmPlatforms=ceil($firmPlatforms->count()/2);
+
+        $firmPlatformsFirst=$firmPlatforms->take($halfFirmPlatforms);
+        $firmPlatformsSecond=$firmPlatforms->skip($halfFirmPlatforms);
+
+
+
+        return view('front.firms.show', compact('firm','firmChallenges','fireReviews','avgRating','firmCommissionStructures','totalFirmReviewUsefulCount','totalFirmReviewNotUsefulCount','totalFirmReviewCount','firmPlatforms','firmPlatformsFirst','firmPlatformsSecond'));
     }
 
     /**
