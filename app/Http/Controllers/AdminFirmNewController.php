@@ -111,6 +111,8 @@ class AdminFirmNewController extends Controller
         $slug=$request->name;
         // remove spaces
         $slug = str_replace(' ', '', $slug);
+        // lowercase
+        $slug = strtolower($slug);
 
         $firmData = [
             'name' => $request->name,
