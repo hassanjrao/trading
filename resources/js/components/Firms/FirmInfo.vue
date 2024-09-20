@@ -316,7 +316,9 @@ export default {
 
     if (this.createdFirm) {
       this.firm = this.createdFirm;
-      console.log("createdFirm", this.firm);
+      this.firm.asset_type_id = this.createdFirm.asset_type ? this.createdFirm.asset_type.id : null;
+        this.firm.technology_id = this.createdFirm.technology.id ? this.createdFirm.technology.id : null;
+        this.firm.country_id = this.createdFirm.country.id ? this.createdFirm.country.id : null;
     }
   },
 };
