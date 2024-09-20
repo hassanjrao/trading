@@ -316,6 +316,7 @@ export default {
 
     if (this.createdFirm) {
       this.firm = this.createdFirm;
+      console.log("createdFirm", this.firm);
     }
   },
 };
