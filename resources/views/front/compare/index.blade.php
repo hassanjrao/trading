@@ -22,7 +22,7 @@
             background-origin: padding-box, border-box;
             cursor: pointer;
             font-family: 'Metropolis', sans-serif;
-            padding: .375rem .75rem;
+            padding: .375rem .75rem !important;
             font-size: 1rem;
             line-height: 1.5;
             vertical-align: middle;
@@ -41,7 +41,7 @@
             background: linear-gradient(100deg, #7A95F8 0%, #6453CA 100%);
             color: #FBF5F3 !important;
             border: none;
-            padding: .65rem .75rem;
+            padding: .65rem .75rem !important;
         }
 
         .checkBtn.deactive {
@@ -74,10 +74,11 @@
                 <input type="hidden" name="search" value="true">
                 <div class="container">
                     <div class="section-title">Asset Type</div>
-                    <div class="d-flex justify-content-start" data-toggle="buttons">
+                    <div class="d-flex justify-content-start row mt-2" data-toggle="buttons">
                         @foreach ($assetTypes as $assetType)
+
                             <button type="button"
-                                class="checkBtn w-10rem {{ in_array($assetType->id, $selectedAssetTypes) ? 'active' : '' }}"
+                                class="checkBtn {{ in_array($assetType->id, $selectedAssetTypes) ? 'active' : '' }} col-lg-1 col-md-2 mb-2"
                                 id="assetType-{{ $assetType->id }}"
                                 onclick="filterClicked('assetType',{{ $assetType->id }})">
                                 {{ $assetType->name }}
@@ -86,10 +87,10 @@
                     </div>
 
                     <div class="section-title">Account Size</div>
-                    <div class="d-flex justify-content-start" data-toggle="buttons">
+                    <div class="d-flex justify-content-start row mt-2" data-toggle="buttons">
                         @foreach ($top7AccountSizes as $accountSize)
                             <button type="button"
-                                class="checkBtn w-10rem {{ in_array($accountSize->id, $selectedAccountSizes) ? 'active' : '' }}"
+                                class="checkBtn {{ in_array($accountSize->id, $selectedAccountSizes) ? 'active' : '' }} col-lg-1 col-md-2 mb-2"
                                 id="accountSize-{{ $accountSize->id }}"
                                 onclick="filterClicked('accountSize',{{ $accountSize->id }})">
                                 {{ $accountSize->size }}
@@ -150,11 +151,11 @@
                     @endif --}}
 
                     <div class="section-title">Steps</div>
-                    <div class="d-flex justify-content-start" data-toggle="buttons">
+                    <div class="d-flex justify-content-start row mt-2" data-toggle="buttons">
 
                         @foreach ($steps as $step)
                             <button type="button"
-                                class="checkBtn w-10rem {{ in_array($step->id, $selectedSteps) ? 'active' : '' }}"
+                                class="checkBtn w-10rem {{ in_array($step->id, $selectedSteps) ? 'active' : '' }} col-lg-1 col-md-2 mb-2"
                                 id="step-{{ $step->id }}" onclick="filterClicked('step',{{ $step->id }})">
                                 {{ $step->name }}
                             </button>
@@ -162,15 +163,16 @@
                     </div>
 
                     <div class="section-title">Extra Filters</div>
-                    <div class="d-flex justify-content-start" data-toggle="buttons">
+                    <div class="d-flex justify-content-start row mt-2" data-toggle="buttons">
 
                         @foreach ($technologies as $technology)
                             <button type="button"
-                                class="checkBtn w-10rem {{ in_array($technology->id, $selectedTechnologies) ? 'active' : '' }}"
+                                class="checkBtn w-10rem {{ in_array($technology->id, $selectedTechnologies) ? 'active' : '' }} col-lg-3 col-md-4 mb-2"
                                 id="technology-{{ $technology->id }}"
                                 onclick="filterClicked('technology',{{ $technology->id }})">
                                 {{ $technology->name }}
                             </button>
+
                         @endforeach
                     </div>
 
@@ -289,8 +291,10 @@
                                         </td>
                                         <td class="r_data">
                                             {{ $challenge->rewards }}
-                                            <img class="img_data" src="{{ asset('front-assets/images/922.png') }}"
-                                                style="width: 50px;">
+                                            <a href="{{ route('firms.summary', $challenge) }}">
+                                                <img class="img_data" src="{{ asset('front-assets/images/922.png') }}"
+                                                    style="width: 50px;">
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach

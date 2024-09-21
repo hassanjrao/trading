@@ -29,12 +29,12 @@ class CompareController extends Controller
 
         $assetTypes = AssetType::all();
 
-        $top7AccountSizes = AccountSize::limit(7)->get();
+        $top7AccountSizes = AccountSize::all();
 
         $technologies=Technology::all();
 
 
-        $otherAccountSizes = AccountSize::whereNotIn('id', $top7AccountSizes->pluck('id'))->get();
+        // $otherAccountSizes = AccountSize::whereNotIn('id', $top7AccountSizes->pluck('id'))->get();
 
         $steps = Step::all();
 
@@ -63,7 +63,7 @@ class CompareController extends Controller
 
 
 
-        return view('front.compare.index', compact('assetTypes', 'top7AccountSizes', 'otherAccountSizes', 'steps', 'firmChallenges', 'selectedAssetTypes', 'selectedAccountSizes', 'selectedSteps','technologies','selectedTechnologies'));
+        return view('front.compare.index', compact('assetTypes', 'top7AccountSizes', 'steps', 'firmChallenges', 'selectedAssetTypes', 'selectedAccountSizes', 'selectedSteps','technologies','selectedTechnologies'));
     }
 
 
