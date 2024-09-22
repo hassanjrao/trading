@@ -95,8 +95,12 @@
                         </div>
                     </div>
 
-                    <div class="mt-3">
-                        <input type="email" class="form-control search_email" placeholder=" e.g example@gmail.com">
+                    <div class="mt-3 row">
+                        <div class="col-lg-5">
+                            <label for="email">Email Address</label>
+                            <input type="email" class="form-control search_email" placeholder=" e.g example@gmail.com"
+                                style="width: 96%">
+                        </div>
                     </div>
                     <div class="order_summry_section d-flex mt-3">
                         <div class="section_order_details">
@@ -116,8 +120,8 @@
                     <button class="btn btn-primary choose_btn mt-3" id="toggleButton"> Choose another</button>
 
                     <div id="mapVue">
-                    <summary-choose-another :steps='{{ $steps }}' :firm='{{ $firm }}'/>
-                </div>
+                        <summary-choose-another :steps='{{ $steps }}' :firm='{{ $firm }}' />
+                    </div>
                     <div class="form-group form-check mt-4 pl-0">
                         <input type="checkbox" class="form-check-input" id="terms" name="terms" required>
                         <label class="checkbox-label sec_title_order" for="terms">I would like to receive exclusive
@@ -130,8 +134,8 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-5">
-                            <a href="{{ $firm->checkout_link }}" class="btn btn-primary btn_checkout">Proceed to checkout <i
-                                    class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                            <a href="{{ $firm->checkout_link }}" class="btn btn-primary btn_checkout">Proceed to checkout
+                                <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
                             <p class="sec_title_order text-center" style="font-size: 11px;">
                                 This Purchase will give you <strong style="color: #747474; font-size: 14px;">5</strong>
                                 reward points
