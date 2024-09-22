@@ -398,7 +398,7 @@ button.back>i {
             position: absolute;
             width: 100%;
             right: 0px;
-            top: -100px;
+            /* top: -100px; */
         }
         .checkbox-label {
             padding-left: 28px !important;

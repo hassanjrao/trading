@@ -42,6 +42,29 @@
             color: none;
             text-decoration: none
         }
+
+
+        @media (max-width: 576px) {
+            .logo{
+                position: relative;
+                top: -32px;
+            }
+
+            .logo img{
+                width: 12rem !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo{
+                position: relative;
+                top: -32px;
+            }
+            .logo img{
+                width: 15rem !important;
+            }
+        }
+
     </style>
 
     @yield('styles')
@@ -52,24 +75,16 @@
 <body>
     <header class="pt-5">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-3 col-9">
+            <div class="row justify-content-between">
+                <div class="col-lg-3">
                     {{-- <div > --}}
                     <a href="{{ route('home') }}" class="logo">
                         <img src="{{ asset('front-assets/images/logofull 1.png') }}">
                     </a>
                     {{-- </div> --}}
                 </div>
-                <div class="col-md-3  ">
-                    {{-- <form>
-                        <div class="search">
-                            <span class="fa fa-search"></span>
-                            <input type="text" placeholder="Search 'Apex Trader Funding'">
 
-                        </div>
-                    </form> --}}
-                </div>
-                <div class="col-md-6 col-12">
+                <div class="col-lg-6">
                     <div class="navbar">
 
                         <div class="hamburger" onclick="toggleMenu()">

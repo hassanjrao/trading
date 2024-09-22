@@ -7,15 +7,15 @@
     <link href="https://fonts.cdnfonts.com/css/metropolis-2" rel="stylesheet">
 
     <style>
-        .tab-content{
+        .tab-content {
             min-height: 0px;
         }
 
 
         @media (max-width: 576px) {
-            .data img{
+            .data img {
                 width: 100% !important;
-    height: 135px;
+                height: 135px;
             }
         }
     </style>
@@ -57,12 +57,12 @@
             <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
 
 
-                @if(count($firms) == 0)
-                <div class="row align-items-center">
-                    <div class="col-lg-12 text-center">
-                        <h3>No firm in this category has been voted by anyone yet</h3>
+                @if (count($firms) == 0)
+                    <div class="row align-items-center">
+                        <div class="col-lg-12 text-center">
+                            <h3>No firm in this category has been voted by anyone yet</h3>
+                        </div>
                     </div>
-                </div>
                 @endif
                 @foreach ($firms as $firm)
                     <div class="row mb-3 align-items-center border_line">
@@ -85,20 +85,17 @@
                             <div class="button_v">
                                 @auth
 
-                                {{-- if the user has already voted show already voted here --}}
+                                    {{-- if the user has already voted show already voted here --}}
 
-                                    @if ($userVotedFirm && $userVotedFirm->firm_id==$firm->id)
-                                    <button class="btn btn-sm btn-primary"><b> Voted</b></button>
-
+                                    @if ($userVotedFirm && $userVotedFirm->firm_id == $firm->id)
+                                        <button class="btn btn-sm btn-primary"><b> Voted</b></button>
                                     @else
-
-                                    <form action="{{ route('firms.submit-vote') }}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="firm_id" value="{{ $firm->id }}">
-                                        <input type="hidden" name="type" value="{{ $tab }}">
-                                        <button class="btn btn-primary"><b>Vote</b></button>
-                                    </form>
-
+                                        <form action="{{ route('firms.submit-vote') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="firm_id" value="{{ $firm->id }}">
+                                            <input type="hidden" name="type" value="{{ $tab }}">
+                                            <button class="btn btn-primary"><b>Vote</b></button>
+                                        </form>
                                     @endif
                                 @endauth
                                 @guest
