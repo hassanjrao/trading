@@ -2,7 +2,7 @@
   <div class="row mt-3" id="toggleDiv">
     <div class="col-md-8 chose_option ml-2">
       <ul class="nav nav-tabs justify-content-left" id="checkmyTab" role="tablist">
-        <li class="nav-item" v-for="step in steps" :key="step.id">
+        <li class="nav-item mb-2" v-for="step in steps" :key="step.id">
           <a
             class="nav-link"
             @click="changeStep(step.id)"
@@ -27,7 +27,7 @@
           <br />
           <p>
             <span class="does_not_belong mt-3 text-white" v-if="accountSizes.length == 0 && selectedStep">
-              This Firm dose not have instant challenges.</span
+              This firm {{ firm.name }} dose not have instant challenges.</span
             >
           </p>
         </div>
