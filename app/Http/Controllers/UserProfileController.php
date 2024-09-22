@@ -21,6 +21,7 @@ class UserProfileController extends Controller
         $firmChallenges = PropFirmChallenge::all();
 
         $reviews=auth()->user()->firmReviews()->latest()
+        ->where('is_approved',1)
         ->with(['accountSize','user','step','firm'])
         ->get();
 

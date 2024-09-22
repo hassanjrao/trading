@@ -12,6 +12,8 @@ class ReviewReport extends Component
     public $firms=[];
     public $selectedFirm=null;
 
+    
+
     public function updatedSearch()
     {
         if(!$this->search){
@@ -27,7 +29,7 @@ class ReviewReport extends Component
     public function firmSelected($id)
     {
         $this->selectedFirm = Firm::find($id);
-       
+
     }
 
 

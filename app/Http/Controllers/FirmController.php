@@ -72,6 +72,7 @@ class FirmController extends Controller
         ->latest()->get();
 
         $fireReviews=$firm->firmReviews()->latest()
+        ->where('is_approved',1)
         ->with(['accountSize','user','step'])
         ->get();
 
@@ -104,6 +105,7 @@ class FirmController extends Controller
         ->latest()->get();
 
         $fireReviews=$firm->firmReviews()->latest()
+        ->where('is_approved',1)
         ->with(['accountSize','user','step'])
         ->get();
 

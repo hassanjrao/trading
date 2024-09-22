@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminCountryController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminFirmController;
 use App\Http\Controllers\AdminFirmNewController;
+use App\Http\Controllers\AdminFirmReviewController;
 use App\Http\Controllers\AdminPaymentMethodController;
 use App\Http\Controllers\AdminPayoutMethodController;
 use App\Http\Controllers\AdminPlatformController;
@@ -61,6 +62,7 @@ Route::middleware(['auth'])->group(function(){
 
 
     Route::resource('review-report', ReviewReportController::class);
+
 
 });
 
@@ -126,6 +128,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','role:admin'])->group
     Route::delete('firms/{firm}', [AdminFirmNewController::class, 'destroy'])->name('firms.destroy');
     Route::get('firms', [AdminFirmNewController::class,'index'])->name('firms.index');
 
+    Route::post('firm-reviews/approve/{firmReviewId}', [AdminFirmReviewController::class, 'approve'])->name('firm-reviews.approve');
+    Route::resource('firm-reviews',AdminFirmReviewController::class);
 
 });
 

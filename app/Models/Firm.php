@@ -95,7 +95,7 @@ class Firm extends Model
 
     public function calculateAverageRatings(){
 
-        $ratings=$this->firmReviews();
+        $ratings=$this->firmReviews()->where('is_approved',1);
 
         $totalRatings=$ratings->count();
 

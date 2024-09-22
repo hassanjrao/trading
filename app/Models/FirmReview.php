@@ -5,12 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 class FirmReview extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $guarded = [];
+
+    protected $appends=['order_confirmation_url'];
+
+    public function getOrderConfirmationUrlAttribute()
+    {
+        return $this->order_confirmation_path ? Storage::url($this->order_confirmation_path) : null;
+    }
 
     public function firm()
     {
