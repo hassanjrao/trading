@@ -48,6 +48,7 @@
             .logo{
                 position: relative;
                 top: -32px;
+                z-index: 222 !important;
             }
 
             .logo img{
@@ -59,6 +60,7 @@
             .logo{
                 position: relative;
                 top: -32px;
+                z-index: 222 !important;
             }
             .logo img{
                 width: 15rem !important;
@@ -117,7 +119,7 @@
                             </div>
                             <div class="menu-item">
                                 @auth
-                                    <a class="menu-button" href="{{ route('profile.index') }}"><img
+                                    <a class="menu-button" style="padding-left: 4px !important" href="{{ route('profile.index') }}"><img
                                             src="https://img.icons8.com/ios-glyphs/30/ffffff/user.png" alt="My Account">My
                                         Account</a>
                                 @endauth
