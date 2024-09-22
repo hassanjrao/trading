@@ -10,6 +10,14 @@
         .tab-content{
             min-height: 0px;
         }
+
+
+        @media (max-width: 576px) {
+            .data img{
+                width: 100% !important;
+    height: 135px;
+            }
+        }
     </style>
 
 @endsection
@@ -57,16 +65,14 @@
                 </div>
                 @endif
                 @foreach ($firms as $firm)
-                    <div class="row mb-3">
-                        <div class="col-md-1 col-1">
+                    <div class="row mb-3 align-items-center border_line">
+                        <div class="col-lg-6 col-md-6 d-flex">
                             <div class="number">
                                 <p class="text-white">
                                     <b>{{ $loop->iteration }}</b>
                                 </p>
                             </div>
-                        </div>
-                        <div class="col-md-8 col-7 border_line">
-                            <div class="data">
+                            <div class="data ml-2">
                                 <p>
                                     <img class="img_data" src="{{ $firm->logo_url }}">
                                     <b>
@@ -75,7 +81,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="col-md-3  col-3 border_line">
+                        <div class="col-lg-6 col-md-6">
                             <div class="button_v">
                                 @auth
 
