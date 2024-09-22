@@ -11,6 +11,12 @@
 
 
     <link href="https://fonts.cdnfonts.com/css/metropolis-2" rel="stylesheet">
+
+    <style>
+        .form-group {
+            margin-bottom: 0;
+        }
+    </style>
 @endsection
 
 @php
@@ -103,7 +109,6 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-4"></div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4">
@@ -177,15 +182,9 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-4"></div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
+                                <div class="row justify-content-between">
 
-
-                                        </div>
-                                    </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Confirm New Password</label>
@@ -220,18 +219,18 @@
                                 <div class="col-lg-12">
 
                                     @foreach ($reviews as $review)
-                                        <div class="d-flex align-items-center mb-3">
-                                            <img src="{{ $review->firm->logo_url }}" alt="" class="img_data">
+                                        <div class="d-flex align-items-center mb-3 flex-wrap">
+                                            <img src="{{ $review->firm->logo_url }}" alt="" class="img_data mb-2">
                                             <h4 class="text-white" style="margin-left: 10px">{{ $review->firm->name }}
                                             </h4>
                                         </div>
                                         <div class="review_tab r_tab_user mb-5">
 
                                             <div class="rating-section">
-                                                <div class="mb-4 d-flex justify-content-between align-items-center">
-                                                    <div class="d-flex align-items-center">
+                                                <div class="mb-4 d-flex justify-content-between align-items-center ">
+                                                    <div class="d-flex align-items-center flex-wrap">
                                                         <img src="{{ $review->user->profile_picture_url }}"
-                                                            style="width: 46px; ">
+                                                            style="width: 46px; " class="mb-2">
                                                         <h4 class="names">
                                                             {{ $review->user->name }}
                                                             <br>
@@ -430,17 +429,7 @@
 
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-
-
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-
-                                        </div>
-                                    </div>
+                                    
                                     <div class="col-md-4 text-right">
 
                                         <button type="submit" class=" btn btn-primary frmbtn pr-5 pl-5">Submit</button>
