@@ -405,6 +405,10 @@
                   placeholder="What are the main advantages of this company?"
                   v-model="mainAdvantages"
                 ></textarea>
+
+              <p class="text-danger pl-3" v-if="mainAdvantagesError ? true : false">
+                {{ mainAdvantagesError }}
+              </p>
               </div>
               <div class="col-md-6">
                 <textarea
@@ -413,6 +417,10 @@
                   placeholder="What are the main drawbacks of this company?"
                   v-model="mainDrawbacks"
                 ></textarea>
+
+              <p class="text-danger pl-3" v-if="mainDrawbacksError ? true : false">
+                {{ mainDrawbacksError }}
+              </p>
               </div>
             </div>
             <br />
@@ -801,7 +809,9 @@ export default {
       breachingReasonError: false,
       breachingMoreDetails: null,
       mainAdvantages: null,
+      mainAdvantagesError: false,
       mainDrawbacks: null,
+        mainDrawbacksError: false,
       termsCondtions: null,
       selectedAccountSize: "",
       selectedStep: "",
@@ -851,6 +861,20 @@ export default {
       } else {
         this.orderConfirmationError = false;
       }
+
+        if (!this.mainAdvantages) {
+            this.mainAdvantagesError = "Main Advantages is required";
+            return;
+        } else {
+            this.mainAdvantagesError = false;
+        }
+
+        if (!this.mainDrawbacks) {
+            this.mainDrawbacksError = "Main Drawbacks is required";
+            return;
+        } else {
+            this.mainDrawbacksError = false;
+        }
 
       if (!this.termsCondtions) {
         this.termsCondtionsError = "Please accept the terms and conditions";

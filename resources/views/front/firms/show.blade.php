@@ -507,8 +507,8 @@
                                                                 href="{{ route('firms.review-useful', ['reviewId' => $review->id, 'isUseful' => 'no']) }}">
                                                                 <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
                                                             </a>
-                                                            {{ $totalFirmReviewUsefulCount }} out of
-                                                            {{ $totalFirmReviewCount }} found it useful
+                                                            {{ $review->review_useful_count }} out of
+                                                            {{ $review->review_useful_count+$review->review_not_useful_count }} found it useful
                                                         </p>
                                                     </div>
 
