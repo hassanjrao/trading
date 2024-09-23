@@ -667,7 +667,7 @@
                                         <p class="p_text_about">Commissions Structure</p>
 
                                         @if ($firm->about->commission_strucuture_link)
-                                            <b>See thier <a href="{{ $firm->commission_strucuture_link }} "
+                                            <b>See their <a href="{{ $firm->commission_strucuture_link }} "
                                                     target="__blank">full</a> article</b>
                                         @else
                                             @foreach ($firmCommissionStructures as $firmCommissionStructure)
