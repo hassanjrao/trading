@@ -269,6 +269,10 @@
                                             @foreach ($challenge->firmChallengeDetails as $detail)
                                                 {{ 'P' . $loop->iteration . ': ' . $detail->max_daily_loss }}
                                                 <br>
+                                                <span style="font-size: 12px; margin-bottom: 10px">
+                                                {{ $detail->max_daily_loss_note }}
+                                                </span>
+                                                <br>
                                             @endforeach
                                         </td>
                                         <td>

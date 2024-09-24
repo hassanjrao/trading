@@ -58,7 +58,7 @@ class CompareController extends Controller
                 });
             })
             ->with(['firm', 'accountSize', 'step', 'firmChallengeDetails', 'firm.technology', 'firm.country'])
-            ->latest()
+            ->orderBy('account_size_id')
             ->get();
 
 
