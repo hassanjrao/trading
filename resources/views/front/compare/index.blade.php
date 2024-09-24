@@ -279,7 +279,7 @@
                                             @endforeach
                                         </td>
                                         <td>
-                                            {{ Carbon\Carbon::parse($challenge->firm->established)->format('M Y') }}
+                                            {{ Carbon\Carbon::parse($challenge->firm->established_date)->format('M Y') }}
                                             <br><img class="img_data img-fluid"
                                                 style="width: 3rem !important; margin:5px 0px;"
                                                 src="{{ $challenge->firm->country->flag_url }}"><br><span class="c_name">
