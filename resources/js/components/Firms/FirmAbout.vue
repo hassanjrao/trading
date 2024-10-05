@@ -145,6 +145,7 @@
                           :items="commissionStructures"
                           item-text="name"
                           item-value="id"
+                          :key="'comm' + index"
                           chips
                         ></v-autocomplete>
                       </td>
