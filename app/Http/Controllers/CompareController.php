@@ -85,11 +85,14 @@ class CompareController extends Controller
 
         foreach ($firmChallenges as $firmChallenge)
         {
+            // check if account size is already in the array
+            if(in_array($firmChallenge->accountSize->id,$accountSizes))
+            {
+                continue;
+            }
             $accountSizes[]=$firmChallenge->accountSize;
         }
 
-        // remove duplicate accountSizes
-        $accountSizes=array_unique($accountSizes);
 
 
         return response()->json([
