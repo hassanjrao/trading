@@ -133,6 +133,36 @@
         }
     </style>
 
+
+    @php
+            $randomFirm=\App\Models\Firm::inRandomOrder()->first();
+        $placeHolderText="Try Searching '".$randomFirm->name."'";
+
+        $placeHolderTextFontSize = '1rem !important';
+
+        if (strlen($placeHolderText) > 10) {
+            $placeHolderTextFontSize = '11px !important';
+        }
+
+        if (strlen($placeHolderText) > 34) {
+            $placeHolderTextFontSize = '9px !important';
+        }
+
+    @endphp
+
+    <style>
+        /* for small devices */
+
+        @media (max-width: 576px) {
+
+
+            #searchPlaceholder::placeholder {
+                font-size: {{ $placeHolderTextFontSize }};
+            }
+
+        }
+    </style>
+
     @yield('styles')
     @livewireStyles
 
@@ -153,9 +183,10 @@
                     <div class="col-lg-3">
 
                         <form>
-                            <div class="search d-flex align-items-center" style="padding: 1px 15px !important; width:90%">
+                            <div class="search d-flex align-items-center"
+                                style="padding: 1px 15px !important; width:90%">
                                 <span class="fa fa-search"></span>
-                                <input type="text" id="searchInput" placeholder="Search 'Apex Trader Funding'">
+                                <input type="text" id="searchInput" placeholder="{{ $placeHolderText }}">
                                 <ul id="suggestionList" class="suggestions list-unstyled d-none"></ul>
 
                             </div>
@@ -328,7 +359,8 @@
 
                     firms.forEach(firm => {
                         let result = document.createElement('div');
-                        result.classList.add('d-flex', 'align-items-center', 'p-2', 'border-bottom');
+                        result.classList.add('d-flex', 'align-items-center', 'p-2',
+                        'border-bottom');
 
                         let anchor = document.createElement('a');
                         anchor.href = '/firms/' + firm.slug;

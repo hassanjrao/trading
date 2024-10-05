@@ -4,31 +4,6 @@
 @section('styles')
     <link rel="stylesheet" href="{{ asset('front-assets/css/homepage.css') }}">
 
-    @php
-        $placeHolderTextFontSize = '1rem !important';
-
-        if (strlen($placeHolderText) > 10) {
-            $placeHolderTextFontSize = '11px !important';
-        }
-
-        if (strlen($placeHolderText) > 34) {
-            $placeHolderTextFontSize = '9px !important';
-        }
-
-    @endphp
-
-    <style>
-        /* for small devices */
-
-        @media (max-width: 576px) {
-
-
-            #searchPlaceholder::placeholder {
-                font-size: {{ $placeHolderTextFontSize }};
-            }
-
-        }
-    </style>
 
 @endsection
 
