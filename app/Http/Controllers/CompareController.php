@@ -88,8 +88,12 @@ class CompareController extends Controller
             $accountSizes[]=$firmChallenge->accountSize;
         }
 
-        // // remove duplicate accountSizes
-        // $accountSizes=array_unique($accountSizes);
+        // remove duplicate accountSizes
+        foreach ($accountSizes as $key=>$accountSize)
+        {
+            $accountSizes=array_values(array_unique($accountSizes));
+        }
+
 
 
         return response()->json([
