@@ -137,6 +137,7 @@
                     >
                       <td>
                         <v-autocomplete
+                        v-if="commissionStructures.length"
                           v-model="commission.commission_structure_id"
                           label="Commission Structure"
                           :rules="[
