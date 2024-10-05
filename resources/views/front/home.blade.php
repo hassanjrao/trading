@@ -7,7 +7,6 @@
     @php
         $placeHolderTextFontSize = '1rem !important';
 
-
         if (strlen($placeHolderText) > 10) {
             $placeHolderTextFontSize = '11px !important';
         }
@@ -16,24 +15,19 @@
             $placeHolderTextFontSize = '9px !important';
         }
 
-
     @endphp
 
     <style>
-
         /* for small devices */
 
         @media (max-width: 576px) {
 
 
-        #searchPlaceholder::placeholder {
-            font-size: {{ $placeHolderTextFontSize }};
-        }
+            #searchPlaceholder::placeholder {
+                font-size: {{ $placeHolderTextFontSize }};
+            }
 
         }
-
-
-
     </style>
 
 @endsection
@@ -47,8 +41,8 @@
                 <h2 class="page_title pt-4 mt-4 pb-4 text-center text-white">Search any Prop Firm</h2>
                 <div class="search-container_2">
                     <div class="search-box">
-                        <input type="text" id="searchPlaceholder" placeholder="{{ $placeHolderText }}" class="form-control"
-                            oninput="searchFirm(this)">
+                        <input type="text" id="searchPlaceholder" placeholder="{{ $placeHolderText }}"
+                            class="form-control" oninput="searchFirm(this)">
                         <button class="cros-btn" id="crossBtn" onclick="removeSearch()" style="display: none">
                             <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/fc92f4b1e5ae453f85e52926657bffd07ae71ba903ace00620f07f9f4aaf57cf?apiKey=0c0d59785c2748c2ac1f9aa6f8f75c16&amp;width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/fc92f4b1e5ae453f85e52926657bffd07ae71ba903ace00620f07f9f4aaf57cf?apiKey=0c0d59785c2748c2ac1f9aa6f8f75c16&amp;width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/fc92f4b1e5ae453f85e52926657bffd07ae71ba903ace00620f07f9f4aaf57cf?apiKey=0c0d59785c2748c2ac1f9aa6f8f75c16&amp;width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/fc92f4b1e5ae453f85e52926657bffd07ae71ba903ace00620f07f9f4aaf57cf?apiKey=0c0d59785c2748c2ac1f9aa6f8f75c16&amp;width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/fc92f4b1e5ae453f85e52926657bffd07ae71ba903ace00620f07f9f4aaf57cf?apiKey=0c0d59785c2748c2ac1f9aa6f8f75c16&amp;width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/fc92f4b1e5ae453f85e52926657bffd07ae71ba903ace00620f07f9f4aaf57cf?apiKey=0c0d59785c2748c2ac1f9aa6f8f75c16&amp;width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/fc92f4b1e5ae453f85e52926657bffd07ae71ba903ace00620f07f9f4aaf57cf?apiKey=0c0d59785c2748c2ac1f9aa6f8f75c16&amp;width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/fc92f4b1e5ae453f85e52926657bffd07ae71ba903ace00620f07f9f4aaf57cf?apiKey=0c0d59785c2748c2ac1f9aa6f8f75c16&amp;"
                                 alt="Search"

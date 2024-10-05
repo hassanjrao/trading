@@ -25,48 +25,112 @@
         * {
             font-weight: bold !important;
         }
-        .img_data{
+
+        .img_data {
             width: 60px !important;
         }
-        .about_img{
+
+        .about_img {
             width: 32px !important;
         }
-        a{
+
+        a {
             color: black;
         }
-        .btn-block, .frmbtn{
+
+        .btn-block,
+        .frmbtn {
             color: white !important;
         }
 
-        a:hover{
+        a:hover {
             color: none;
             text-decoration: none
         }
 
 
         @media (max-width: 576px) {
-            .logo{
+            .logo {
                 position: relative;
                 top: -32px;
                 z-index: 222 !important;
             }
 
-            .logo img{
+            .logo img {
                 width: 12rem !important;
             }
         }
 
         @media (max-width: 768px) {
-            .logo{
+            .logo {
                 position: relative;
                 top: -32px;
                 z-index: 222 !important;
             }
-            .logo img{
+
+            .logo img {
                 width: 15rem !important;
             }
         }
 
+
+        .search-container {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        #searchInput {
+            width: 100%;
+            border-radius: 50px;
+            padding: 10px 20px;
+            border: 2px solid white;
+            background-color: white;
+            font-size: 16px;
+            color: #333;
+            z-index: 2;
+        }
+
+        .suggestions {
+            position: absolute;
+            width: 92%;
+            background-color: white;
+            border: none;
+            border-radius: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            top: 64px;
+            left: 16px;
+            z-index: 10000;
+        }
+
+        .suggestions li {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .suggestions li:hover {
+            background-color: #f1f1f1;
+        }
+
+        .search-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #7ea6f7;
+            /* The background color as shown in your image */
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .search-wrapper .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #333;
+        }
     </style>
 
     @yield('styles')
@@ -85,7 +149,20 @@
                     </a>
                     {{-- </div> --}}
                 </div>
+                @if (!request()->is('/'))
+                    <div class="col-lg-3">
 
+                        <form>
+                            <div class="search d-flex align-items-center" style="padding: 1px 15px !important; width:90%">
+                                <span class="fa fa-search"></span>
+                                <input type="text" id="searchInput" placeholder="Search 'Apex Trader Funding'">
+                                <ul id="suggestionList" class="suggestions list-unstyled d-none"></ul>
+
+                            </div>
+
+                        </form>
+                    </div>
+                @endif
                 <div class="col-lg-6">
                     <div class="navbar">
 
@@ -119,7 +196,8 @@
                             </div>
                             <div class="menu-item">
                                 @auth
-                                    <a class="menu-button" style="padding-left: 4px !important" href="{{ route('profile.index') }}"><img
+                                    <a class="menu-button" style="padding-left: 4px !important"
+                                        href="{{ route('profile.index') }}"><img
                                             src="https://img.icons8.com/ios-glyphs/30/ffffff/user.png" alt="My Account">My
                                         Account</a>
                                 @endauth
@@ -222,6 +300,80 @@
             menu.style.display = "flex";
         }
     }
+</script>
+
+
+<script>
+    const searchInput = document.getElementById('searchInput');
+    const suggestionList = document.getElementById('suggestionList');
+
+
+    searchInput.addEventListener('input', function() {
+        const query = this.value.toLowerCase();
+
+        axios.get('/firms/search', {
+                params: {
+                    search: query
+                }
+            })
+            .then(response => {
+                console.log('response', response);
+
+                let firms = response.data.data.firms;
+
+                if (firms.length > 0) {
+                    suggestionList.innerHTML = '';
+
+                    suggestionList.classList.remove('d-none');
+
+                    firms.forEach(firm => {
+                        let result = document.createElement('div');
+                        result.classList.add('d-flex', 'align-items-center', 'p-2', 'border-bottom');
+
+                        let anchor = document.createElement('a');
+                        anchor.href = '/firms/' + firm.slug;
+
+                        let img = document.createElement('img');
+                        img.src = firm.logo_url;
+                        img.alt = firm.name;
+                        // add img size style
+                        img.style.width = '50px';
+                        img.style.height = '50px';
+                        // add margin right
+                        img.style.marginRight = '10px';
+                        result.appendChild(img);
+
+                        let name = document.createElement('div');
+                        name.innerText = firm.name;
+                        result.appendChild(name);
+
+                        anchor.appendChild(result);
+
+                        suggestionList.appendChild(anchor);
+
+
+                    });
+                } else {
+
+                    suggestionList.classList.add('d-none');
+
+                }
+
+            })
+            .catch(error => {
+                console.log(error);
+            })
+            .finally(() => {
+                // hide loader
+            });
+
+    });
+
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.position-relative')) {
+            suggestionList.classList.add('d-none');
+        }
+    });
 </script>
 
 @stack('scripts')
