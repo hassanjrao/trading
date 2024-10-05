@@ -273,7 +273,12 @@ export default {
       this.firmAbout.payment_methods = this.firm.payment_methods.map((item) => item.id);
       this.firmAbout.payout_methods = this.firm.payout_methods.map((item) => item.id);
       this.firmAbout.platforms = this.firm.platforms.map((item) => item.id);
-      this.allFirmComssionStructures = this.firm.commission_structures;
+      this.allFirmComssionStructures = this.firm.commission_structures.map((item) => {
+        return {
+          commission_structure_id: item.commission_structure_id,
+          note: item.note,
+        };
+      });
     }
   },
   created() {
