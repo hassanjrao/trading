@@ -281,6 +281,7 @@ export default {
       });
 
       console.log('allFirmComssionStructures=>', this.allFirmComssionStructures);
+      console.log('coms',this.commissionStructures);
     }
   },
   created() {
