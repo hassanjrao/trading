@@ -38,7 +38,7 @@
           v-if="accountSizes.length >0"
         >
           <div class="row mt-3">
-            <div class="col-md-6" v-for="accountSize in accountSizes" :key="accountSize.id">
+            <div class="col-md-6" v-for="accountSize in accountSizes" :key="accountSize.id+Math.random()">
               <div class="form-group form-check pl-0 checks_tabs mb-3">
                 <input
                   type="checkbox"
