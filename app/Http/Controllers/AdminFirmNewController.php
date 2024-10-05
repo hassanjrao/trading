@@ -235,7 +235,7 @@ class AdminFirmNewController extends Controller
             'firm_challenges' => 'required|array',
             'firm_challenges.*.actual_price' => 'required',
             'firm_challenges.*.actual_price_note' => 'nullable',
-            'firm_challenges.*.before_price' => 'required',
+            'firm_challenges.*.before_price' => 'nullable',
             'firm_challenges.*.account_size_id' => 'required|exists:account_sizes,id',
             'firm_challenges.*.step_id' => 'required|exists:steps,id',
             'firm_challenges.*.activation_fee' => 'required',

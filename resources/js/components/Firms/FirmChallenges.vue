@@ -49,7 +49,6 @@
                     ref="before_price"
                     v-model="firmChallenge.before_price"
                     label="Before Price"
-                    :rules="[(v) => !!v || 'Before Price is required']"
                   ></v-text-field>
                 </v-col>
 
