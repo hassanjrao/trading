@@ -20,7 +20,9 @@ class HomeController extends Controller
         $firms=Firm::inRandomOrder()->limit(6)->get();
 
         // get random firm
+        $randomFirm=Firm::inRandomOrder()->first();
+        $placeHolderText="Try Searching '".$randomFirm->name."'";
 
-        return view('front.home', compact('firms'));
+        return view('front.home', compact('firms','placeHolderText'));
     }
 }

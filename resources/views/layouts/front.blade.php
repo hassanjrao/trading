@@ -135,8 +135,8 @@
 
 
     @php
-            $randomFirm=\App\Models\Firm::inRandomOrder()->first();
-        $placeHolderText="Try Searching '".$randomFirm->name."'";
+        $randomFirm = \App\Models\Firm::inRandomOrder()->first();
+        $placeHolderText = "Try Searching '" . $randomFirm->name . "'";
 
         $placeHolderTextFontSize = '1rem !important';
 
@@ -360,7 +360,7 @@
                     firms.forEach(firm => {
                         let result = document.createElement('div');
                         result.classList.add('d-flex', 'align-items-center', 'p-2',
-                        'border-bottom');
+                            'border-bottom');
 
                         let anchor = document.createElement('a');
                         anchor.href = '/firms/' + firm.slug;
