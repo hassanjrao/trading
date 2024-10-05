@@ -279,6 +279,8 @@ export default {
           note: item.note,
         };
       });
+
+      console.log('allFirmComssionStructures=>', this.allFirmComssionStructures);
     }
   },
   created() {
