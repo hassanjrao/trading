@@ -21,6 +21,7 @@ class OfferController extends Controller
                 $query->where('asset_type_id', $type);
             });
         })
+        ->with(['firm'])
         ->latest()->get();
 
         $assetTypes = AssetType::all();

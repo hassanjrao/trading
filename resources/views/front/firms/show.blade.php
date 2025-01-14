@@ -70,13 +70,19 @@
 
 @section('content')
 
+    @php
+        $col = 'col-lg-10';
+        if ($offers->count() > 0) {
+            $col = 'col-lg-6';
+        }
+    @endphp
 
     <br><br>
     <div class="container-fluid mt-4">
 
         <div class="row align-items-center">
             <div class="col-lg-1"></div>
-            <div class="col-lg-6">
+            <div class="{{ $col }}">
                 <div class="review_tab">
                     <div class="row">
 
@@ -135,24 +141,28 @@
 
                 </div>
             </div>
-            <div class="col-lg-4">
-                <div class="review_tab">
+            @if ($offers->count() > 0)
 
-                    @foreach ($offers as $offer)
-                        <div class="d-flex flex-wrap justify-content-between mb-2 promo-card">
-                            <p class="p_text" style="text-align: start">{{ $offer->description }}</p>
-                            <a onclick="copytoClipBoard(this)" data-bs-toggle="tooltip" data-bs-placement="top" title="Press to copy"
-                                class="btn promo-btn btn-sm btn-primary text-white d-flex justify-content-around align-items-center">
-                                {{-- percentage icon --}}
-                                <i class="fa fa-tags"></i>
-                                {{-- promo code --}}
-                                <span>{{ $offer->promo_code }}</span>
-                            </a>
-                        </div>
-                    @endforeach
+                <div class="col-lg-4">
+                    <div class="review_tab">
 
+                        @foreach ($offers as $offer)
+                            <div class="d-flex flex-wrap justify-content-between mb-2 promo-card">
+                                <p class="p_text" style="text-align: start">{{ $offer->description }}</p>
+                                <a onclick="copytoClipBoard(this)" data-bs-toggle="tooltip" data-bs-placement="top"
+                                    title="Press to copy"
+                                    class="btn promo-btn btn-sm btn-primary text-white d-flex justify-content-around align-items-center">
+                                    {{-- percentage icon --}}
+                                    <i class="fa fa-tags"></i>
+                                    {{-- promo code --}}
+                                    <span>{{ $offer->promo_code }}</span>
+                                </a>
+                            </div>
+                        @endforeach
+
+                    </div>
                 </div>
-            </div>
+            @endif
             <div class="col-lg-1"></div>
         </div>
         <br>
@@ -818,6 +828,5 @@
 
 
         // Initialize Bootstrap Tooltip
-
     </script>
 @endpush

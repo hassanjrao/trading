@@ -128,7 +128,7 @@ class FirmController extends Controller
         $firmPlatformsFirst=$firmPlatforms->take($halfFirmPlatforms);
         $firmPlatformsSecond=$firmPlatforms->skip($halfFirmPlatforms);
 
-        $offers=$firm->offers()->latest()->take(3)->get();
+        $offers=$firm->offers()->latest()->get();
 
 
 
