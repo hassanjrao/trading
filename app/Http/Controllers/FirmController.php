@@ -128,9 +128,11 @@ class FirmController extends Controller
         $firmPlatformsFirst=$firmPlatforms->take($halfFirmPlatforms);
         $firmPlatformsSecond=$firmPlatforms->skip($halfFirmPlatforms);
 
+        $offers=$firm->offers()->latest()->take(3)->get();
 
 
-        return view('front.firms.show', compact('firm','firmChallenges','fireReviews','avgRating','firmCommissionStructures','totalFirmReviewUsefulCount','totalFirmReviewNotUsefulCount','totalFirmReviewCount','firmPlatforms','firmPlatformsFirst','firmPlatformsSecond'));
+
+        return view('front.firms.show', compact('offers','firm','firmChallenges','fireReviews','avgRating','firmCommissionStructures','totalFirmReviewUsefulCount','totalFirmReviewNotUsefulCount','totalFirmReviewCount','firmPlatforms','firmPlatformsFirst','firmPlatformsSecond'));
     }
 
     /**

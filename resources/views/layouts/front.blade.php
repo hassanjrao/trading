@@ -204,6 +204,9 @@
                         </div>
                         <div class="menu" id="menu">
                             <div class="menu-item">
+                                <a class="menu-button" href="{{ route('offers.index') }}">Offers</a>
+                            </div>
+                            <div class="menu-item">
                                 <a class="menu-button" href="{{ route('compare.index') }}">Compare</a>
                             </div>
                             <div class="dropdown">
@@ -295,6 +298,9 @@
 <script src="{{ asset('js/laravel.app.js') }}"></script>
 
 <script src="{{ asset('js/app.js') }}"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
 
 <script>
     var currentStep = 1;
@@ -406,6 +412,25 @@
             suggestionList.classList.add('d-none');
         }
     });
+</script>
+
+<script>
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+
+    function copytoClipBoard(e) {
+        const copyButton = e;
+
+
+
+        // Copy button content to clipboard
+        const textToCopy = copyButton.textContent.trim();
+        navigator.clipboard.writeText(textToCopy).then(() => {
+
+        }).catch(err => {
+            console.error('Error copying text: ', err);
+        });
+    }
 </script>
 
 @stack('scripts')

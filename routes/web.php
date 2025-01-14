@@ -18,6 +18,7 @@ use App\Http\Controllers\AdminTradingExperienceController;
 use App\Http\Controllers\CompareController;
 use App\Http\Controllers\FirmController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OfferController;
 use App\Http\Controllers\ReviewReportController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserProfileController;
@@ -72,6 +73,8 @@ Route::middleware(['auth'])->group(function(){
 Route::get('compare', [CompareController::class, 'index'])->name('compare.index');
 Route::get('get-account-sizes', [CompareController::class, 'getAccountSizes'])->name('review-report.get-account-sizes');
 
+
+Route::get('offers',[OfferController::class,'index'])->name('offers.index');
 
 
 Route::get('firms/review-useful/{reviewId}/{isUseful}', [FirmController::class, 'reviewUseFul'])->name('firms.review-useful');

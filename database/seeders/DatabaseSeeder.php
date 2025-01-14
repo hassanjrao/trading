@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
             PlatformSeeder::class,
             PaymentMethodSeeder::class,
             PayoutMethodSeeder::class,
+            OfferSeeder::class,
         ]);
     }
 }

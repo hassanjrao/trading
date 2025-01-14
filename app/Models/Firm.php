@@ -91,6 +91,11 @@ class Firm extends Model
         return $this->belongsToMany(Platform::class, 'firm_platform');
     }
 
+    public function offers()
+    {
+        return $this->hasMany(Offer::class);
+    }
+
 
 
     public function calculateAverageRatings(){

@@ -31,6 +31,40 @@
         .profit-split-font-size {
             font-size: {{ $profitSplitFontSize }};
         }
+
+        .promo-btn {
+            width: 36%;
+        }
+
+        /* for smaller screen width 100% */
+
+        @media (max-width: 992px) {
+            .promo-btn {
+                width: 60%;
+            }
+
+            .promo-card {
+                flex-direction: column;
+                align-items: center;
+                /* border bottom */
+                border-bottom: 1px solid #e0e0e0;
+                padding-bottom: 5px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .promo-btn {
+                width: 60%;
+            }
+
+            .promo-card {
+                flex-direction: column;
+                align-items: center;
+                /* border bottom */
+                border-bottom: 1px solid #e0e0e0;
+                padding-bottom: 5px;
+            }
+        }
     </style>
 @endsection
 
@@ -40,9 +74,9 @@
     <br><br>
     <div class="container-fluid mt-4">
 
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-10 col-12">
+        <div class="row align-items-center">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-6">
                 <div class="review_tab">
                     <div class="row">
 
@@ -101,7 +135,25 @@
 
                 </div>
             </div>
-            <div class="col-md-1"></div>
+            <div class="col-lg-4">
+                <div class="review_tab">
+
+                    @foreach ($offers as $offer)
+                        <div class="d-flex flex-wrap justify-content-between mb-2 promo-card">
+                            <p class="p_text" style="text-align: start">{{ $offer->description }}</p>
+                            <a onclick="copytoClipBoard(this)" data-bs-toggle="tooltip" data-bs-placement="top" title="Press to copy"
+                                class="btn promo-btn btn-sm btn-primary text-white d-flex justify-content-around align-items-center">
+                                {{-- percentage icon --}}
+                                <i class="fa fa-tags"></i>
+                                {{-- promo code --}}
+                                <span>{{ $offer->promo_code }}</span>
+                            </a>
+                        </div>
+                    @endforeach
+
+                </div>
+            </div>
+            <div class="col-lg-1"></div>
         </div>
         <br>
         <div class="tab-content p_tab-content" id="myTabContent">
@@ -214,7 +266,7 @@
                                                     {{ 'P' . $loop->iteration . ': ' . $detail->max_daily_loss }}
                                                     <br>
                                                     <span style="font-size: 12px; margin-bottom: 10px">
-                                                    {{ $detail->max_daily_loss_note }}
+                                                        {{ $detail->max_daily_loss_note }}
                                                     </span>
                                                     <br>
                                                 @endforeach
@@ -512,7 +564,8 @@
                                                                 <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
                                                             </a>
                                                             {{ $review->review_useful_count }} out of
-                                                            {{ $review->review_useful_count+$review->review_not_useful_count }} found it useful
+                                                            {{ $review->review_useful_count + $review->review_not_useful_count }}
+                                                            found it useful
                                                         </p>
                                                     </div>
 
@@ -754,13 +807,17 @@
             $('#p_table_wrapper .row:first').remove();
         });
 
-        document.getElementById('toggleButton').addEventListener('click', function() {
-            var div = document.getElementById('toggleDiv');
-            if (div.style.display === 'none') {
-                div.style.display = 'block';
-            } else {
-                div.style.display = 'none';
-            }
-        });
+        // document.getElementById('toggleButton').addEventListener('click', function() {
+        //     var div = document.getElementById('toggleDiv');
+        //     if (div.style.display === 'none') {
+        //         div.style.display = 'block';
+        //     } else {
+        //         div.style.display = 'none';
+        //     }
+        // });
+
+
+        // Initialize Bootstrap Tooltip
+
     </script>
 @endpush
