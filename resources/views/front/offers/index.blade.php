@@ -140,15 +140,17 @@
                                         <td>
                                             <a onclick="copytoClipBoard(this)"
                                             data-bs-toggle="tooltip" data-bs-placement="top" title="Press to copy"
+                                            style="min-width: 100px"
                                              class="btn promo-btn btn-sm btn-primary text-white">
                                                 {{-- percentage icon --}}
-                                                 <i class="fa fa-tags"></i>
+                                                <img src="{{ asset('front-assets/images/discount.png') }}" style="width: 20px">
+
                                                  {{-- promo code --}}
                                                  <span>{{ $offer->promo_code }}</span>
                                              </a>
                                         </td>
                                         <td>
-                                            <a href="">
+                                            <a href="{{ $offer->firm->checkout_link }}">
                                                 <img class="img_data"
                                                     src="{{ asset('front-assets/images/922.png') }}"
                                                     style="width: 50px;">

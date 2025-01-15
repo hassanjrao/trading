@@ -80,9 +80,9 @@
     <br><br>
     <div class="container-fluid mt-4">
 
-        <div class="row align-items-center">
+        <div class="row align-items-stretch">
             <div class="col-lg-1"></div>
-            <div class="{{ $col }}">
+            <div class="{{ $col }} h-100">
                 <div class="review_tab">
                     <div class="row">
 
@@ -144,7 +144,7 @@
             @if ($offers->count() > 0)
 
                 <div class="col-lg-4">
-                    <div class="review_tab">
+                    <div class="review_tab h-100">
 
                         @foreach ($offers as $offer)
                             <div class="d-flex flex-wrap justify-content-between mb-2 promo-card">
@@ -153,7 +153,7 @@
                                     title="Press to copy"
                                     class="btn promo-btn btn-sm btn-primary text-white d-flex justify-content-around align-items-center">
                                     {{-- percentage icon --}}
-                                    <i class="fa fa-tags"></i>
+                                    <img src="{{ asset('front-assets/images/discount.png') }}" style="width: 20px">
                                     {{-- promo code --}}
                                     <span>{{ $offer->promo_code }}</span>
                                 </a>

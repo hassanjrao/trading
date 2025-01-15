@@ -136,10 +136,10 @@
                         <div class="col-md-5">
                             <a href="{{ $firm->checkout_link }}" class="btn btn-primary btn_checkout">Proceed to checkout
                                 <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-                            <p class="sec_title_order text-center" style="font-size: 11px;">
+                            {{-- <p class="sec_title_order text-center" style="font-size: 11px;">
                                 This Purchase will give you <strong style="color: #747474; font-size: 14px;">5</strong>
                                 reward points
-                            </p>
+                            </p> --}}
                         </div>
                     </div>
 

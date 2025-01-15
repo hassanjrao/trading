@@ -109,8 +109,8 @@
 
                                     <br>
 
-                                    <span class="does_not_belong mt-3 text-white"> This Firm dose not belogn any
-                                        challanges</span>
+                                    {{-- <span class="does_not_belong mt-3 text-white"> This Firm does not belogn any
+                                        challanges</span> --}}
 
                                 </div>
                                 <div class="tab-pane fade" id="features" role="tabpanel" aria-labelledby="features-tab">
@@ -214,9 +214,9 @@
                         <div class="col-md-5">
                             <button class="btn btn-primary btn_checkout">Proceed to checkout <i
                                     class="fa fa-chevron-right" aria-hidden="true"></i></button>
-                            <p class="sec_title_order text-center">
+                            {{-- <p class="sec_title_order text-center">
                                 This Purchase will give you 5 reward points
-                            </p>
+                            </p> --}}
                         </div>
                     </div>
 

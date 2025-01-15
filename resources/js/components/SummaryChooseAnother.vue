@@ -27,7 +27,7 @@
           <br />
           <p>
             <span class="does_not_belong mt-3 text-white" v-if="accountSizes.length == 0 && selectedStep">
-              This firm {{ firm.name }} dose not have instant challenges.</span
+              {{ firm.name }} does not have {{ selectedStepName }} challenges.</span
             >
           </p>
         </div>
@@ -79,6 +79,7 @@ export default {
   data() {
     return {
       selectedStep: null,
+      selectedStepName: null,
       accountSizes: [],
       listMsg: 'Select a step to view account sizes',
     };
@@ -89,6 +90,7 @@ export default {
       console.log("changeStep", step);
 
       this.selectedStep = step;
+      this.selectedStepName = this.steps.find((s) => s.id === step).name;
 
       axios
         .get("/get-account-sizes", {
