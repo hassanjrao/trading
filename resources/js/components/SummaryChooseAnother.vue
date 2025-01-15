@@ -112,7 +112,7 @@ export default {
           } else {
 
             this.listMsg =
-              "List of All the " + selectedStepName + " Challenges for " + this.firm.name;
+              "List of All the " + this.selectedStepName + " Challenges for " + this.firm.name;
           }
         })
         .catch((error) => {
