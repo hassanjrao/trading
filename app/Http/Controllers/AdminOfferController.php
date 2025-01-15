@@ -119,6 +119,8 @@ class AdminOfferController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Offer::findorfail($id)->delete();
+
+        return redirect()->route('admin.offers.index')->withToastSuccess('Deleted successfully');
     }
 }
