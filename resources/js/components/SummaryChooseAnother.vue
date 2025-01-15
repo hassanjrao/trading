@@ -26,7 +26,10 @@
 
           <br />
           <p>
-            <span class="does_not_belong mt-3 text-white" v-if="accountSizes.length == 0 && selectedStep">
+            <span
+              class="does_not_belong mt-3 text-white"
+              v-if="accountSizes.length == 0 && selectedStep"
+            >
               {{ firm.name }} does not have {{ selectedStepName }} challenges.</span
             >
           </p>
@@ -35,27 +38,29 @@
           id="features"
           role="tabpanel"
           aria-labelledby="features-tab"
-          v-if="accountSizes.length >0"
+          v-if="accountSizes.length > 0"
         >
           <div class="row mt-3">
-            <div class="col-md-6" v-for="accountSize in accountSizes" :key="accountSize.id+Math.random()">
+            <div
+              class="col-md-6"
+              v-for="accountSize in accountSizes"
+              :key="accountSize.id + Math.random()"
+            >
               <div class="form-group form-check pl-0 checks_tabs mb-3">
                 <input
                   type="checkbox"
                   class="form-check-input"
                   :id="accountSize.id"
                   :name="accountSize.size"
-
                   required
                 />
                 <label class="checkbox-label sec_title_order" :for="accountSize.id">
-                    {{ accountSize.size }}
+                  {{ accountSize.size }}
                 </label>
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -70,7 +75,7 @@ export default {
       type: Array,
       required: true,
     },
-    firm : {
+    firm: {
       type: Object,
       required: true,
     },
@@ -81,7 +86,7 @@ export default {
       selectedStep: null,
       selectedStepName: null,
       accountSizes: [],
-      listMsg: 'Select a step to view account sizes',
+      listMsg: "Select a step to view account sizes",
     };
   },
 
@@ -101,8 +106,14 @@ export default {
         })
         .then((response) => {
           console.log("response", response.data);
-          this.listMsg = 'List of All the Instant Challenges for '+this.firm.name;
-            this.accountSizes = response.data.accountSizes;
+          this.accountSizes = response.data.accountSizes;
+          if (this.accountSizes.length == 0) {
+            this.listMsg='';
+          } else {
+
+            this.listMsg =
+              "List of All the " + selectedStepName + " Challenges for " + this.firm.name;
+          }
         })
         .catch((error) => {
           console.error("error", error);
